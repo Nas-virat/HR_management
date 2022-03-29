@@ -1,6 +1,5 @@
-
-
-
+import React from 'react';
+import { useState } from 'react';
 
 const Employinfo = () => {
 
@@ -12,7 +11,7 @@ const Employinfo = () => {
         <div>
         { role === "Admin" &&(
             <Employinfo/>
-        )}
+        )};
         </div>
     );
 }
