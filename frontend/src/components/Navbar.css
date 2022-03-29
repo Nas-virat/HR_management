@@ -3,7 +3,7 @@
 
 .navbar{
     background-color: #077777;
-    height: 70px;
+    height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -16,6 +16,11 @@
 .navbar_logo {
     margin-left: 50px;
 }
+.navbar_logo img {
+    height: 100px;
+    padding-bottom: 20px;
+}
+
 .navbar_logo > h2{
     color: #f4f4f4;
     font-size: 40px;

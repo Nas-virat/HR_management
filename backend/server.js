@@ -15,10 +15,13 @@ app.get("/", (req, res) => {
   });
 
 db.connect((err) => {
-
-  console.log("Connected to database");
+    if (err) {
+        console.log("Error", err);
+    }
+    console.log("Connected!");
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=> console.log(`Server is running on port ${PORT}`));
+
 

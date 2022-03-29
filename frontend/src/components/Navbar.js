@@ -1,11 +1,15 @@
+import React from 'react'
 import './Navbar.css';
+
+import HRlogo from "../asset/img/HRMS.png";
 
 const Navbar = () => {
     return(
         <nav className="navbar">
             <div className="navbar_logo">
-                <h2>HRMS</h2>
+                <img src={HRlogo} alt='hr-logo'></img>
             </div>
+            
             <div className="user_profile_navbar">
                 <div className="image_profile">
                   
