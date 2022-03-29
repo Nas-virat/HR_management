@@ -1,2 +1,2 @@
-# HR_management
-HR management CPE course
+# CPE_database
+HR management

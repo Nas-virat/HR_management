@@ -1,0 +1,36 @@
+
+.sidebar_bg{
+    width: 300px;
+    height: 80%;
+    margin-left: 20px;
+    position: absolute;
+    top: 90px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.sidebar_bg > h5{
+    color: #077777;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.sidebar_bg > ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar_bg > ul > li{
+   padding-top: 20px;
+   padding-left: 30px;
+   padding-bottom: 20px;
+   font-size: 17px;
+}
+
+li:hover{
+    background: rgba(196, 196, 196, 0.35);
+    color: #077777;
+}

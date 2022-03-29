@@ -1,0 +1,38 @@
+
+
+
+.navbar{
+    background-color: #077777;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    justify-content: space-between;
+    z-index: 200;
+}
+
+
+.navbar_logo {
+    margin-left: 50px;
+}
+.navbar_logo > h2{
+    color: #f4f4f4;
+    font-size: 40px;
+}
+
+
+.user_profile_navbar{
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.name_user{
+    color: #f4f4f4;
+    font-size: 17px;
+}
+.role_user{
+    color: #f4f4f4;
+    font-size: 10px;
+}
