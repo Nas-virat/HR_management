@@ -1,28 +1,19 @@
-import React from 'react'
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
-
-//components
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Login from './components/login';
 import Home from './screens/Admin/Home';
 
-//screen
-import Employinfo from './screens/Admin/Employinfo';
+import './App.css';
 
-
-function App() {
-
+const App = () => {
   return (
-      <div>
-          <Navbar />
-          <Sidebar/>
-          <Home />
-      </div>
-  );
+    <Router>
+      <Routes>
+        <Route exact path='/*' element={<Home />} />
+        <Route path='/login' element={<Home />} />
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;

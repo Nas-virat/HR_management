@@ -1,6 +1,4 @@
 
-
-
 .navbar{
     background-color: #077777;
     height: 100px;
@@ -10,34 +8,41 @@
     position: fixed;
     justify-content: space-between;
     z-index: 200;
+    top:0;
 }
 
 
-.navbar_logo {
+.navbar-logo {
     margin-left: 50px;
 }
-.navbar_logo img {
-    height: 100px;
-    padding-bottom: 20px;
+
+.navbar-logo img {
+    height: 70px;  
 }
 
-.navbar_logo > h2{
-    color: #f4f4f4;
-    font-size: 40px;
-}
-
-
-.user_profile_navbar{
+.user-profile-navbar{
     margin-right: 50px;
     display: flex;
     align-items: center;
 }
 
-.name_user{
+.image-profile{
+    vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.right-profile{
+    margin-left: 10px;
+}
+
+.name-user{
     color: #f4f4f4;
     font-size: 17px;
 }
-.role_user{
+
+.role-user{
     color: #f4f4f4;
     font-size: 10px;
 }

@@ -1,31 +1,31 @@
 import React from 'react'
-import './Navbar.css';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-import HRlogo from "../asset/img/HRMS.png";
+import Logo from '../assets/img/HRMS.png'
+import ProfilePicture from '../assets/img/employee1.jpg'
+import './Navbar.css';
 
 const Navbar = () => {
     return(
         <nav className="navbar">
-            <div className="navbar_logo">
-                <img src={HRlogo} alt='hr-logo'></img>
-            </div>
-            
-            <div className="user_profile_navbar">
-                <div className="image_profile">
-                  
-                </div>
-                <div className="right_profile">
-                    <div className="name_user">
+            <Link to='/' className="navbar-logo">
+                <img src={Logo} alt='hr-logo'></img>
+            </Link>
+            <div className="user-profile-navbar">
+                <Link to ='user' className='profile-img'>
+                    <img className="image-profile" src={ProfilePicture} alt='hr-logo'></img> 
+                </Link> 
+                <div className="right-profile">
+                    <div className="name-user">
                         Meaw Sean
                     </div>
-                    <div className="role_user">
+                    <div className="role-user">
                         HR ADMIN
                     </div>
-                </div>
-                
+                </div>             
             </div>
         </nav>
     )
 }
 
-export default Navbar;
+export default Navbar
