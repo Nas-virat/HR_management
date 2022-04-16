@@ -1,6 +1,6 @@
 
 .main {
-    margin-top: 110px;
+    margin-top: 50px;
     margin-left: 350px;
     position: relative;
 }
@@ -8,11 +8,18 @@
 .dashboard{
     width: 100%;
     height: 100%;
+    margin-top: 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(4px);
+}
+
+.container p{
+    margin-top: 10px;
+    margin-left: 15px;
+    color: #ffffff;
 }
 
 .container{
@@ -30,6 +37,7 @@
 .information{
     width: 100%;
     height: 100%;
+    margin-top: 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
     padding: 20px;

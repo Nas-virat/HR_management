@@ -21,7 +21,7 @@ db.connect((err) => {
     console.log("Connected!");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT,()=> console.log(`Server is running on port ${PORT}`));
 
 
