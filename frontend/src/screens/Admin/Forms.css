@@ -1,14 +1,15 @@
-.main {
-    margin-top: 50px;
-    margin-left: 350px;
+.form-container {
+    margin-top: 120px;
+    margin-left: 370px;
+    margin-right: 30px;
     position: relative;
 }
 
-.main h5 {
+.form-container h5 {
     color: #077777;
 }
 
-.form{
+.form {
     width: 90%;
     height: 100%;
     margin-top: 20px;
@@ -19,7 +20,6 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(4px);
 }
-
 
 .inputform {
     width: 50%;

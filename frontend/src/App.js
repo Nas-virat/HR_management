@@ -5,8 +5,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //screens
 import Home from './screens/Admin/Home';
 import Bonus from './screens/Admin/Bonus';
-import AddEmployeeToTask from './screens/Admin/AddEmployeeToTask';
+import AddEmployeeToTask from './screens/Admin/task/AddEmployeeToTask';
+import AddEmployeeToDepartment from './screens/Admin/employee/AddEmployeeToDepartment';
 import AddRoles from './screens/Admin/AddRoles';
+import Viewtask from './screens/Admin/task/Viewtask';
 
 import './App.css';
 
@@ -24,7 +26,9 @@ const App = () => {
         <Route exact path='/attendance' element={<Home />} />
         <Route exact path='/bonus' element={<Bonus />} />
         <Route exact path='/addemployeetask' element={<AddEmployeeToTask />} />
+        <Route exact path='/addemployeedepartment' element={<AddEmployeeToDepartment />} />
         <Route exact path='/addroles' element={<AddRoles />} />
+        <Route exact path='/viewtask' element={<Viewtask />} />
       </Routes>
     </Router>
   )

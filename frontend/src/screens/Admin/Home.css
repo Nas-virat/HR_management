@@ -1,7 +1,7 @@
-
-.main {
-    margin-top: 50px;
-    margin-left: 350px;
+.home-container {
+    margin-top: 120px;
+    margin-left: 370px;
+    margin-right: 30px;
     position: relative;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .column{
-    flex: auto;
+    flex: 1;
     width: 200px;
     height: 150px;
     background-color: #339331;

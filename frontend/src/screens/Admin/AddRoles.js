@@ -15,7 +15,7 @@ const AddRoles = () => {
     <div>
         <Navbar />
         <Sidebar />
-        <div className="main">
+        <div className="form-container">
             <h5>Add Roles</h5>
             <div className='form'>
                 <Form> 

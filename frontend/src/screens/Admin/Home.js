@@ -7,14 +7,16 @@ import Sidebar from '../../components/Sidebar';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { FaBeer } from 'react-icons/fa';
+
 const Home = () => {
     return(
         <div>
             <Navbar />
             <Sidebar />
-            <div className="main">
+            <div className="home-container">
                 <div className="dashboard">
-                    <p>DASHBOARD</p>
+                    <p><FaBeer/>DASHBOARD</p>
                     <div className='container'> 
                         
                         <div className='column'>

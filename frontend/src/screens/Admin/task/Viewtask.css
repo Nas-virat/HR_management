@@ -1,0 +1,46 @@
+.viewtask-task-bg {
+    background-color: #EFEFEF;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.viewtask-supervisor-bg{
+    background-color: #EFEFEF;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.viewtask-members-bg {
+    background-color: #EFEFEF;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.header-content {
+    display: flex;
+}
+
+.header-content > div{
+    flex: 1;
+}
+
+.supervisor-content {
+    display: flex;
+}
+
+.supervisor-content > div{
+    flex: 1;
+}
+
+hr.solid {
+    border-top: 3px solid #000000;
+}

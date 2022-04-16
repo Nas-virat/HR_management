@@ -15,7 +15,7 @@ const Bonus = () => {
     <div>
         <Navbar />
         <Sidebar />
-        <div className="main">
+        <div className="form-container">
             <h5>BONUS</h5>
             <div className='form'>
                 <Form> 
