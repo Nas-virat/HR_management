@@ -45,6 +45,13 @@ const Sidebar = () => {
                 > 
                     Attendance
                 </NavLink>
+                <NavLink 
+                    to = "/bonus" 
+                    className = 'notselected'  
+                    activeClassName = "selected"
+                > 
+                    Bonus
+                </NavLink>
             </div>
         </div>
     )
