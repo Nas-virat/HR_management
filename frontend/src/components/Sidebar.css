@@ -17,6 +17,9 @@
     color: #077777;
     margin-top: 10px;
     margin-left: 10px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-container {
@@ -44,11 +47,13 @@
 
 .notselected:hover {
     color: #077777;
+    background-color: #E1E1E1;
 }
 
 .selected {
-    color: #000000;
+    color: #077777;
     font-weight: bold;
+    text-decoration: none;
     display: flex;
     align-items: center;
     padding-left: 1.25rem; /* 20px */
@@ -64,4 +69,6 @@
     text-transform: capitalize;
 }
 
-
+.selected:hover {
+    color: #077777;
+}

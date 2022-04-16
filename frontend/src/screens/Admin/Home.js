@@ -17,13 +17,13 @@ const Home = () => {
                     <p>DASHBOARD</p>
                     <div className='container'> 
                         
-                        <div className='col'>
+                        <div className='column'>
                             <p>Today Attendance</p>
                         </div>
-                        <div className='col'>
+                        <div className='column'>
                             <p>Late</p>
                         </div>
-                        <div className='col'>
+                        <div className='column'>
                             <p>Absent</p>
                         </div>
                     </div>
@@ -31,13 +31,13 @@ const Home = () => {
                 <div className="information">
                     <p>INFORMATION</p>
                     <div className='container'>
-                        <div className='col'>
+                        <div className='column'>
                             <p>Today Attendance</p>
                         </div>
-                        <div className='col'>
+                        <div className='column'>
                             <p>Late</p>
                         </div>
-                        <div className='col'>
+                        <div className='column'>
                             <p>Absent</p>
                         </div>
                     </div>

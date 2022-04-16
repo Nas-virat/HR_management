@@ -12,43 +12,37 @@ const Sidebar = () => {
             <div className='sidebar-container'>
                 <NavLink 
                     to = '/home'
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Home
                 </NavLink>
                 <NavLink 
                     to = '/department' 
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Department
                 </NavLink>
                 <NavLink 
                     to = "/employee" 
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Employee
                 </NavLink>
                 <NavLink 
                     to = "/task" 
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Task
                 </NavLink>
                 <NavLink 
                     to = "/attendance" 
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Attendance
                 </NavLink>
                 <NavLink 
                     to = "/bonus" 
-                    className = 'notselected'  
-                    activeClassName = "selected"
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
                 > 
                     Bonus
                 </NavLink>

@@ -26,7 +26,8 @@
     display: flex;
 }
 
-.col{
+.column{
+    flex: auto;
     width: 200px;
     height: 150px;
     background-color: #339331;
