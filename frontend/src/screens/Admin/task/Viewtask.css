@@ -33,11 +33,12 @@
     flex: 1;
 }
 
-.supervisor-content {
+.employee-content {
     display: flex;
+    margin-top: 10px;
 }
 
-.supervisor-content > div{
+.employee-content > div{
     flex: 1;
 }
 

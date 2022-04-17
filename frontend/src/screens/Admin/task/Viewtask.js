@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //css
 import '../Forms.css';
@@ -34,11 +35,22 @@ const Header = () => {
    )
 }
 
+const EmployeeRow = ({info}) =>{
+  let navigate = useNavigate();
+  return(
+    <div className = "employee-content">
+      <div>{info.Id}</div>
+      <div>{info.Name}</div>
+      <div>{info.Position}</div>
+      <div>{info.Department}</div>
+      <Button variant="success" onClick={() => navigate("/home")}>Go</Button>
+    </div>
+    )
+}
 
 const Viewtask = () => {
 
   const [add, setAdd] = useState(false);
-
   return (
     <div>
         <Navbar/>
@@ -56,23 +68,20 @@ const Viewtask = () => {
             <div className = "viewtask-supervisor-bg">
                 <h5>Supervisor</h5>
                 <Header />
-                <div className = "supervisor-content">
-                    <div>{data.Id}</div>
-                    <div>{data.Name}</div>
-                    <div>{data.Position}</div>
-                    <div>{data.Department}</div>
-                </div>
+                <EmployeeRow info = {data}/>
             </div>
             <div className = "viewtask-members-bg">
                 <h5>Members</h5>
                 <Header />
-                <div className = "supervisor-content">
-                    <div>{data.Id}</div>
-                    <div>{data.Name}</div>
-                    <div>{data.Position}</div>
-                    <div>{data.Department}</div>
-                    {/*Button Go */}
-                </div>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
                 <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
                 {add && <Button variant="success">Hello</Button>}
             </div>
