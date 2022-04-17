@@ -17,7 +17,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path='/*' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
         {/* Home = dashboard */}
         <Route exact path='/home' element={<Home />} /> 
         <Route exact path='/department' element={<Home />} />
@@ -25,10 +25,14 @@ const App = () => {
         <Route exact path='/task' element={<Home />} />
         <Route exact path='/attendance' element={<Home />} />
         <Route exact path='/bonus' element={<Bonus />} />
+
+        {/* Maybe don't have to use  */}
         <Route exact path='/addemployeetask' element={<AddEmployeeToTask />} />
         <Route exact path='/addemployeedepartment' element={<AddEmployeeToDepartment />} />
+        {/* Maybe don't have to use  */}
+
         <Route exact path='/addroles' element={<AddRoles />} />
-        <Route exact path='/viewtask' element={<Viewtask />} />
+        <Route exact path='/viewtask/:id' element={<Viewtask />} />
       </Routes>
     </Router>
   )
