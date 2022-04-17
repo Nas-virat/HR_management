@@ -46,6 +46,13 @@ const Sidebar = () => {
                 > 
                     Bonus
                 </NavLink>
+
+                <NavLink 
+                    to = "/addroles" 
+                    className = {({isActive}) => (isActive ? "selected" : 'notselected')}
+                > 
+                    AddNewRole
+                </NavLink>
             </div>
         </div>
     )

@@ -3,4 +3,20 @@
     height: 150px;    
     margin: 10px;
     border-radius: 5px;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.homecard p{
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.homecard h1{
+    font-size: 50px;
+    font-weight: bold;
 }

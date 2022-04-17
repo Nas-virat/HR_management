@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 
 
@@ -51,7 +51,7 @@ const Viewtask = () => {
                 <h5>Task</h5>
                 <div className = "task-desc-content">
                     <h1>T000001</h1>
-                    <p>DesMeaw seancription: Collect the data from the user. Analyze and report to the head department before the end of the month.</p>
+                    <p>Description: Collect the data from the user. Analyze and report to the head department before the end of the month.</p>
                     <p>Deadline: 16/04/2022</p>
                     <p>Status: Active</p>
                 </div>
@@ -77,21 +77,13 @@ const Viewtask = () => {
                 {add && 
                   <div className='form'>
                     <Form> 
-                      <Row className="mb-3">
-                          <Form.Group as={Col} controlId="formRoleName">
-                          <Form.Label>Task ID</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Task ID"/>
-                          </Form.Group>
-
-                          <Form.Group as={Col} controlId="formOTRate">
-                          <Form.Label>Employee ID</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Employee ID" />
-                          </Form.Group>
-                      </Row>
-                        
-                        <Button variant="success" type="submit">
-                            Submit
-                        </Button>
+                      <Form.Group className='mb-3' controlId="formOTRate">
+                        <Form.Label>Employee ID</Form.Label>
+                        <Form.Control className="inputform" type="text" placeholder="Enter Employee ID" />
+                      </Form.Group>
+                      <Button variant="success" type="submit">
+                          Submit
+                      </Button>
                     </Form>
                   </div>
                 }

@@ -14,7 +14,6 @@ import Sidebar from '../../components/Sidebar';
 
 const AddRoles = () => {
 
-    const [roleid, setRoleId] = useState('');
     const [rolename, setRoleName] = useState('');
     const [otrate,setOtrate] = useState(0);
     const [employeeid, setEmployeeId] = useState('');
@@ -23,14 +22,14 @@ const AddRoles = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({'RoleId' :roleid,
+        console.log({
                     'RoleName':rolename,
                     'OTrate':otrate,
                     'EmployeeId':employeeid,
                     'RoleDescription':roledescription,
                     'Salary':salary
                     });
-        alert(`RoleId : ${roleid}\nRoleName : ${rolename}\nOTrate : ${otrate}\nEmployeeId : ${employeeid}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
+        alert(`RoleName : ${rolename}\nOTrate : ${otrate}\nEmployeeId : ${employeeid}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
     }
 
 
@@ -42,15 +41,6 @@ const AddRoles = () => {
             <h5>Add Roles</h5>
             <div className='form'>
                 <Form> 
-                    <Form.Group className="mb-3 " controlId="formRoleID">
-                        <Form.Label>Role ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Role ID" defaultValue = {roleid || ""}
-                            onChange = {e => setRoleId(e.target.value)}
-                        />
-                        <Form.Text className="text-muted">
-                        The Role ID will be automatically generated.
-                        </Form.Text>
-                    </Form.Group>
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formRoleName">

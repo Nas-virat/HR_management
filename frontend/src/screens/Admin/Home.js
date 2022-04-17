@@ -19,9 +19,9 @@ const Home = () => {
                 <div className="dashboard">
                     <p><FaBeer/>DASHBOARD</p>
                     <div className='container'> 
-                        <Homecard color='#339331' text='Today Attendance'></Homecard> 
-                        <Homecard color='#D9D22E' text='Late'></Homecard>
-                        <Homecard color='#E74242' text='Absent'></Homecard>
+                        <Homecard color='#339331' text='Today Attendance' /> 
+                        <Homecard color='#D9D22E' text='Late' />
+                        <Homecard color='#E74242' text='Absent' />
                     </div>
                 </div>
                 <div className="information">
