@@ -71,6 +71,7 @@ const Viewtask = () => {
                     <div>{data.Name}</div>
                     <div>{data.Position}</div>
                     <div>{data.Department}</div>
+                    {/*Button Go */}
                 </div>
                 <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
                 {add && <Button variant="success">Hello</Button>}
