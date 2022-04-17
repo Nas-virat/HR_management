@@ -24,11 +24,11 @@ const Header = () => {
     )
  }
 
- const DepartmentRow = ({info}) =>{
+const DepartmentRow = ({info}) =>{
     let navigate = useNavigate();
     return(
       <div className = "employee-content">
-        <div>D000001</div>
+        <div>D001</div>
         <div>Department 1</div>
         <div>10</div>
         <Button variant="success" onClick={() => navigate("/home")}>Go</Button>

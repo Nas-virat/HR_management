@@ -24,10 +24,7 @@ const Bonus = () => {
                     'Bonus Amount':bonus, 
                     'AdminId': adminid
                     });
-        alert({'EmployeeId' :employeeid, 
-        'Bonus Amount':bonus, 
-        'AdminId': adminid
-        });
+        alert(`EmployeeId : ${employeeid}\nBonus Amount : ${bonus}\nAdminId : ${adminid}`);
     }
 
     return (
