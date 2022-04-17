@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import { useState } from 'react';
 
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,7 +13,28 @@ import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
 const AddRoles = () => {
-  return (
+
+    const [roleid, setRoleId] = useState('');
+    const [rolename, setRoleName] = useState('');
+    const [otrate,setOtrate] = useState(0);
+    const [employeeid, setEmployeeId] = useState('');
+    const [roledescription, setRoleDescription] = useState('');
+    const [salary, setSalary] = useState(0);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({'RoleId' :roleid,
+                    'RoleName':rolename,
+                    'OTrate':otrate,
+                    'EmployeeId':employeeid,
+                    'RoleDescription':roledescription,
+                    'Salary':salary
+                    });
+        alert(`RoleId : ${roleid}\nRoleName : ${rolename}\nOTrate : ${otrate}\nEmployeeId : ${employeeid}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
+    }
+
+
+    return (
     <div>
         <Navbar />
         <Sidebar />
@@ -19,42 +42,53 @@ const AddRoles = () => {
             <h5>Add Roles</h5>
             <div className='form'>
                 <Form> 
-                    <Form.Group className="mb-3 " controlId="formBasicEmail">
+                    <Form.Group className="mb-3 " controlId="formRoleID">
                         <Form.Label>Role ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Role ID"/>
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Role ID" defaultValue = {roleid || ""}
+                            onChange = {e => setRoleId(e.target.value)}
+                        />
                         <Form.Text className="text-muted">
                         The Role ID will be automatically generated.
                         </Form.Text>
                     </Form.Group>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Group as={Col} controlId="formRoleName">
                         <Form.Label>Role Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name" />
+                        <Form.Control type="text" placeholder="Enter Name" defaultValue = {rolename || ""} 
+                            onChange = {e => setRoleName(e.target.value)}
+                        />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group as={Col} controlId="formOTRate">
                         <Form.Label>OT Rate</Form.Label>
-                        <Form.Control type="number" placeholder="Enter OT Rate" />
+                        <Form.Control type="number" placeholder="Enter OT Rate" defaultValue = {otrate|| ""}
+                            onChange = {e => setOtrate(e.target.value)}
+                        />
                         </Form.Group>
                     </Row>
 
-                    <Form.Group className="mb-3 " controlId="formBasicEmail">
+                    <Form.Group className="mb-3 " controlId="formEmployeeID">
                         <Form.Label>Employee ID</Form.Label>
-                        <Form.Control className = "inputform" type="email" placeholder="Enter Employee ID" />
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {employeeid || ""}
+                            onChange = {e => setEmployeeId(e.target.value)}
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Group className="mb-3" controlId="Form.ControlRoleDescription">
                         <Form.Label>Role Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} defaultValue = {roledescription || ""}
+                            onChange = {e => setRoleDescription(e.target.value)}/>
                     </Form.Group>
 
-                    <Form.Group className="mb-3 " controlId="formBasicEmail">
+                    <Form.Group className="mb-3 " controlId="formBaseSalary">
                         <Form.Label>Base Salary</Form.Label>
-                        <Form.Control className = "inputform" type="number" placeholder="Enter Base Salary for this Role" />
+                        <Form.Control className = "inputform" type="number" placeholder="Enter Base Salary for this Role" defaultValue ={salary || ""}
+                            onChange = {e => setSalary(e.target.value)}
+                        />
                     </Form.Group>
                     
-                    <Button variant="success" type="submit">
+                    <Button variant="success" type="submit" onClick = {handleSubmit}>
                         Submit
                     </Button>
                 </Form>

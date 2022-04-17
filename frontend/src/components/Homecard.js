@@ -1,13 +1,13 @@
 import React from 'react'
 import './Homecard.css';
 
-const Homecard = () => {
+const Homecard = ({color, text}) => {
     return(
-        <div>
-            <h1>HEY HEY BOI</h1>
+        <div className='homecard' style={{backgroundColor : color}}>
+            <p>{text}</p>
         </div>
-
-    );
+        )
 }
+
 
 export default Homecard;

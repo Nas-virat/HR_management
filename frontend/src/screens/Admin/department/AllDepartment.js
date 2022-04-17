@@ -1,6 +1,8 @@
 
 import React from 'react'
 
+import './AllDepartment.css';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +15,10 @@ import Sidebar from '../../../components/Sidebar';
 const Header = () => {
     return(
      <>
-       <div className = "header-content">
-         <div>ID</div>
-         <div>Name</div>
-         <div>Total Member</div>
+       <div className = "alldepartment-header-content">
+         <div className="department-ID">ID</div>
+         <div className="department-Name">Name</div>
+         <div className="department-Member">Total Member</div>
        </div>
        <hr className="solid"></hr>
      </>
@@ -24,19 +26,19 @@ const Header = () => {
     )
  }
 
-const DepartmentRow = ({info}) =>{
+const DepartmentRow = ({info}) => {
     let navigate = useNavigate();
     return(
-      <div className = "employee-content">
+      <div className = "allDepartment-department-content">
         <div>D001</div>
         <div>Department 1</div>
         <div>10</div>
-        <Button variant="success" onClick={() => navigate("/home")}>Go</Button>
+        <Button variant="success" onClick={() => navigate(`/viewdepartment/D001`)}>Go</Button>
       </div>
       )
   }
 
-const AllDepartment = () =>{
+const AllDepartment = () => {
 
     const [add, setAdd] = useState(false);
 
@@ -44,13 +46,16 @@ const AllDepartment = () =>{
         <div>
             <Navbar/>
             <Sidebar/>
-            <div className='form-container'>
-                <Header/>
-                <DepartmentRow/>
-                <DepartmentRow/>
-                <DepartmentRow/>
-                <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                {add && <Button variant="success">Hello</Button>}
+            <div className='alldepartment-form-container'>
+               <h5>All Department</h5>
+                <div className="alldepartment-form">
+                  <Header/>
+                  <DepartmentRow/>
+                  <DepartmentRow/>
+                  <DepartmentRow/>
+                  <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
+                  {add && <Button variant="success">Hello</Button>}
+                </div>
             </div>
         </div>
         )

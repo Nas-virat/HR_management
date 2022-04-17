@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+
 
 //css
 import '../Forms.css';
@@ -11,14 +12,17 @@ import './Viewtask.css';
 //components
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
+import EmployeeRow from '../../../components/EmployeeRow';
 
 
 const data = {
-  "Id": "T000001",
-  "Name": "Meaw sean",
-  "Position": "HR Admin",
-  "Department": "Human Resource"
+  Id: "E000312",
+  Name: "Meaw sean",
+  Position: "HR Admin",
+  Department: "Human Resource"
 }
+
+
 
 const Header = () => {
    return(
@@ -35,22 +39,9 @@ const Header = () => {
    )
 }
 
-const EmployeeRow = ({info}) =>{
-  let navigate = useNavigate();
-  return(
-    <div className = "employee-content">
-      <div>{info.Id}</div>
-      <div>{info.Name}</div>
-      <div>{info.Position}</div>
-      <div>{info.Department}</div>
-      <Button variant="success" onClick={() => navigate("/home")}>Go</Button>
-    </div>
-    )
-}
-
 const Viewtask = () => {
-
   const [add, setAdd] = useState(false);
+
   return (
     <div>
         <Navbar/>
@@ -60,7 +51,7 @@ const Viewtask = () => {
                 <h5>Task</h5>
                 <div className = "task-desc-content">
                     <h1>T000001</h1>
-                    <p>Description: Collect the data from the user. Analyze and report to the head department before the end of the month.</p>
+                    <p>DesMeaw seancription: Collect the data from the user. Analyze and report to the head department before the end of the month.</p>
                     <p>Deadline: 16/04/2022</p>
                     <p>Status: Active</p>
                 </div>
@@ -83,7 +74,27 @@ const Viewtask = () => {
                 <EmployeeRow info = {data}/>
                 <EmployeeRow info = {data}/>
                 <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                {add && <Button variant="success">Hello</Button>}
+                {add && 
+                  <div className='form'>
+                    <Form> 
+                      <Row className="mb-3">
+                          <Form.Group as={Col} controlId="formRoleName">
+                          <Form.Label>Task ID</Form.Label>
+                          <Form.Control type="text" placeholder="Enter Task ID"/>
+                          </Form.Group>
+
+                          <Form.Group as={Col} controlId="formOTRate">
+                          <Form.Label>Employee ID</Form.Label>
+                          <Form.Control type="text" placeholder="Enter Employee ID" />
+                          </Form.Group>
+                      </Row>
+                        
+                        <Button variant="success" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                  </div>
+                }
             </div>
         </div>
     </div>

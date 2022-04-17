@@ -1,0 +1,55 @@
+.alltask-form-container {
+    min-width: 500px;
+    margin-top: 120px;
+    margin-left: 370px;
+    margin-right: 30px;
+    position: relative;
+}
+
+.alltask-form {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.alltask-form-container h5 {
+    color: #077777;
+}
+
+.alltask-header-content {
+    display: flex;
+}
+
+.alltask-header-content > div {
+    flex: 1;
+}
+
+.alltask-task-content {
+    display: flex;
+    margin-top: 10px;
+}
+
+.alltask-task-content > div {
+    flex: 1;
+}
+
+.task-desc{
+    position: relative;
+    right:10px
+}
+
+.task-supervisorID{
+    position: relative;
+    right:25px
+}
+
+.task-status{
+    position: relative;
+    right:40px
+}

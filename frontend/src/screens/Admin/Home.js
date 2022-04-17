@@ -3,6 +3,7 @@ import React from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
+import Homecard from '../../components/Homecard';
 
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,16 +19,9 @@ const Home = () => {
                 <div className="dashboard">
                     <p><FaBeer/>DASHBOARD</p>
                     <div className='container'> 
-                        
-                        <div className='column'>
-                            <p>Today Attendance</p>
-                        </div>
-                        <div className='column'>
-                            <p>Late</p>
-                        </div>
-                        <div className='column'>
-                            <p>Absent</p>
-                        </div>
+                        <Homecard color='#339331' text='Today Attendance'></Homecard> 
+                        <Homecard color='#D9D22E' text='Late'></Homecard>
+                        <Homecard color='#E74242' text='Absent'></Homecard>
                     </div>
                 </div>
                 <div className="information">
