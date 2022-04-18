@@ -25,9 +25,13 @@ const Sidebar = () => {
                 <SectionLink name="Department" to = '/department'/>
                 <SectionLink name="Employee" to = '/employee'/>
                 <SectionLink name="Task" to = '/task'/>
+                <SectionLink name="Add New Employee" to = '/employee/add'/>
+                <SectionLink name="Add New Task" to = '/task/add'/>
                 <SectionLink name="Attendance" to = '/attendance'/>
                 <SectionLink name="Bonus" to = '/bonus'/>
+                <SectionLink name="Promotion" to = '/promotion'/>
                 <SectionLink name="AddNewRole" to = '/addroles'/>
+
             </div>
         </div>
     )

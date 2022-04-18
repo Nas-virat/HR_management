@@ -8,11 +8,11 @@ import './Navbar.css';
 const Navbar = () => {
     return(
         <nav className="navbar-container">
-            <Link to='/' className="navbar-logo">
+            <Link to='/home' className="navbar-logo">
                 <img src={Logo} alt='hr-logo'></img>
             </Link>
             <div className="user-profile-navbar">
-                <Link to ='user' className='profile-img'>
+                <Link to ='/viewemployee/E000312' className='profile-img'>
                     <img className="image-profile" src={ProfilePicture} alt='hr-logo'></img> 
                 </Link> 
                 <div className="right-profile">

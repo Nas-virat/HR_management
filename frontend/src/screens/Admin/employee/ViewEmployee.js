@@ -3,6 +3,8 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom';
 
+import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
+
 import { Button } from 'react-bootstrap';
 
 import Navbar from '../../../components/Navbar';
@@ -11,8 +13,6 @@ import Homecard from '../../../components/Homecard';
 import './ViewEmployee.css';
 
 import Logo from '../../../assets/img/employee1.jpg';
-
-import { FcOk, FcHighPriority, FcVlc } from 'react-icons/fc';
 
 const data = {
     taskid: 'T000001',
@@ -48,6 +48,26 @@ const Header = () => {
       </div>
       )
   }
+
+const PaymentRow = ({text,value}) => {
+
+  if(value > 0){
+    return (
+      <div className = 'Viewemployee-payment-row'>
+        <p>{text}</p>
+         <p style = {{'color':'green'}} >{value}</p>  
+      </div>
+    )
+  }
+  else{
+    return (
+      <div className = 'Viewemployee-payment-row'>
+        <p>{text}</p>
+         <p style = {{'color':'red'}} >{value}</p>  
+      </div>
+    )
+  }
+}
 
 
 const ViewEmployee = () => {
@@ -118,7 +138,25 @@ const ViewEmployee = () => {
                 </div>
             </div>
             <div className = "Viewemployee-bottom-right">
-
+              <h5>Payment</h5>
+              <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
+                <PaymentRow text = 'January 2022 Invoice' value ={25000}/>
+                <PaymentRow text = 'February 2022 Invoice' value = {23000}/>
+              </div>
+              <div className="Viewemployee-thismonth">
+                <h5>This month</h5>
+                <div className="Viewemployee-incomededuct">
+                    <Homecard color='#339331' text='income' value = {4} />
+                    <Homecard color='#E74242' text='Today Attendance' value = {4} />
+                </div>
+                <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
+                  <PaymentRow text = 'Base Salary' value = {25000}/>
+                  <PaymentRow text = 'Medical Expense' value = {-500}/>
+                  <PaymentRow text = 'Overtime Payment' value = {1000}/>
+                  <hr className="solid"></hr>
+                  <PaymentRow text = 'Total Amount' value = {25500}/>
+                </div>
+              </div>
             </div>
         </div>
         </div>

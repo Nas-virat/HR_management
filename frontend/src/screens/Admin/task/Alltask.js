@@ -3,6 +3,7 @@ import React from 'react';
 import './Alltask.css';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
@@ -37,6 +38,8 @@ const Alltask = () => {
 
     const [add, setAdd] = useState(false);
 
+    const navigate = useNavigate();
+
     return (
         <div>
             <Navbar/>
@@ -49,7 +52,7 @@ const Alltask = () => {
                     <TaskRow info = {data} />
                     <TaskRow info = {data} />
                     <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                    {add && <Button variant="success">Hello</Button>}
+                    {add && navigate('/task/add')}
                 </div>
             </div>
         </div>

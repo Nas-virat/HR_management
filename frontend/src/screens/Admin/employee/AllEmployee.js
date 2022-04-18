@@ -3,6 +3,7 @@ import React from 'react';
 import './AllEmployee.css';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
@@ -41,6 +42,7 @@ const AllEmployee = () => {
 
     const [add, setAdd] = useState(false);
 
+    const navigate = useNavigate();
     return (
         <div>
             <Navbar/>
@@ -53,7 +55,7 @@ const AllEmployee = () => {
                 <EmployeeRow info = {data}/>
                 <EmployeeRow info = {data}/>
                 <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                {add && <Button variant="success">Hello</Button>}
+                {add && navigate('/employee/add')}
               </div>
             </div>
         </div>
