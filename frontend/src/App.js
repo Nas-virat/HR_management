@@ -7,6 +7,7 @@ import Home from './screens/Admin/Home';
 import Bonus from './screens/Admin/Bonus';
 import AddRoles from './screens/Admin/AddRoles';
 import AddPromotion from './screens/Admin/AddPromotion';
+import AddDepartment from './screens/Admin/department/AddDepartment';
 import Viewtask from './screens/Admin/task/Viewtask';
 import ViewDepartment from './screens/Admin/department/ViewDepartment';
 import AllDepartment from './screens/Admin/department/AllDepartment';
@@ -16,8 +17,10 @@ import AddNewTask from './screens/Admin/task/AddNewTask';
 import ViewEmployee from './screens/Admin/employee/ViewEmployee';
 import AddNewEmployee from './screens/Admin/employee/AddNewEmployee';
 import Attendance from './screens/Admin/Attendance';
+import Deduction from './screens/Admin/Deduction';
 
 import './App.css';
+
 
 
 const App = () => {
@@ -31,6 +34,7 @@ const App = () => {
         {/* Department*/}
         <Route exact path='/department' element={<AllDepartment />} />
         <Route exact path='/viewdepartment/:id' element={<ViewDepartment />} />
+        <Route exact path='/department/add' element={<AddDepartment />} />
 
         {/* Task*/}
         <Route exact path='/task' element={<Alltask />} />
@@ -48,6 +52,7 @@ const App = () => {
 
         <Route exact path='/attendance' element={<Attendance />} />
         <Route exact path='/bonus' element={<Bonus />} /> 
+        <Route exact path='/deduction' element={<Deduction />} /> 
         <Route exact path='/promotion' element={<AddPromotion />} /> 
       </Routes>
     </Router>
