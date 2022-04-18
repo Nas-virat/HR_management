@@ -1,16 +1,109 @@
-import React from 'react'
+import React from 'react';
 
-import Navbar from '../../../components/Navbar'
-import Sidebar from '../../../components/Sidebar'
+import { useState } from 'react';
+
+import { Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import '../Forms.css';
+
+//import components
+import Navbar from '../../../components/Navbar';
+import Sidebar from '../../../components/Sidebar';
 
 const AddNewTask = () => {
-  return (
+
+    let defaultDate = new Date();
+    defaultDate.setDate(defaultDate.getDate());
+
+    const [date, setDate] = useState(defaultDate);
+    const [employeeid, setEmployeeId] = useState('');
+    const [taskdescription, setTaskDescription] = useState('');
+    const [tasktype, setTasktype] = useState(''); // I - Individual, P - Project
+    const [supervisorid, setSupervisorid] = useState('');
+
+    const onSetDate = (event) => {
+        setDate(new Date(event.target.value))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({
+                    'EmployeeId':employeeid,
+                    'RoleId':taskdescription,
+                    'Tasktype': tasktype,
+                    'TaskDeadline':date,
+                    'SupervisorId':supervisorid
+                    });
+        alert(`EmployeeId : ${employeeid}\nTaskDescription : ${taskdescription}\nTaskDeadline : ${date}\nTaskType : ${tasktype}\nSupervisorId : ${supervisorid}`);
+    }
+
+
+    return (
     <div>
-        <Navbar/>
-        <Sidebar/>
-        <div>AddNewEmployee</div>
-    </div>
+        <Navbar />
+        <Sidebar />
+        <div className="form-container">
+            <h5>ADD NEW TASK</h5>
+            <div className='form'>
+                <Form> 
+                  <Form.Group className="mb-3" controlId="formEmployeeID">
+                      <Form.Label>Employee ID</Form.Label>
+                      <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {employeeid || ""}
+                          onChange = {e => setEmployeeId(e.target.value)}
+                      />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formTaskDeadline">
+                      <Form.Label>Task Deadline</Form.Label>
+                      <Form.Control type="date" placeholder="Enter Task Deadline" defaultValue = {date.toLocaleDateString('en-CA')}
+                          onChange = {onSetDate}
+                      />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="Form.ControlTaskDescription">
+                      <Form.Label>Task Description</Form.Label>
+                      <Form.Control as="textarea" rows={3} defaultValue = {taskdescription || ""}
+                          onChange = {e => setTaskDescription(e.target.value)}/>
+                  </Form.Group>
+
+                  <Form.Label>Task Type</Form.Label>
+                    <div key={`inline-radio`} className="mb-3">   
+                        <Form.Check
+                          inline
+                          label="Individual"
+                          name="tasktype"
+                          type= 'radio'
+                          id= 'inline-radio-individual'
+                          onChange = {e => setTasktype('I')}
+                        />
+
+                        <Form.Check
+                          inline
+                          label="Project"
+                          name="tasktype"
+                          type= 'radio'
+                          id= 'inline-radio-project'
+                          onChange = {e => setTasktype('P')}
+                        />
+                    </div>
+
+                  <Form.Group className="mb-3 " controlId="formSupervisorID">
+                      <Form.Label>Supervisor ID</Form.Label>
+                      <Form.Control className = "inputform" type="text" placeholder="Enter Supervisor ID" defaultValue = {supervisorid || ""}
+                          onChange = {e => setSupervisorid(e.target.value)}
+                      />
+                  </Form.Group>
+         
+                  <Button variant="success" type="submit" onClick = {handleSubmit}>
+                      Submit
+                  </Button>
+                </Form>
+            </div>
+        </div>
+    </div>  
   )
 }
 
-export default AddNewTask
+export default AddNewTask;

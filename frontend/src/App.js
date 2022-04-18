@@ -15,6 +15,7 @@ import Alltask from './screens/Admin/task/Alltask';
 import AddNewTask from './screens/Admin/task/AddNewTask';
 import ViewEmployee from './screens/Admin/employee/ViewEmployee';
 import AddNewEmployee from './screens/Admin/employee/AddNewEmployee';
+import Attendance from './screens/Admin/Attendance';
 
 import './App.css';
 
@@ -45,7 +46,7 @@ const App = () => {
         {/* Role */}
         <Route exact path='/addroles' element={<AddRoles />} />
 
-        <Route exact path='/attendance' element={<Home />} />
+        <Route exact path='/attendance' element={<Attendance />} />
         <Route exact path='/bonus' element={<Bonus />} /> 
         <Route exact path='/promotion' element={<AddPromotion />} /> 
       </Routes>
