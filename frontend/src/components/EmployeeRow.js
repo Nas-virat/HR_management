@@ -9,10 +9,10 @@ const EmployeeRow = ({info}) =>{
     let navigate = useNavigate();
     return(
       <div className = "employee-content">
-        <div>{info.Id}</div>
-        <div>{info.Name}</div>
-        <div>{info.Position}</div>
-        <div>{info.Department}</div>
+        <div>{info.EmployeeID}</div>
+        <div>{info.fname}</div>
+        <div>{info.lname}</div>
+        <div>{info.Institution}</div>
         <Button variant="success" onClick={() => navigate(`/viewemployee/${info.Id}`)}>Go</Button>
       </div>
       )

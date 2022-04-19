@@ -15,10 +15,10 @@ import EmployeeRow from '../../../components/EmployeeRow';
 import axios from 'axios';
 
 const data = {
-  Id: "E000312",
-  Name: "Meaw sean",
-  Position: "HR Admin",
-  Department: "Human Resource"
+  EmployeeID: "E000312",
+  fname: "Meaw sean",
+  lname: "HR Admin",
+  Institution: "Human Resource"
 }
 
 
@@ -52,6 +52,7 @@ const AllEmployee = () => {
     });
     console.log("RES.DATA = " + res.data);
     setInfo(res.data);
+    console.log("RES.DATA = " + res.data[0].EmployeeID);
     },[]);
 
   return (
@@ -63,6 +64,13 @@ const AllEmployee = () => {
             <div className='allemployee-form'>
               <Header/>
               <EmployeeRow info={data} />
+              {
+                info && info.map( (info) => {
+                  return(
+                    <EmployeeRow info={info}/>
+                  )
+                })
+              }
               <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
               {add && navigate('/employee/add')}
             </div>
