@@ -40,13 +40,6 @@ const Deduction = () => {
             <h5>DEDUCTION</h5>
             <div className='form'>
                 <Form> 
-                    <Form.Group className="mb-3 " controlId="formDeductionID">
-                        <Form.Label>Deduction ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Deduction ID" defaultValue = {deductionid || ""}
-                            onChange = {e => setDeductionId(e.target.value)}
-                        />
-                    </Form.Group>
-
                     <Form.Group className="mb-3 " controlId="formEmployeeID">
                         <Form.Label>Employee ID</Form.Label>
                         <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue={employeeid || ""} 
