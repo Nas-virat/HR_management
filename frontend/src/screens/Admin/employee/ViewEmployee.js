@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -71,6 +70,9 @@ const PaymentRow = ({text,value}) => {
 
 
 const ViewEmployee = () => {
+
+  let navigate = useNavigate();
+
   return (
     <div>
       <Navbar/>
@@ -84,14 +86,17 @@ const ViewEmployee = () => {
                 </div>
                 <div className ="Viewemployee-top-left-content">
                   <h1>Mr. Meow SEANSEAN</h1>
+ 
                   <h5>HR Admin, Human Resource Department</h5>
+
                   <div className="viewemployee-information">
                     <p>Email: meawsean@mail.kmutt.ac.th</p>
+
                     <p>Phone: 081-123-4569</p>
                     <p>Recruitment Date: 12/12/2000</p>
                   </div>
-                  <Button variant="success">EDIT</Button>
-                  <Button variant="success">MORE INFO</Button>
+                  <Button variant="success" onClick = {() => navigate(`/employee/001/edit`)}>EDIT</Button>
+                  <Button variant="success" onClick = {() => navigate(`/viewemployee/001/moreinfo`)}>MORE INFO</Button>
                   
                 </div>
             </div>

@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-const db = require("./config/db");
 
 const express = require('express');
 
 const getAllEmployee = require('./controller/getEmployeeInfo');
+const getEmployeeByID = require('./controller/getEmployeeInfo');
 
 const app = express();
 app.use(express.json());
@@ -14,11 +14,15 @@ app.get("/", (req, res) => {
     res.json({ message: "API running" });
   });
 
-app.get('/employee',getAllEmployee);
+
+//employee
+app.get('/employee', getAllEmployee);
+app.get('/employee/:id', getEmployeeByID);
+//app.post('/employee/add', insertEmployee);
 
 
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT,()=> console.log(`Server is running on port ${PORT}`));
+app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));
 
 

@@ -18,6 +18,8 @@ import ViewEmployee from './screens/Admin/employee/ViewEmployee';
 import AddNewEmployee from './screens/Admin/employee/AddNewEmployee';
 import Attendance from './screens/Admin/Attendance';
 import Deduction from './screens/Admin/Deduction';
+import EmployeeMore from './screens/Admin/employee/EmployeeMore';
+import EmployeeEdit from './screens/Admin/employee/EmployeeEdit';
 
 import './App.css';
 
@@ -45,6 +47,9 @@ const App = () => {
         <Route exact path='/employee' element={<AllEmployee />} />
         <Route exact path='/viewemployee/:id' element={<ViewEmployee />} />
         <Route exact path='/employee/add' element={<AddNewEmployee/>} />
+        <Route exact path='/viewemployee/:id/moreinfo' element={<EmployeeMore/>} />
+        <Route exact path='/employee/:id/edit' element={<EmployeeEdit/>} />
+
         
 
         {/* Role */}
@@ -54,6 +59,7 @@ const App = () => {
         <Route exact path='/bonus' element={<Bonus />} /> 
         <Route exact path='/deduction' element={<Deduction />} /> 
         <Route exact path='/promotion' element={<AddPromotion />} /> 
+
       </Routes>
     </Router>
   )
