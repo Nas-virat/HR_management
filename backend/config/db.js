@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
+
+const mariadb = require('mariadb');
 
 const pool = mysql.createPool({
     user:process.env.DB_USER,
@@ -9,6 +11,5 @@ const pool = mysql.createPool({
     database:process.env.DB_NAME,
     insecureAuth : true
 });
-
 
 module.exports = pool;
