@@ -23,11 +23,11 @@ const data = {
 const Header = () => {
     return(
      <>
-       <div className = "alltask-header-content">
-         <div>TaskID</div>
-         <div>Task Description</div>
-         <div>Start Date</div>
-         <div>Deadline</div>
+       <div className = "ViewEmployee-header-content">
+         <div className = "ViewEmployee-header-ID">TaskID</div>
+         <div className = "ViewEmployee-header-desc"> Task Description</div>
+         <div className = "ViewEmployee-header-startdate">Start Date</div>
+         <div className = "ViewEmployee-header-deadline">Deadline</div>
        </div>
        <hr className="solid"></hr>
      </>
@@ -38,11 +38,11 @@ const Header = () => {
  const TaskRow = ({info}) => {
     let navigate = useNavigate();
     return(
-      <div className = "alltask-task-content">
-        <div className="task-ID">{info.taskid}</div>
-        <div className="task-desc">{info.description}</div>
-        <div className="task-supervisorID">{info.startdate}</div>
-        <div className="task-status">{info.deadline}</div>
+      <div className = "ViewEmployee-task-content">
+        <div>{info.taskid}</div>
+        <div>{info.description}</div>
+        <div>{info.startdate}</div>
+        <div>{info.deadline}</div>
         <Button variant="success" onClick={() => navigate(`/viewtask/${info.taskid}`)}>Go</Button>
       </div>
       )
@@ -90,10 +90,16 @@ const ViewEmployee = () => {
                   <h5>HR Admin, Human Resource Department</h5>
 
                   <div className="viewemployee-information">
-                    <p>Email: meawsean@mail.kmutt.ac.th</p>
-
-                    <p>Phone: 081-123-4569</p>
-                    <p>Recruitment Date: 12/12/2000</p>
+                    <div className='ViewEmployee-left-content'>
+                      <p>Email</p>
+                      <p>Phone</p>
+                      <p>Recruitment Date</p>
+                    </div>
+                    <div className='ViewEmployee-right-content'>
+                      <p>meawsean@mail.kmutt.ac.th</p>
+                      <p>081-123-4569</p>
+                      <p>12/12/2000</p>
+                    </div>
                   </div>
                   <Button variant="success" onClick = {() => navigate(`/employee/001/edit`)}>EDIT</Button>
                   <Button variant="success" onClick = {() => navigate(`/viewemployee/001/moreinfo`)}>MORE INFO</Button>

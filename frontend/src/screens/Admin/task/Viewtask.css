@@ -33,6 +33,21 @@
     flex: 1;
 }
 
+.header-content-Name{
+    position: relative;
+    right: 10px;
+}
+
+.header-content-Position{
+    position: relative;
+    right: 25px;
+}
+
+.header-content-Department{
+    position: relative;
+    right: 40px;
+}
+
 .employee-content {
     display: flex;
     margin-top: 10px;

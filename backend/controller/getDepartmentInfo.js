@@ -10,7 +10,7 @@ const getAllDepartment = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        console.log("Select ALL Employee");
+        console.log("Select ALL Department");
         connection.query("SELECT * FROM department", (err, result) => {
             connection.release();
             if (err) {

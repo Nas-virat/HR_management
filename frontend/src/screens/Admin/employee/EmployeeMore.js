@@ -52,11 +52,22 @@ const EmployeeMore = () => {
                   <br></br>
                   <h6>Personal information</h6>
                   <div className="EmployeeMore-information">
-                    <p>Email: meawsean@mail.kmutt.ac.th</p>
-                    <p>Phone: 081-123-4569</p>
-                    <p>Recruitment Date: 12/12/2000</p>
-                    <p>Address: Under the bridge</p>
-                    <p>Bank Account: Meow Bank, 123-1-12345-1</p>
+                    <div className='EmployeeMore-left-content'>
+                      <p>Email</p>
+                      <p>Phone</p>
+                      <p>Recruitment Date</p>
+                      <p>Address</p>
+                      <p>Bank Account</p>
+                    </div>
+                    <div className='EmployeeMore-right-content'>
+                      <p>meawsean@mail.kmutt.ac.th</p>
+                      <p>081-123-4569</p>
+                      <p>12/12/2000</p>
+                      <p>Under the bridge</p>
+                      <p>Meow Bank, 123-1-12345-1</p>
+                    </div>
+                  </div>
+                  <div className='EmployeeMore-button'>
                     <Button variant="success" onClick = {() => navigate(`/employee/001/edit`)}>EDIT</Button>
                   </div>
                 </div>
@@ -65,11 +76,20 @@ const EmployeeMore = () => {
             <div className='EmployeeMore-bottom-left'>
                 <h5>Education Information</h5>
                 <div className='EmployeeMore-Education'>
-                    <p>Education Level: Doctor of Philosophy (Ph.D.)</p>
-                    <p>Institutio: KMUTT</p>
-                    <p>Major: Computer Engineering</p>
-                    <p>Graduation Year: 2012</p>
-                    <p>Gpax: 4.00</p>
+                  <div className='EmployeeMore-left-content'>
+                    <p>Education Level</p>
+                    <p>Institution</p>
+                    <p>Major</p>
+                    <p>Graduation Year</p>
+                    <p>Gpax</p>
+                  </div>
+                  <div className='EmployeeMore-right-content'>
+                    <p>Doctor of Philosophy (Ph.D.)</p>
+                    <p>KMUTT</p>
+                    <p>Computer Engineering</p>
+                    <p>2012</p>
+                    <p>4.00</p>
+                  </div>
                 </div>
             </div>
             <div className='EmployeeMore-bottom-right'>

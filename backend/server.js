@@ -2,13 +2,18 @@ require("dotenv").config();
 
 
 const express = require('express');
+const cors = require("cors");
 
 const { getAllEmployee, 
         getEmployeeByID, 
-        insertEmployee } = require('./controller/getEmployeeInfo');
+        insertEmployee,
+        updateEmployee,
+        deleteEmployee } = require('./controller/getEmployeeInfo');
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 //initial route
 app.get("/", (req, res) => {
@@ -19,8 +24,9 @@ app.get("/", (req, res) => {
 //employee
 app.get('/employee', getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
-
 app.post('/addemployee', insertEmployee);
+app.put('/updateemployee', updateEmployee);
+app.delete('/deleteemployee', deleteEmployee);
 
 
 

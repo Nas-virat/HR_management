@@ -15,6 +15,7 @@ const getAllEmployee = (req, res) => {
             if (err) {
                 console.log(err);
             }
+            console.log("result is ",result);
             res.send(result);
         });
    });
@@ -67,12 +68,13 @@ const insertEmployee = (req, res) =>{
              res.status(500).json({'error':err});
              return;
         }
+        const EmployeeID = req.body.EmployeeID;
         const fname = req.body.fname;
         const lname = req.body.lname;
 
-        console.log(`Insert Employee : ${fname} ${lname}`);
-        connection.query("INSERT INTO employee (fname, lname) VALUES (?,?)" ,
-        ["Meow","Sean"]
+        console.log(`Insert Employee :${EmployeeID} ${fname} ${lname}`);
+        connection.query("INSERT INTO employee (EmployeeID, fname, lname) VALUES (?,?,?)" ,
+        [EmployeeID,fname,lname]
         , (err, result) => {
              connection.release();
              if (err) {
@@ -84,4 +86,49 @@ const insertEmployee = (req, res) =>{
 } 
 
 
-module.exports = {getAllEmployee, getEmployeeByID, insertEmployee};
+const updateEmployee = (req,res) =>{
+    pool.getConnection((err, connection) => {
+        if (err) {
+             console.log(err);
+             res.status(500).json({'error':err});
+             return;
+        }
+        const EmployeeID = req.body.EmployeeID;
+
+        console.log(`Update Employee :${EmployeeID}`);
+        connection.query("UPDATE employee SET fname = 'TunwaAA' WHERE EmployeeID = ?" ,
+        [EmployeeID]
+        , (err, result) => {
+             connection.release();
+             if (err) {
+                 console.log(err);
+             }
+             res.send(result);
+         });
+    });
+};
+
+
+const deleteEmployee = (req,res) =>{
+    pool.getConnection((err, connection) => {
+        if (err) {
+             console.log(err);
+             res.status(500).json({'error':err});
+             return;
+        }
+        const EmployeeID = req.body.EmployeeID;
+
+        console.log(`Delete Employee :${EmployeeID}`);
+        connection.query("DELETE FROM employee WHERE EmployeeID = ?" ,
+        [EmployeeID]
+        , (err, result) => {
+             connection.release();
+             if (err) {
+                 console.log(err);
+             }
+             res.send(result);
+         });
+    });
+};
+
+module.exports = {getAllEmployee, getEmployeeByID, insertEmployee, updateEmployee, deleteEmployee};

@@ -14,8 +14,7 @@
 .Viewemployee-top-left {
     display: flex;
     width: 80%;
-    min-width: 800px;
-    margin-top: 20px;
+    min-width: 900px;
     margin-bottom: 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
@@ -27,6 +26,7 @@
 .Viewemployee-top-left-content{
     padding: 30px
 }
+
 
 .viewemployee-img{
     margin-right: 50px;
@@ -48,10 +48,22 @@
 
 .viewemployee-information{
     display: flex;
-    flex-direction: column;
+    flex: 1;
     margin-top: 20px;
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+
+.ViewEmployee-left-content {
+    text-align: left;
+    font-weight: bold;
+    width: 50%;
+}
+
+.ViewEmployee-right-content {
+    text-align: right;
+    width: 50%;
 }
 
 .Viewemployee-top-left-content > h1{
@@ -63,7 +75,6 @@
 }
 
 .Viewemployee-top-right {
-    margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -137,4 +148,36 @@
     display: flex;
     margin-bottom: 10px;
     justify-content: center;
+}
+
+.ViewEmployee-header-content {
+    display: flex;
+}
+
+.ViewEmployee-header-content > div {
+    flex: 1;
+}
+
+.ViewEmployee-header-desc{
+    position: relative;
+    right: 15px;
+}
+
+.ViewEmployee-header-startdate{
+    position: relative;
+    right: 25px;
+}
+
+.ViewEmployee-header-deadline{
+    position: relative;
+    right: 40px;
+}
+
+.ViewEmployee-task-content {
+    display: flex;
+    margin-top: 10px;
+}
+
+.ViewEmployee-task-content > div {
+    flex: 1;
 }

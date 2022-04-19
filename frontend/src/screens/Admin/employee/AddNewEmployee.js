@@ -22,6 +22,7 @@ const AddNewEmployee = () => {
     const [email, setEmail] = useState('');
     const [gender, setGender] = useState('');
     const [date, setDate] = useState(defaultDate);
+    const [bankreceive, setBankreceive] = useState('');
     const [accountno, setAccountNo] = useState('');
 
     const [edulevel, setEdulevel] = useState('');
@@ -48,6 +49,7 @@ const AddNewEmployee = () => {
                     'Email':email,
                     'Gender':gender,
                     'DOB':date,
+                    'BankReceive': bankreceive,
                     'AccountNo':accountno,
                     'EduLevel':edulevel,
                     'Institution':institution,
@@ -141,8 +143,8 @@ const AddNewEmployee = () => {
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formBankName">
                         <Form.Label>Bank Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Bank Name" defaultValue = {""} 
-                           
+                        <Form.Control type="text" placeholder="Enter Bank Name" defaultValue = {bankreceive || ""} 
+                            onChange = {e => setBankreceive(e.target.value)}
                         />
                         </Form.Group>
 
