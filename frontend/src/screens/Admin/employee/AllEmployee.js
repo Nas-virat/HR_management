@@ -50,9 +50,8 @@ const AllEmployee = () => {
     .catch(err => {
       console.log(err);
     });
-    console.log("RES.DATA = " + res.data);
+    //console.log("RES.DATA = " + res.data);
     setInfo(res.data);
-    console.log("RES.DATA = " + res.data[0].EmployeeID);
     },[]);
 
   return (
@@ -65,9 +64,9 @@ const AllEmployee = () => {
               <Header/>
               <EmployeeRow info={data} />
               {
-                info && info.map( (info) => {
+                info && info.map( (info, index) => {
                   return(
-                    <EmployeeRow info={info}/>
+                    <EmployeeRow info={info} key = {index} />
                   )
                 })
               }
