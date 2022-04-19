@@ -28,7 +28,7 @@ const getEmployeeByID = (req, res) => {
              res.status(500).json({'error':err});
              return;
         }
-        console.log("Select EmployeeID : " + req.params.id);
+        console.log(`Select EmployeeID : ${req.params.id}`);
         connection.query("SELECT * FROM employee WHERE EmployeeID = ?", [req.params.id] , (err, result) => {
              connection.release();
              if (err) {
@@ -59,7 +59,7 @@ const getEmployeeOnTask = (req, res) =>{
 }
 */
 
-/*
+
 const insertEmployee = (req, res) =>{
     pool.getConnection((err, connection) => {
         if (err) {
@@ -70,7 +70,7 @@ const insertEmployee = (req, res) =>{
         const fname = req.body.fname;
         const lname = req.body.lname;
 
-        console.log("Insert Employee : "  );
+        console.log(`Insert Employee : ${fname} ${lname}`);
         connection.query("INSERT INTO employee (fname, lname) VALUES (?,?)" ,
         ["Meow","Sean"]
         , (err, result) => {
@@ -82,9 +82,6 @@ const insertEmployee = (req, res) =>{
          });
     });
 } 
-*/
 
-module.exports = getAllEmployee;
-module.exports = getEmployeeByID;
-//module.exports = getEmployeeOnTask;
-//module.exports = insertEmployee;
+
+module.exports = {getAllEmployee, getEmployeeByID, insertEmployee};

@@ -3,8 +3,9 @@ require("dotenv").config();
 
 const express = require('express');
 
-const getAllEmployee = require('./controller/getEmployeeInfo');
-const getEmployeeByID = require('./controller/getEmployeeInfo');
+const { getAllEmployee, 
+        getEmployeeByID, 
+        insertEmployee } = require('./controller/getEmployeeInfo');
 
 const app = express();
 app.use(express.json());
@@ -18,7 +19,8 @@ app.get("/", (req, res) => {
 //employee
 app.get('/employee', getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
-//app.post('/employee/add', insertEmployee);
+
+app.post('/addemployee', insertEmployee);
 
 
 
