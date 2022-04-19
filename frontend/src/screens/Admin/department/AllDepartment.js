@@ -40,7 +40,8 @@ const DepartmentRow = ({info}) => {
 
 const AllDepartment = () => {
 
-    const [add, setAdd] = useState(false);
+  let navigate = useNavigate();
+  const [add, setAdd] = useState(false);
 
     return (
         <div>
@@ -54,7 +55,7 @@ const AllDepartment = () => {
                   <DepartmentRow/>
                   <DepartmentRow/>
                   <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                  {add && <Button variant="success">Hello</Button>}
+                  {add && navigate('/department/add')}
                 </div>
             </div>
         </div>

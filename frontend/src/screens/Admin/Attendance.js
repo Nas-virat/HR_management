@@ -16,6 +16,7 @@ const Attendance = () => {
     e.preventDefault();
     var today = new Date();
     console.log(today);
+    
     if(((today.getHours()> 9 && today.getMinutes() > 30) || today.getHours() > 10) && Check){
       setStatus('L');
       console.log('Late');

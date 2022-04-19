@@ -8,7 +8,9 @@ const AddNewEmployee = () => {
     <div>
         <Navbar/>
         <Sidebar/>
-        <div>AddNewEmployee</div>
+        <div>
+          
+        </div>
     </div>
   )
 }
