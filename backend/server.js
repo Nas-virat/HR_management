@@ -3,8 +3,8 @@ require("dotenv").config();
 const db = require("./config/db");
 
 const express = require('express');
-const mysql = require('mysql');
 
+const getAllEmployee = require('./controller/getEmployeeInfo');
 
 const app = express();
 app.use(express.json());
@@ -14,12 +14,8 @@ app.get("/", (req, res) => {
     res.json({ message: "API running" });
   });
 
-db.connect((err) => {
-    if (err) {
-        console.log("Error", err);
-    }
-    console.log("Connected!");
-});
+app.get('/employee',getAllEmployee);
+
 
 const PORT = process.env.PORT || 6000;
 app.listen(PORT,()=> console.log(`Server is running on port ${PORT}`));
