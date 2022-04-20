@@ -10,6 +10,8 @@ const { getAllEmployee,
         updateEmployee,
         deleteEmployee } = require('./controller/getEmployeeInfo');
 
+const {insertRole} = require('./controller/getRoleInfo');
+
 const app = express();
 app.use(express.json());
 
@@ -27,6 +29,11 @@ app.get('/employee/:id', getEmployeeByID);
 app.post('/addemployee', insertEmployee);
 app.put('/updateemployee', updateEmployee);
 app.delete('/deleteemployee', deleteEmployee);
+
+
+
+//Role
+app.post('/insertRole',insertRole);
 
 
 

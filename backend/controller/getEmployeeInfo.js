@@ -15,7 +15,7 @@ const getAllEmployee = (req, res) => {
             if (err) {
                 console.log(err);
             }
-            console.log("result is ",result);
+            //console.log("result is ",result);
             res.send(result);
         });
    });

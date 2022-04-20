@@ -10,10 +10,10 @@ const EmployeeRow = ({info}) =>{
     return(
       <div className = "employee-content">
         <div>{info.EmployeeID}</div>
-        <div>{info.fname}</div>
-        <div>{info.lname}</div>
+        <div>{info.fname} {info.lname}</div>
+        <div>{info.Email}</div>
         <div>{info.Institution}</div>
-        <Button variant="success" onClick={() => navigate(`/viewemployee/${info.Id}`)}>Go</Button>
+        <Button variant="success" onClick={() => navigate(`/viewemployee/${info.EmployeeID}`)}>Go</Button>
       </div>
       )
   }

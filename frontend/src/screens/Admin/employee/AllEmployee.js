@@ -14,12 +14,7 @@ import EmployeeRow from '../../../components/EmployeeRow';
 
 import axios from 'axios';
 
-const data = {
-  EmployeeID: "E000312",
-  fname: "Meaw sean",
-  lname: "HR Admin",
-  Institution: "Human Resource"
-}
+
 
 
 const Header = () => {
@@ -44,15 +39,18 @@ const AllEmployee = () => {
   const [add, setAdd] = useState(false);
   const [info, setInfo] = useState();
   const navigate = useNavigate();
-  
-  useEffect( async () => {
-    const res = await axios.get('http://localhost:8080/employee')
-    .catch(err => {
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:8080/employee')
+      .catch(err => {
       console.log(err);
-    });
-    //console.log("RES.DATA = " + res.data);
-    setInfo(res.data);
-    },[]);
+      });
+      console.log(res.data);
+      setInfo(res.data);
+    }
+    fetchData();
+  },[]);
 
   return (
       <div>
@@ -62,7 +60,6 @@ const AllEmployee = () => {
             <h5>All Employee</h5>
             <div className='allemployee-form'>
               <Header/>
-              <EmployeeRow info={data} />
               {
                 info && info.map( (info, index) => {
                   return(
