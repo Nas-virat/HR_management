@@ -12,9 +12,9 @@ const insertRole = (req, res) =>{
         const basesalary = req.body.BaseSalary;
         const otrate = req.body.OTRate;
 
-        console.log(`Insert New Role :${EmployeeID} ${fname} ${lname}`);
-        connection.query("INSERT INTO (RoleName,RoleDesc,BaseSalary,OTRate) VALUES (?,?,?,?)",
-        [roleName,roleDesc,basesalary,OTRate]
+        console.log(`Insert New Role : ${roleName}`);
+        connection.query(`INSERT INTO role (RoleName,RoleDesc,BaseSalary,OTRate) VALUES (?,?,?,?)`,
+        [roleName,roleDesc,basesalary,otrate]
         , (err, result) => {
              connection.release();
              if (err) {
@@ -22,6 +22,7 @@ const insertRole = (req, res) =>{
              }
              res.send(result);
          });
+
     });
 } 
 

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import axios from 'axios';
 
 import './Forms.css';
 
@@ -16,20 +17,19 @@ const AddRoles = () => {
 
     const [rolename, setRoleName] = useState('');
     const [otrate,setOtrate] = useState(0);
-    const [employeeid, setEmployeeId] = useState('');
     const [roledescription, setRoleDescription] = useState('');
     const [salary, setSalary] = useState(0);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
-                    'RoleName':rolename,
-                    'OTrate':otrate,
-                    'EmployeeId':employeeid,
-                    'RoleDescription':roledescription,
-                    'Salary':salary
-                    });
-        alert(`RoleName : ${rolename}\nOTrate : ${otrate}\nEmployeeId : ${employeeid}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
+        alert(`RoleName : ${rolename}\nOTrate : ${otrate}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
+        const res = await axios.post('http://localhost:8080/insertRole',{
+            'RoleName':rolename,
+            'OTRate':otrate,
+            'RoleDesc':roledescription,
+            'BaseSalary':salary
+            }).catch((err) => console.log(err));
+        console.log("POST data",res);
     }
 
 
@@ -57,13 +57,6 @@ const AddRoles = () => {
                         />
                         </Form.Group>
                     </Row>
-
-                    <Form.Group className="mb-3 " controlId="formEmployeeID">
-                        <Form.Label>Employee ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {employeeid || ""}
-                            onChange = {e => setEmployeeId(e.target.value)}
-                        />
-                    </Form.Group>
 
                     <Form.Group className="mb-3" controlId="Form.ControlRoleDescription">
                         <Form.Label>Role Description</Form.Label>

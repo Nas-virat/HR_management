@@ -10,8 +10,18 @@ FROM employee e JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID
 SELECT t.TaskID, t.TaskDesc, e.startdate, t.Deadline 
 FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID WHERE e.EmployeeID = {EMPLOYEEID};
 
+
+
+/* EmployeeMore.js */
 /* EmployeeMore.js Personal Information */
 SELECT Email, RecruitDate, Address, BankRecive, AccountNo FROM employee WHERE EmployeeID = {EMPLOYEEID};
 
 /* EmployeeMore.js Education Information */
 SELECT EduLevel, Institution, Major, YearGrads, GPAX FROM employee WHERE EmployeeID = {EMPLOYEEID};
+
+/* EmployeeMore.js Promotion History */
+SELECT p.Datetime, r.RoleName, d.DprtName
+FROM promotionhistory p JOIN role r ON p.RoleID = r.RoleID 
+						JOIN department d ON p.DprtID = d.DprtID
+WHERE p.EmployeeID = {EMPLOYEEID}
+ORDER BY p.Datetime DESC;

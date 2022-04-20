@@ -13,10 +13,11 @@ import EmployeeRow from '../../../components/EmployeeRow';
 
 
 const data = {
-  Id: "E000312",
-  Name: "Meaw sean",
-  Position: "HR Admin",
-  Department: "Human Resource"
+  EmployeeID: "E000312",
+  fname: "Meaw sean",
+  lname: "HR Admin",
+  Email: "TEST",
+  Institution: "Human Resource"
 }
 
 
