@@ -1,26 +1,27 @@
 
 /* AllEmployee.js ALL EMPLOYEE */
-SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName 
-FROM employee e JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID 
+SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+    p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                 JOIN department d ON p.DprtID = d.DprtID 
-                JOIN role r ON p.RoleID = r.RoleID
-    GROUP BY e.EmployeeID HAVING MAX(p.Datetime);
+                JOIN role r ON p.RoleID = r.RoleID;
 
 
 
 /* ViewEmployee.js TASK */
 SELECT t.TaskID, t.TaskDesc, e.startdate, t.Deadline 
-FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID WHERE e.EmployeeID = {EMPLOYEEID};
+FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID WHERE e.EmployeeID = '{EMPLOYEEID}';
 
 
 
 /* EmployeeMore.js */
 /* EmployeeMore.js Personal Information */
 SELECT e.fname, e.lname, d.DprtName, r.RoleName, e.Email, e.RecruitDate, e.Address, e.BankRecive, e.AccountNo 
-FROM employee e JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID
+FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+    p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
 				JOIN department d ON p.DprtID = d.DprtID
                 JOIN role r ON p.RoleID = r.RoleID
-GROUP BY e.EmployeeID HAVING MAX(p.Datetime) AND e.EmployeeID = '{EMPLOYEEID}';
+   WHERE e.EmployeeID = '{EMPLOYEEID}';
 
 /* EmployeeMore.js Education Information */
 SELECT EduLevel, Institution, Major, YearGrads, GPAX FROM employee WHERE EmployeeID = '{EMPLOYEEID}';
@@ -42,16 +43,13 @@ INSERT INTO employeeontask (EmployeeID, TaskID) VALUES ('{EMPLOYEEID}', '{TASKID
 UPDATE task SET TaskStatus = '{TASKSTATUS}' WHERE TaskID = '{TASKID}';
 
 /* SHOW  Task*/
-SELECT e.* FROM employee e JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
-WHERE et.TaskID = '{TASKID}';
-
-SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName 
-FROM employee e JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID 
+SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+    p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                 JOIN department d ON p.DprtID = d.DprtID 
                 JOIN role r ON p.RoleID = r.RoleID
                 JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
-    WHERE et.TaskID = 4004
-    GROUP BY e.EmployeeID HAVING MAX(p.Datetime);
+                WHERE et.taskID = '{TASKID}';
 
 
 
