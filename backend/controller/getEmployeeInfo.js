@@ -9,7 +9,6 @@ const getAllEmployee = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        console.log("Select ALL Employee");
         connection.query("SELECT * FROM employee", (err, result) => {
             connection.release();
             if (err) {
@@ -18,6 +17,7 @@ const getAllEmployee = (req, res) => {
             //console.log("result is ",result);
             res.send(result);
         });
+        console.log("Select ALL Employee");
    });
 };
 
@@ -29,7 +29,6 @@ const getEmployeeByID = (req, res) => {
              res.status(500).json({'error':err});
              return;
         }
-        console.log(`Select EmployeeID : ${req.params.id}`);
         connection.query("SELECT * FROM employee WHERE EmployeeID = ?", [req.params.id] , (err, result) => {
              connection.release();
              if (err) {
@@ -37,6 +36,7 @@ const getEmployeeByID = (req, res) => {
              }
              res.send(result);
          });
+         console.log(`Select EmployeeID : ${req.params.id}`);
     });
 }
 
@@ -74,7 +74,6 @@ const insertEmployee = (req, res) =>{
         const email = req.body.Email;
         const gender = req.body.Gender;
 
-        console.log(`Insert Employee : ${fname} ${lname}`);
         connection.query("INSERT INTO employee (fname, lname,Address,Email,Gender) VALUES (?,?,?,?,?)" ,
         [fname,lname,address,email,gender]
         , (err, result) => {
@@ -84,6 +83,7 @@ const insertEmployee = (req, res) =>{
              }
              res.send(result);
          });
+         console.log(`Insert Employee : ${fname} ${lname}`);
     });
 } 
 
@@ -97,7 +97,6 @@ const updateEmployee = (req,res) =>{
         }
         const EmployeeID = req.body.EmployeeID;
 
-        console.log(`Update Employee :${EmployeeID}`);
         connection.query("UPDATE employee SET fname = 'TunwaAA' WHERE EmployeeID = ?" ,
         [EmployeeID]
         , (err, result) => {
@@ -107,6 +106,7 @@ const updateEmployee = (req,res) =>{
              }
              res.send(result);
          });
+         console.log(`Update Employee :${EmployeeID}`);
     });
 };
 
@@ -120,7 +120,6 @@ const deleteEmployee = (req,res) =>{
         }
         const EmployeeID = req.body.EmployeeID;
 
-        console.log(`Delete Employee :${EmployeeID}`);
         connection.query("DELETE FROM employee WHERE EmployeeID = ?" ,
         [EmployeeID]
         , (err, result) => {
@@ -130,6 +129,7 @@ const deleteEmployee = (req,res) =>{
              }
              res.send(result);
          });
+        console.log(`Delete Employee :${EmployeeID}`);
     });
 };
 

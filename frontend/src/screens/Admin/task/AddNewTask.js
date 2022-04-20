@@ -31,8 +31,8 @@ const AddNewTask = () => {
         e.preventDefault();
         console.log({
                     'EmployeeId':employeeid,
-                    'RoleId':taskdescription,
-                    'Tasktype': tasktype,
+                    'TaskDescription':taskdescription,
+                    'Type': tasktype,
                     'TaskDeadline':date,
                     'SupervisorId':supervisorid
                     });
