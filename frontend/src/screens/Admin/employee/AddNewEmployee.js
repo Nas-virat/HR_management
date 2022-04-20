@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import axios from "axios";
 
 import '../Forms.css';
 
@@ -39,28 +40,42 @@ const AddNewEmployee = () => {
       setDate(new Date(event.target.value))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(
+        /*console.log(
             {
-                    'FirstName':fname,
-                    'LastName':lname,
-                    'Address':address,
-                    'Email':email,
-                    'Gender':gender,
-                    'DOB':date,
-                    'BankReceive': bankreceive,
-                    'AccountNo':accountno,
-                    'EduLevel':edulevel,
-                    'Institution':institution,
-                    'Major':major,
-                    'YearGrads':yeargrads,
-                    'GPAX':gpax,
-                    'Password': password,
-                    'Department':department,
-                    'Role':role,
+                'FirstName':fname,
+                'LastName':lname,
+                'Address':address,
+                'Email':email,
+                'Gender':gender,
+                'DOB':date,
+                'BankReceive': bankreceive,
+                'AccountNo':accountno,
+                'EduLevel':edulevel,
+                'Institution':institution,
+                'Major':major,
+                'YearGrads':yeargrads,
+                'GPAX':gpax,
+                'Password': password,
+                'Department':department,
+                'Role':role,
             }
-        );
+        ); */
+        try{
+            const res = await axios.post('http://localhost:8080/insertEmployee', {
+                'fname':fname,
+                'lname':lname,
+                'Address':address,
+                'Email':email,
+                'Gender':gender,
+            });
+            console.log("Add New Employee",res);
+        }
+        catch(err){
+            console.log("err:",err);
+        }
+
     }
 
     return (

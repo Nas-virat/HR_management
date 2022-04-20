@@ -14,7 +14,11 @@ FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID WHERE e.EmployeeID = {E
 
 /* EmployeeMore.js */
 /* EmployeeMore.js Personal Information */
-SELECT Email, RecruitDate, Address, BankRecive, AccountNo FROM employee WHERE EmployeeID = {EMPLOYEEID};
+SELECT e.fname, e.lname, d.DprtName, r.RoleName, e.Email, e.RecruitDate, e.Address, e.BankRecive, e.AccountNo 
+FROM employee e JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID
+				JOIN department d ON p.DprtID = d.DprtID
+                JOIN role r ON p.RoleID = r.RoleID
+GROUP BY e.EmployeeID HAVING MAX(p.Datetime) AND e.EmployeeID = {EMPLOYEEID};
 
 /* EmployeeMore.js Education Information */
 SELECT EduLevel, Institution, Major, YearGrads, GPAX FROM employee WHERE EmployeeID = {EMPLOYEEID};

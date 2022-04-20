@@ -68,13 +68,15 @@ const insertEmployee = (req, res) =>{
              res.status(500).json({'error':err});
              return;
         }
-        const EmployeeID = req.body.EmployeeID;
         const fname = req.body.fname;
         const lname = req.body.lname;
+        const address = req.body.Address;
+        const email = req.body.Email;
+        const gender = req.body.Gender;
 
-        console.log(`Insert Employee :${EmployeeID} ${fname} ${lname}`);
-        connection.query("INSERT INTO employee (EmployeeID, fname, lname) VALUES (?,?,?)" ,
-        [EmployeeID,fname,lname]
+        console.log(`Insert Employee : ${fname} ${lname}`);
+        connection.query("INSERT INTO employee (fname, lname,Address,Email,Gender) VALUES (?,?,?,?,?)" ,
+        [fname,lname,address,email,gender]
         , (err, result) => {
              connection.release();
              if (err) {
