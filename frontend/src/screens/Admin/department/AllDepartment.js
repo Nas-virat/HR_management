@@ -3,7 +3,6 @@ import React from 'react';
 
 import './AllDepartment.css';
 
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
@@ -41,26 +40,25 @@ const DepartmentRow = ({info}) => {
 const AllDepartment = () => {
 
   let navigate = useNavigate();
-  const [add, setAdd] = useState(false);
-
-    return (
-        <div>
-            <Navbar/>
-            <Sidebar/>
-            <div className='alldepartment-form-container'>
-               <h5>All Department</h5>
-                <div className="alldepartment-form">
-                  <Header/>
-                  <DepartmentRow/>
-                  <DepartmentRow/>
-                  <DepartmentRow/>
-                  <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                  {add && navigate('/department/add')}
-                </div>
+  return (
+      <div>
+          <Navbar/>
+          <Sidebar/>
+          <div className='alldepartment-form-container'>
+            <div className='allemployee-title'>
+                <h5>All Department</h5>
+                <Button variant="success" onClick ={() => navigate('/department/add')}>Add</Button>{' '}
             </div>
-        </div>
-        )
-    }
+            <div className="alldepartment-form">
+              <Header/>
+              <DepartmentRow/>
+              <DepartmentRow/>
+              <DepartmentRow/>
+            </div>
+          </div>
+      </div>
+      )
+  }
 
 
 export default AllDepartment

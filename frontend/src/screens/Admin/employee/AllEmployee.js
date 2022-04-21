@@ -36,7 +36,6 @@ const Header = () => {
 
 const AllEmployee = () => {
 
-  const [add, setAdd] = useState(false);
   const [info, setInfo] = useState();
   const navigate = useNavigate();
  
@@ -57,7 +56,10 @@ const AllEmployee = () => {
           <Navbar/>
           <Sidebar/>
           <div className='allemployee-form-container'>
-            <h5>All Employee</h5>
+            <div className='allemployee-title'>
+              <h5>All Employee </h5>
+              <Button variant="success" onClick ={() => navigate('/employee/add')}>Add</Button>{' '}
+            </div>
             <div className='allemployee-form'>
               <Header/>
               {
@@ -67,8 +69,6 @@ const AllEmployee = () => {
                   )
                 })
               }
-              <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-              {add && navigate('/employee/add')}
             </div>
           </div>
       </div>

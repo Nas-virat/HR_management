@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 
+import { useParams } from 'react-router-dom';
 
+import axios from 'axios';
 
 //css
 import '../Forms.css';
@@ -16,12 +18,20 @@ import EmployeeRow from '../../../components/EmployeeRow';
 
 
 const data = {
-  Id: "E000312",
-  Name: "Meaw sean",
-  Position: "HR Admin",
-  Department: "Human Resource"
+  EmployeeID: "4002",
+  fname: "Meaw sean",
+  lname: "HR Admin",
+  Email: "TEST",
+  Institution: "Human Resource"
 }
 
+
+const taskdata = {
+  TaskID: "4002",
+  taskdesc : "Collect the data from the user. Analyze and report to the head department before the end of the month.",
+  deadline : "16/04/2022",
+  status : "A"  
+}
 
 
 const Header = () => {
@@ -41,39 +51,88 @@ const Header = () => {
 
 const Viewtask = () => {
   const [add, setAdd] = useState(false);
+  const [status,setStatus] = useState('A');
+  const [taskInfo, setTaskInfo] = useState('');
+  const { id } = useParams();
+
+  console.log(id);
+  const updateStatus = () => {
+    if (status === 'A'){
+      setStatus('F');
+    }
+    else{
+      setStatus('A');
+    }
+  }
+
+  const cancelStatus = () => {
+    setStatus('C');
+  }
+  
+  /*
+   * get Task Descirption in viewtask
+   */
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if(id){
+        const res = await axios.get(`http://localhost:8080/task/${id}`)
+        console.log("res",res.data);  
+        setTaskInfo(res.data);
+        }
+      }
+      catch(err) {
+        console.log("err",err);
+      }
+    }
+    fetchData();
+  }, [id]);
+
+  /* update the task status */
+  useEffect(() => {
+    const updateData = async () => {
+    try {
+      const res = await axios.put('http://localhost:8080/updateTaskStatus', {
+          "TaskID" : taskdata.TaskID,
+          "status" : status
+        }
+      );
+      console.log("UPDATE data", res);
+    }
+    catch(err) {
+        console.log("err",err);
+      }
+    }
+    updateData();
+    },[status]
+  );
 
   return (
     <div>
         <Navbar/>
         <Sidebar/>
         <div className='form-container'>
+            <h5>Task</h5>
             <div className = "viewtask-task-bg">
-                <h5>Task</h5>
                 <div className = "task-desc-content">
-                    <h1>T000001</h1>
-                    <p>Description: Collect the data from the user. Analyze and report to the head department before the end of the month.</p>
-                    <p>Deadline: 16/04/2022</p>
-                    <p>Status: Active</p>
+                  <h1>{taskdata.TaskID}</h1>
+                  <p>Description: {taskdata.taskdesc}</p>
+                  <p>Deadline: {taskdata.deadline}</p>
+                  <Button variant = {status === 'A' ? "success" : "warning" } onClick = {updateStatus}>Status : {status === 'A' ? 'Active' :'Finish'}</Button>
+                  <Button variant = "danger" Onclick = {cancelStatus}>Cancel</Button>
                 </div>
             </div>
+            <h5>Supervisor</h5>
             <div className = "viewtask-supervisor-bg">
-                <h5>Supervisor</h5>
                 <Header />
                 <EmployeeRow info = {data}/>
             </div>
+            <div className ="allemployee-title">
+              <h5>Members</h5>
+              <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
+            </div>
             <div className = "viewtask-members-bg">
-                <h5>Members</h5>
                 <Header />
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
                 {add && 
                   <div className='form'>
                     <Form> 
@@ -87,6 +146,15 @@ const Viewtask = () => {
                     </Form>
                   </div>
                 }
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
+                <EmployeeRow info = {data}/>
             </div>
         </div>
     </div>

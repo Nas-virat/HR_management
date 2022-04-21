@@ -10,7 +10,10 @@ const { getAllEmployee,
         updateEmployee,
         deleteEmployee } = require('./controller/getEmployeeInfo');
 
-const {insertRole} = require('./controller/getRoleInfo');
+const { insertRole } = require('./controller/getRoleInfo');
+
+const { getTaskInfoByID, 
+        updateTaskStatus } = require('./controller/getTaskInfo');
 
 const app = express();
 app.use(express.json());
@@ -35,6 +38,9 @@ app.delete('/deleteemployee', deleteEmployee);
 //Role
 app.post('/insertRole',insertRole);
 
+//Task
+app.get('/task/:id',getTaskInfoByID);
+app.put('/updateTaskStatus',updateTaskStatus);
 
 
 const PORT = process.env.PORT || 8080;

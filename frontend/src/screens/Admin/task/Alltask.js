@@ -2,7 +2,6 @@ import React from 'react';
 
 import './Alltask.css';
 
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
@@ -12,7 +11,7 @@ import Sidebar from '../../../components/Sidebar';
 import TaskRow from '../../../components/TaskRow';
 
 const data = {
-    taskid: 'T000001',
+    taskid: '4002',
     name: 'Task 1',
     description: 'Collect the data from the user',
     supervisorid: 'E000001',
@@ -36,8 +35,6 @@ const Header = () => {
 
 const Alltask = () => {
 
-    const [add, setAdd] = useState(false);
-
     const navigate = useNavigate();
 
     return (
@@ -45,14 +42,15 @@ const Alltask = () => {
             <Navbar/>
             <Sidebar/>
             <div className='alltask-form-container'>
-                <h5>ALL TASKS</h5>
+                <div className='allemployee-title'>
+                    <h5>ALL TASKS</h5>
+                    <Button variant="success" onClick ={() => navigate('/task/add')}>Add</Button>{' '}
+                </div>
                 <div className = 'alltask-form'>
                     <Header/>
                     <TaskRow info = {data} />
                     <TaskRow info = {data} />
                     <TaskRow info = {data} />
-                    <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
-                    {add && navigate('/task/add')}
                 </div>
             </div>
         </div>

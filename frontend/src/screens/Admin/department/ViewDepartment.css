@@ -25,25 +25,25 @@
     backdrop-filter: blur(4px);
 }
 
-.header-content {
+.ViewDepartment-header-content {
     display: flex;
 }
 
-.header-content > div{
+.ViewDepartment-header-content > div{
     flex: 1;
 }
 
-.header-content-Name{
+.ViewDepartment-header-content-Name{
     position: relative;
-    right: 15px;
+    right: 35px;
 }
 
-.header-content-Position{
+.Viewtask-header-content-Position{
     position: relative;
     right: 25px;
 }
 
-.header-content-Department{
+.Viewtask-header-content-Department{
     position: relative;
     right: 40px;
 }
@@ -61,10 +61,6 @@ hr.solid {
     border-top: 3px solid #000000;
 }
 
-.allemployee-title{
+.Viewtask-allemployee-title{
     margin-bottom: 10px;
-}
-
-.task-desc-content > button{
-    margin-right: 10px;
 }

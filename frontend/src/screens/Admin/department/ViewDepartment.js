@@ -26,10 +26,10 @@ const Header = () => {
    return(
     <>
       <div className = "header-content">
-        <div className = "header-ID">ID</div>
-        <div className = "header-Name">Name</div>
-        <div className = "header-Position">Position</div>
-        <div className = "header-Department">Department</div>
+        <div className = "header-content-ID">ID</div>
+        <div className = "header-content-Name">Name</div>
+        <div className = "header-content-Position">Position</div>
+        <div className = "header-content-Department">Department</div>
       </div>
       <hr className="solid"></hr>
     </>
@@ -54,12 +54,15 @@ const ViewDepartment = () => {
                     <p>This department is going to boom boom Sean Sean. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 </div>
             </div>
-            <h5>Supervisor</h5>
+            <h5>Head of Department</h5>
             <div className = "viewtask-supervisor-bg">
                 <Header />
                 <EmployeeRow info = {data}/>
             </div>
+            <div className ="allemployee-title">
             <h5>Members</h5>
+            <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
+            </div>
             <div className = "viewtask-members-bg">
                 <Header />
                 <EmployeeRow info = {data}/>
@@ -71,7 +74,6 @@ const ViewDepartment = () => {
                 <EmployeeRow info = {data}/>
                 <EmployeeRow info = {data}/>
                 <EmployeeRow info = {data}/>
-                <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
                 {add && 
                   <div className='form'>
                     <Form> 
