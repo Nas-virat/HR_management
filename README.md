@@ -8,10 +8,10 @@ HRMS by SPFNA is HR management system
 2. Backend - node, express
 3. Database - MySql
 ## Feature 
-- [] Adding new task to database
-- [] Employee Promotion
-- [] Adding New Employee to database
-- [] Checking Attendance 
+- [ ] Adding new task to database
+- [ ] Employee Promotion
+- [ ] Adding New Employee to database
+- [ ] Checking Attendance 
 - [x] Add New Role to database
 ## run the web
 
