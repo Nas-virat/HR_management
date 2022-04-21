@@ -17,8 +17,9 @@ const HomeEmployeeRow = () =>{
     return(
       <div className = "home-employee-content">
         <div className = "home-employee-image"><img src={Logo} alt='employee1'></img></div>
+        <div className = "home-employee-id">1001</div>
         <div className = "home-employee-name">Meaw Sean</div>
-        <div className = "home-employee-department">Human Resource</div>
+        <div className = "home-employee-department">Human Resource</div> 
         <Button variant="success" onClick={() => navigate(`/viewemployee/:id`)}>Go</Button>
       </div>
       )
@@ -57,7 +58,9 @@ const Home = () => {
                         <Homecard color='#077777' text='Total Employee' />
                     </div>
                 </div>
+                <div className='login'>
                 <Button href="login" variant="outline-primary">Log In</Button>{' '}
+                </div>
             </div>
         </div>
     );
