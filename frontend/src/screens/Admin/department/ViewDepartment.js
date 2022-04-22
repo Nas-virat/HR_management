@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 //css
 import '../Forms.css';
@@ -11,6 +12,7 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import EmployeeRow from '../../../components/EmployeeRow';
 
+import axios from 'axios';
 
 const data = {
   EmployeeID: "E000312",
@@ -41,6 +43,32 @@ const Header = () => {
 
 const ViewDepartment = () => {
   const [add, setAdd] = useState(false);
+  const [departmentinfo, setDepartmentInfo] = useState({});
+  const [departmentmember,setDepartmentMember] = useState([]);
+  const { id } = useParams();
+
+  /**
+   * get task description
+   */
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) { 
+        const res = await axios.get(`http://localhost:8080/department/${id}`)
+        setDepartmentInfo(res.data[0]);
+        console.log("Department Object",res.data[0]); 
+        
+        const resMember = await axios.get(`http://localhost:8080/departmentmember/${id}`);
+        setDepartmentMember(resMember.data);
+        console.log("Department Member Object: ",resMember.data);
+        }
+      }
+      catch(err) {
+        console.log("err",err);
+      }
+    }
+    fetchData();
+  }, [id]);
 
   return (
     <div>
@@ -50,8 +78,8 @@ const ViewDepartment = () => {
         <h5>Department</h5>
             <div className = "viewtask-task-bg">
                 <div className = "task-desc-content">
-                    <h1>Marketing Department</h1>
-                    <p>This department is going to boom boom Sean Sean. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <h1>{departmentinfo.DprtName}</h1>
+                    <p>{departmentinfo.DprtDesc}</p>
                 </div>
             </div>
             <h5>Head of Department</h5>

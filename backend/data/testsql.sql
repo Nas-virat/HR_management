@@ -106,6 +106,8 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
     GROUP BY d.DprtID;
 
 
+
+
 /*
     Backend : getDepartmentInfo.js
     frontend : AllDepartment.js - DEPARTMENT INFO
@@ -127,7 +129,9 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
                 WHERE d.DprtID = '{DprtID}';
 
 
+
 /*
+    ******* NOT TEST IN SQL YET *******
     Backend : getDepartmentInfo.js
     frontend : AllDepartment.js - HEAD OF DEPARTMENT
     Description : Head of a specific department

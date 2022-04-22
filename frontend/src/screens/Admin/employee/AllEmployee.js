@@ -47,7 +47,6 @@ const AllEmployee = () => {
       });
       console.log("All Employee",res.data);
       setInfo(res.data);
-      console.log("info",info);
     }
     fetchData();
   },[]);

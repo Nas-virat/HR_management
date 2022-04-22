@@ -5,7 +5,9 @@ const express = require('express');
 const cors = require("cors");
 
 
-const { getAllDepartment } = require('./controller/getDepartmentInfo.js');
+const { getAllDepartment,
+        getDepartmentInfoByID,
+        DepartmentMember } = require('./controller/getDepartmentInfo.js');
 
 
 const { getAllEmployee, 
@@ -41,6 +43,8 @@ app.delete('/deleteemployee', deleteEmployee);
 
 //Department
 app.get('/department', getAllDepartment);
+app.get('/department/:id', getDepartmentInfoByID);
+app.get('/departmentmember/:id',DepartmentMember);
 
 //Role
 app.post('/insertRole',insertRole);

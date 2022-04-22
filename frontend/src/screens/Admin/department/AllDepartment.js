@@ -52,8 +52,7 @@ const AllDepartment = () => {
       });
       console.log("All department :",res.data);
       setDepartmentInfo(res.data);
-      console.log("DepartmentInfo",departmentinfo);
-      console.log("DepartmentInfo ID",res.data[0].DprtID);
+      //console.log("DepartmentInfo",departmentinfo);
     }
     fetchData();
   },[]);
