@@ -23,6 +23,9 @@ const { getAllTaskInfo,
         updateTaskStatus,
         TaskMember } = require('./controller/getTaskInfo');
 
+const { checkAttendance } = require('./controller/checkAttendance');
+
+        
 const app = express();
 app.use(express.json());
 
@@ -54,6 +57,10 @@ app.get('/task', getAllTaskInfo);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
 app.get('/taskmember/:id',TaskMember);
+
+//attendance
+app.post('/attendance', checkAttendance);
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));

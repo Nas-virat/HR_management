@@ -16,7 +16,7 @@ HRMS by SPFNA is HR management system
 - [ ] Adding new task to database
 - [ ] Employee Promotion
 - [ ] Adding New Employee to database
-- [ ] Checking Attendance 
+- [x] Checking Attendance 
 - [x] Add New Role to database
 ## run the web
 

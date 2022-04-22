@@ -4,34 +4,26 @@ import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
 import { useState } from 'react';
 
+import axios from 'axios';
+
 import { Form, Button } from 'react-bootstrap'
 
 const Attendance = () => {
 
   const [employeeid, setEmployeeId] = useState('');
   const [Status, setStatus] = useState(''); // O,L,A
-  const [Check,setCheck] = useState(-1); // Check In 1 , Check Out 0
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var today = new Date();
-    console.log(today);
+    axios.post(`http://localhost:8080/attendance`,
+            {
+              'EmployeeID': employeeid,
+              'Status': Status
+            })
+         .then(res => console.log("insert employee attendance",res))
+         .catch(err => console.log("Error :", err))
     
-    if(((today.getHours()> 9 && today.getMinutes() > 30) || today.getHours() > 10) && Check){
-      setStatus('L');
-      console.log('Late');
-    }
-    else if(((today.getHours()< 9 && today.getMinutes() < 30) || today.getHours()< 9) && Check){
-      setStatus('O');
-      console.log('Early');
-    }
-    else{
-      setStatus('A');
-      console.log('Absent');
-    }
-    
-    console.log({'EmployeeId' :employeeid ,'Status' : Status,'Check' : Check});
-    alert(`EmployeeId : ${employeeid}\nStatus : ${Status}\nCheck : ${Check}`);
+    alert(`EmployeeId : ${employeeid}\nStatus : ${Status}\n`);
 }
 
   return (
@@ -52,20 +44,29 @@ const Attendance = () => {
                     <div key={`inline-radio`} className="mb-3">
                         <Form.Check
                           inline
-                          label="Check In"
+                          label="On-time"
                           name="attendance"
                           type= 'radio'
-                          id= 'inline-radio-check-in'
-                          onChange = {e => setCheck(1)}
+                          id= 'inline-radio-ontime'
+                          onChange = {e => setStatus('O')}
                         />
 
                         <Form.Check
                           inline
-                          label="Check Out"
+                          label="Late"
                           name="attendance"
                           type= 'radio'
-                          id= 'inline-radio-check-out'
-                          onChange = {e => setCheck(0)}
+                          id= 'inline-radio-late'
+                          onChange = {e => setStatus('L')}
+                        />
+
+                        <Form.Check
+                          inline
+                          label="Absent"
+                          name="attendance"
+                          type= 'radio'
+                          id= 'inline-radio-absent'
+                          onChange = {e => setStatus('A')}
                         />
                     </div>
                     
