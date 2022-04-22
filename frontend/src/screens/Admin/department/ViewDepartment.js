@@ -93,15 +93,12 @@ const ViewDepartment = () => {
             </div>
             <div className = "viewtask-members-bg">
                 <Header />
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
+                { departmentmember && departmentmember.map( (departmentmember, index) => {
+                    return(
+                      <EmployeeRow info = {departmentmember} key = {index}/>
+                    )
+                  })
+                }
                 {add && 
                   <div className='form'>
                     <Form> 

@@ -12,6 +12,7 @@ HRMS by SPFNA is HR management system
 - [x] Display All Department page
 - [x] Display All Task page
 - [ ] ViewTask Page (Supervisor not finish)
+- [ ] ViewDepartment Page (HeadDepartment not finish)
 - [ ] Adding new task to database
 - [ ] Employee Promotion
 - [ ] Adding New Employee to database
