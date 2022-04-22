@@ -13,11 +13,17 @@ HRMS by SPFNA is HR management system
 - [x] Display All Task page
 - [x] ViewTask Page
 - [x] ViewDepartment Page
+- [ ] ViewEmployee Page
+- [ ] Employeemore Page
+- [ ] EmployeeEdit Page
+- [ ] Deduction Page
+- [ ] OTtask Page (frontend + API)
 - [ ] Adding new task to database
 - [x] Employee Promotion
 - [ ] Adding New Employee to database
 - [x] Checking Attendance 
 - [x] Add New Role to database
+
 ## run the web
 
 ```
