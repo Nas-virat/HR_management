@@ -12,7 +12,8 @@ const { getAllEmployee,
 
 const { insertRole } = require('./controller/getRoleInfo');
 
-const { getTaskInfoByID, 
+const { getAllTaskInfo,
+        getTaskInfoByID, 
         updateTaskStatus } = require('./controller/getTaskInfo');
 
 const app = express();
@@ -39,6 +40,7 @@ app.delete('/deleteemployee', deleteEmployee);
 app.post('/insertRole',insertRole);
 
 //Task
+app.get('/task', getAllTaskInfo);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
 

@@ -9,10 +9,14 @@ const TaskRow = ({info}) => {
     let navigate = useNavigate();
     return(
       <div className = "alltask-task-content">
-        <div>{info.taskid}</div>
-        <div>{info.description}</div>
-        <div>{info.supervisorid}</div>
-        <div>{info.status}</div>
+        <div>{info.TaskID}</div>
+        <div>{info.taskdesc}</div>
+        <div>{info.SupervisorID}</div>
+        <div>
+        {
+          info.status === 'A' ? "Active" : info.status === 'F' ? "Finished" : "Cancel"
+        }
+        </div>
         <Button variant="success" onClick={() => navigate(`/viewtask/${info.taskid}`) }>Go</Button>
       </div>
       )

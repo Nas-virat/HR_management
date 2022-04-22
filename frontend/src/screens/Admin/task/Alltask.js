@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 
 import './Alltask.css';
 
@@ -6,17 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
+import axios from 'axios';
+
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import TaskRow from '../../../components/TaskRow';
 
-const data = {
-    taskid: '4002',
-    name: 'Task 1',
-    description: 'Collect the data from the user',
-    supervisorid: 'E000001',
-    status: 'Active'
-}
+
 
 const Header = () => {
     return(
@@ -35,7 +31,20 @@ const Header = () => {
 
 const Alltask = () => {
 
+    const [taskinfo, setTaskInfo] = useState([]); 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get('http://localhost:8080/task')
+            .catch(err => {
+            console.log(err);
+            });
+            console.log(res.data);
+            setTaskInfo(res.data);
+        }
+        fetchData();
+    },[]);
 
     return (
         <div>
@@ -48,9 +57,13 @@ const Alltask = () => {
                 </div>
                 <div className = 'alltask-form'>
                     <Header/>
-                    <TaskRow info = {data} />
-                    <TaskRow info = {data} />
-                    <TaskRow info = {data} />
+                    {
+                        taskinfo && taskinfo.map( (taskinfo, index) => {
+                            return(
+                                <TaskRow info = {taskinfo} key = {index} />
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>
