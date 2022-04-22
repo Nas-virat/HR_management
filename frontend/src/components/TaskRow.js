@@ -17,7 +17,7 @@ const TaskRow = ({info}) => {
           info.status === 'A' ? "Active" : info.status === 'F' ? "Finished" : "Cancel"
         }
         </div>
-        <Button variant="success" onClick={() => navigate(`/viewtask/${info.taskid}`) }>Go</Button>
+        <Button variant="success" onClick={() => navigate(`/viewtask/${info.TaskID}`) }>Go</Button>
       </div>
       )
   }

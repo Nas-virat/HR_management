@@ -11,7 +11,7 @@ const getAllTaskInfo = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        connection.query("SELECT * FROM task", (err, result) => {
+        connection.query("SELECT * FROM task ORDER BY TaskID DESC", (err, result) => {
             connection.release();
             if (err) {
                 console.log(err);
