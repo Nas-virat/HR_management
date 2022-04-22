@@ -11,7 +11,12 @@ const getAllDepartment = (req, res) => {
             return;
         }
         console.log("Select ALL Department");
-        connection.query("SELECT * FROM department", (err, result) => {
+        connection.query(`SELECT d.DprtID, d.DprtName, COUNT(*) AS TotalMembers
+                            FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+                                p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                            INNER JOIN department d ON p.DprtID = d.DprtID
+                            GROUP BY d.DprtID`, 
+            (err, result) => {
             connection.release();
             if (err) {
                 console.log(err);
@@ -21,4 +26,4 @@ const getAllDepartment = (req, res) => {
    });
 };
 
-module.exports = getAllDepartment;
+module.exports = {getAllDepartment};

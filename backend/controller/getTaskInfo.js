@@ -93,6 +93,32 @@ const updateTaskStatus = (req, res) => {
    });
 };
 
+const TaskMember = (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+
+        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+                          FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+                          p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                          INNER JOIN department d ON p.DprtID = d.DprtID 
+                          INNER JOIN role r ON p.RoleID = r.RoleID
+                          INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
+                          WHERE et.taskID = ?`,
+        [req.params.id], (err, result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log(`TASK MEMBER of TASK ID: ${req.params.id}`);
+   });
+};
 
 
 
@@ -103,4 +129,5 @@ const updateTaskStatus = (req, res) => {
 module.exports = {getAllTaskInfo, 
                   addNewTask, 
                   getTaskInfoByID,
-                  updateTaskStatus};
+                  updateTaskStatus,
+                  TaskMember};

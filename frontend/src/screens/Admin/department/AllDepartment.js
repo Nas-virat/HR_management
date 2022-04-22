@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './AllDepartment.css';
 
@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+import axios from 'axios';
 
 const Header = () => {
     return(
@@ -29,17 +30,34 @@ const DepartmentRow = ({info}) => {
     let navigate = useNavigate();
     return(
       <div className = "allDepartment-department-content">
-        <div>D001</div>
-        <div>Department 1</div>
-        <div>10</div>
-        <Button variant="success" onClick={() => navigate(`/viewdepartment/D001`)}>Go</Button>
+        <div>{info.DprtID}</div>
+        <div>{info.DprtName}</div>
+        <div>{info.TotalMembers}</div>
+        <Button variant="success" onClick={() => navigate(`/viewdepartment/${info.DprtID}`)}>Go</Button>
       </div>
       )
   }
 
 const AllDepartment = () => {
 
+  
+  const [departmentinfo, setDepartmentInfo] = useState([]);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:8080/department')
+      .catch(err => {
+      console.log(err);
+      });
+      console.log("All department :",res.data);
+      setDepartmentInfo(res.data);
+      console.log("DepartmentInfo",departmentinfo);
+      console.log("DepartmentInfo ID",res.data[0].DprtID);
+    }
+    fetchData();
+  },[]);
+
   return (
       <div>
           <Navbar/>
@@ -51,9 +69,13 @@ const AllDepartment = () => {
             </div>
             <div className="alldepartment-form">
               <Header/>
-              <DepartmentRow/>
-              <DepartmentRow/>
-              <DepartmentRow/>
+              {
+                departmentinfo && departmentinfo.map( (departmentinfo, index) => {
+                  return(
+                    <DepartmentRow info={departmentinfo} key = {index} />
+                  )
+                })
+              }
             </div>
           </div>
       </div>

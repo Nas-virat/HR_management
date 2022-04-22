@@ -4,6 +4,10 @@ require("dotenv").config();
 const express = require('express');
 const cors = require("cors");
 
+
+const { getAllDepartment } = require('./controller/getDepartmentInfo.js');
+
+
 const { getAllEmployee, 
         getEmployeeByID, 
         insertEmployee,
@@ -14,7 +18,8 @@ const { insertRole } = require('./controller/getRoleInfo');
 
 const { getAllTaskInfo,
         getTaskInfoByID, 
-        updateTaskStatus } = require('./controller/getTaskInfo');
+        updateTaskStatus,
+        TaskMember } = require('./controller/getTaskInfo');
 
 const app = express();
 app.use(express.json());
@@ -34,7 +39,8 @@ app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee', updateEmployee);
 app.delete('/deleteemployee', deleteEmployee);
 
-
+//Department
+app.get('/department', getAllDepartment);
 
 //Role
 app.post('/insertRole',insertRole);
@@ -43,7 +49,7 @@ app.post('/insertRole',insertRole);
 app.get('/task', getAllTaskInfo);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
-
+app.get('/taskmember/:id',TaskMember);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));

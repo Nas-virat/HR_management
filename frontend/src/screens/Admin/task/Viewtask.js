@@ -26,13 +26,6 @@ const data = {
 }
 
 
-const taskdata = {
-  TaskID: "4002",
-  taskdesc : "Collect the data from the user. Analyze and report to the head department before the end of the month.",
-  deadline : "16/04/2022",
-  status : "A"  
-}
-
 
 const Header = () => {
    return(
@@ -53,36 +46,49 @@ const Viewtask = () => {
   const [add, setAdd] = useState(false);
   const [status,setStatus] = useState('A');
   const [taskInfo, setTaskInfo] = useState({});
+  const [taskMember, setTaskMember] = useState([]);
   const { id } = useParams();
 
   //console.log(id);
+
+  /* update the task status */
   const updateStatus = () => {
-    if (status === 'A'){
+    if (status === 'A') {
       setStatus('F');
     }
-    else{
+    else {
       setStatus('A');
     }
+      axios.put('http://localhost:8080/updateTaskStatus', {
+          "TaskID" : taskInfo.TaskID,
+          "status" : status })
+        .then((res) => console.log("UPDATE Status: ", res))
+        .catch((err) => console.log("err : ",err))
   }
-
+  
   const cancelStatus = () => {
     setStatus('C');
-    console.log("Status cancel", status);
+     axios.put('http://localhost:8080/updateTaskStatus', {
+      "TaskID" : taskInfo.TaskID,
+      "status" : status })
+    .then((res) => console.log("CANCEL Status: ", res))
+    .catch((err) => console.log("err : ",err))
   }
   
   /*
-   * get Task Descirption in viewtask
+   * get Task Description in viewtask
    */
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (id) {
+        if (id) { 
         const res = await axios.get(`http://localhost:8080/task/${id}`)
-        console.log(`http://localhost:8080/task/${id}`);
-        console.log("Task Object",res.data); 
-        console.log("Task Description",res.data[0].taskdesc);  
         setTaskInfo(res.data[0]);
-        console.log("TaskInfo: ",taskInfo);
+        console.log("Task Object",res.data[0]); 
+        
+        const resMember = await axios.get(`http://localhost:8080/taskMember/${id}`);
+        setTaskMember(resMember.data);
+        console.log("Task Member Object: ",resMember.data);
         }
       }
       catch(err) {
@@ -92,24 +98,8 @@ const Viewtask = () => {
     fetchData();
   }, [id]);
 
-  /* update the task status */
-  /*useEffect(() => {
-    const updateData = async () => {
-    try {
-      const res = await axios.put('http://localhost:8080/updateTaskStatus', {
-          "TaskID" : taskInfo.TaskID,
-          "status" : status
-        }
-      );
-      console.log("UPDATE data", res);
-    }
-    catch(err) {
-        console.log("err",err);
-      }
-    }
-    updateData();
-    },[status]
-  );*/
+  
+
 
   return (
     <div>
@@ -151,14 +141,13 @@ const Viewtask = () => {
                   </div>
                 }
                 <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
-                <EmployeeRow info = {data}/>
+               {
+                 taskMember && taskMember.map((member,index) => {
+                   return(
+                     <EmployeeRow info = {member} key = {index}/>
+                   )
+                 })
+               }
             </div>
         </div>
     </div>

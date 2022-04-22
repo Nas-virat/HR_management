@@ -9,7 +9,13 @@ const getAllEmployee = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        connection.query("SELECT * FROM employee", (err, result) => {
+        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+                            FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+                                p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                            INNER JOIN department d ON p.DprtID = d.DprtID 
+                            INNER JOIN role r ON p.RoleID = r.RoleID
+                            ORDER BY e.EmployeeID ASC`, 
+            (err, result) => {
             connection.release();
             if (err) {
                 console.log(err);

@@ -36,7 +36,7 @@ const Header = () => {
 
 const AllEmployee = () => {
 
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState([]);
   const navigate = useNavigate();
  
   useEffect(() => {
@@ -45,8 +45,9 @@ const AllEmployee = () => {
       .catch(err => {
       console.log(err);
       });
-      console.log(res.data);
+      console.log("All Employee",res.data);
       setInfo(res.data);
+      console.log("info",info);
     }
     fetchData();
   },[]);
