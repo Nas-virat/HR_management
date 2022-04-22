@@ -17,16 +17,6 @@ import Sidebar from '../../../components/Sidebar';
 import EmployeeRow from '../../../components/EmployeeRow';
 
 
-const data = {
-  EmployeeID: "4002",
-  fname: "Meaw sean",
-  lname: "HR Admin",
-  Email: "TEST",
-  Institution: "Human Resource"
-}
-
-
-
 const Header = () => {
    return(
     <>
@@ -47,6 +37,7 @@ const Viewtask = () => {
   const [status,setStatus] = useState('A');
   const [taskInfo, setTaskInfo] = useState({});
   const [taskMember, setTaskMember] = useState([]);
+  const [taskSupervisor, setTaskSupervisor] = useState([]);
   const { id } = useParams();
 
   //console.log(id);
@@ -86,9 +77,13 @@ const Viewtask = () => {
         setTaskInfo(res.data[0]);
         console.log("Task Object",res.data[0]); 
         
-        const resMember = await axios.get(`http://localhost:8080/taskMember/${id}`);
+        const resMember = await axios.get(`http://localhost:8080/taskmember/${id}`);
         setTaskMember(resMember.data);
         console.log("Task Member Object: ",resMember.data);
+
+        const resSupervisor = await axios.get(`http://localhost:8080/tasksupervisor/${id}`);
+        setTaskSupervisor(resSupervisor.data);
+        console.log("Task Supervisor Object: ",resSupervisor.data);
         }
       }
       catch(err) {
@@ -119,7 +114,13 @@ const Viewtask = () => {
             <h5>Supervisor</h5>
             <div className = "viewtask-supervisor-bg">
                 <Header />
-                <EmployeeRow info = {data}/>
+                {
+                  taskSupervisor && taskSupervisor.map((supervisor,index) => {
+                    return(
+                     <EmployeeRow info = {supervisor} key = {index}/>
+                    )
+                  })
+                }
             </div>
             <div className ="allemployee-title">
               <h5>Members</h5>
@@ -140,14 +141,13 @@ const Viewtask = () => {
                     </Form>
                   </div>
                 }
-                <EmployeeRow info = {data}/>
-               {
-                 taskMember && taskMember.map((member,index) => {
-                   return(
+                {
+                  taskMember && taskMember.map((member,index) => {
+                    return(
                      <EmployeeRow info = {member} key = {index}/>
-                   )
-                 })
-               }
+                    )
+                  })
+                }
             </div>
         </div>
     </div>

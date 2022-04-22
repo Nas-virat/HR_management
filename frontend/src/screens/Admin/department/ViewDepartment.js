@@ -14,15 +14,6 @@ import EmployeeRow from '../../../components/EmployeeRow';
 
 import axios from 'axios';
 
-const data = {
-  EmployeeID: "E000312",
-  fname: "Meaw sean",
-  lname: "HR Admin",
-  Email: "TEST",
-  Institution: "Human Resource"
-}
-
-
 
 const Header = () => {
    return(
@@ -45,6 +36,7 @@ const ViewDepartment = () => {
   const [add, setAdd] = useState(false);
   const [departmentinfo, setDepartmentInfo] = useState({});
   const [departmentmember,setDepartmentMember] = useState([]);
+  const [departmenthead,setDepartmentHead] = useState([]);
   const { id } = useParams();
 
   /**
@@ -61,6 +53,10 @@ const ViewDepartment = () => {
         const resMember = await axios.get(`http://localhost:8080/departmentmember/${id}`);
         setDepartmentMember(resMember.data);
         console.log("Department Member Object: ",resMember.data);
+
+        const resHead = await axios.get(`http://localhost:8080/departmenthead/${id}`);
+        setDepartmentHead(resHead.data);
+        console.log("Department Head Object: ",resHead.data);
         }
       }
       catch(err) {
@@ -85,7 +81,12 @@ const ViewDepartment = () => {
             <h5>Head of Department</h5>
             <div className = "viewtask-supervisor-bg">
                 <Header />
-                <EmployeeRow info = {data}/>
+                { departmenthead && departmenthead.map( (departmenthead, index) => {
+                    return(
+                      <EmployeeRow info = {departmenthead} key = {index}/>
+                    )
+                  })
+                }
             </div>
             <div className ="allemployee-title">
             <h5>Members</h5>

@@ -7,7 +7,8 @@ const cors = require("cors");
 
 const { getAllDepartment,
         getDepartmentInfoByID,
-        DepartmentMember } = require('./controller/getDepartmentInfo.js');
+        DepartmentMember,
+        DepartmentHead } = require('./controller/getDepartmentInfo.js');
 
 
 const { getAllEmployee, 
@@ -21,11 +22,14 @@ const { insertRole } = require('./controller/getRoleInfo');
 const { getAllTaskInfo,
         getTaskInfoByID, 
         updateTaskStatus,
-        TaskMember } = require('./controller/getTaskInfo');
+        TaskMember,
+        TaskSupervisor } = require('./controller/getTaskInfo');
 
 const { checkAttendance } = require('./controller/checkAttendance');
 
-        
+
+const { insertPromotion } = require('./controller/promotion');
+
 const app = express();
 app.use(express.json());
 
@@ -48,6 +52,7 @@ app.delete('/deleteemployee', deleteEmployee);
 app.get('/department', getAllDepartment);
 app.get('/department/:id', getDepartmentInfoByID);
 app.get('/departmentmember/:id',DepartmentMember);
+app.get('/departmenthead/:id',DepartmentHead);
 
 //Role
 app.post('/insertRole',insertRole);
@@ -57,9 +62,14 @@ app.get('/task', getAllTaskInfo);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
 app.get('/taskmember/:id',TaskMember);
+app.get('/tasksupervisor/:id',TaskSupervisor);
 
 //attendance
 app.post('/attendance', checkAttendance);
+
+
+//promotion
+app.post('/promotion',insertPromotion);
 
 
 const PORT = process.env.PORT || 8080;

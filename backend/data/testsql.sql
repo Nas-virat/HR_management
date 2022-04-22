@@ -82,6 +82,21 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
                 INNER JOIN role r ON p.RoleID = r.RoleID
                 INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
                 WHERE et.taskID = '{TASKID}';
+                
+
+/* 
+    Backend : getTaskInfo.js
+    frontend : ViewTask.js - SUPERVISOR
+    Description : Supervisor of a specific task   
+*/
+SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+    p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                INNER JOIN department d ON p.DprtID = d.DprtID 
+                INNER JOIN role r ON p.RoleID = r.RoleID
+                INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
+                INNER JOIN task t ON et.TaskID = t.TaskID
+                WHERE et.taskID = '{TASKID}' AND e.EmployeeID = t.SupervisorID;
 
 /* 
     Backend : getTaskInfo.js
@@ -131,7 +146,6 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 
 
 /*
-    ******* NOT TEST IN SQL YET *******
     Backend : getDepartmentInfo.js
     frontend : AllDepartment.js - HEAD OF DEPARTMENT
     Description : Head of a specific department
@@ -141,4 +155,13 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
     p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                 INNER JOIN department d ON p.DprtID = d.DprtID 
                 INNER JOIN role r ON p.RoleID = r.RoleID
-                WHERE d.DprtID = d.HeadDeptID;
+                WHERE d.DprtID = '{DprtID}' AND e.EmployeeID = d.HeadDeptID;
+
+
+/*
+
+    Backend : 
+    frontend :
+    Description : 
+
+*/

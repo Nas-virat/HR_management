@@ -6,6 +6,8 @@ import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+import axios from 'axios';
+
 import './Forms.css';
 
 //import components
@@ -14,32 +16,27 @@ import Sidebar from '../../components/Sidebar';
 
 const AddPromotion = () => {
 
-    let defaultDate = new Date();
-    defaultDate.setDate(defaultDate.getDate());
-
-    const [date, setDate] = useState(defaultDate);
     const [employeeid, setEmployeeId] = useState('');
     const [roleid, setRoleId] = useState('');
     const [departmentid, setDepartmentId] = useState('');
     const [extrasalary, setExtrasalary] = useState(0);
-    const [approverid, setApproverid] = useState('');
-
-    const onSetDate = (event) => {
-        setDate(new Date(event.target.value))
-    }
+    const [approveBy, setApproveBy] = useState('');
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-                    'EmployeeID':employeeid,
-                    'PromotionDate':date,
-                    'RoleId':roleid,
-                    'DepartmentId':departmentid,
-                    'ExtraSalary':extrasalary,
-                    'ApproverId':approverid
-                    });
-        alert(`EmployeeID : ${employeeid}\nPromotionDate : ${date}\nRoleId : ${roleid}\nDepartmentId : ${departmentid}\nExtraSalary : ${extrasalary}\nApproverId : ${approverid}`);
+        axios.post('http://localhost:8080/promotion',
+            {
+                'EmployeeID' : employeeid,
+                'RoleID' : roleid,
+                'DprtID' : departmentid,
+                'ExtraSalary' : extrasalary,
+                'ApproveBy' : approveBy
+            })
+             .then(res => console.log("Add promotion to database",res))
+             .catch(err => console.log("Err :", err))
+
+        alert(`EmployeeID : ${employeeid}\nRoleId : ${roleid}\nDepartmentId : ${departmentid}\nExtraSalary : ${extrasalary}\nApproverId : ${approveBy}\n`);
     }
 
 
@@ -51,21 +48,12 @@ const AddPromotion = () => {
             <h5>PROMOTION</h5>
             <div className='form'>
                 <Form> 
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formRoleName">
-                        <Form.Label>Employee ID</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Employee ID" defaultValue = {employeeid || ""} 
-                            onChange = {e => setEmployeeId(e.target.value)}
-                        />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formOTRate">
-                        <Form.Label>Promotion Date</Form.Label>
-                        <Form.Control type="date" placeholder="Enter Promotion Date" defaultValue = {date.toLocaleDateString('en-CA')}
-                            onChange = {onSetDate}
-                        />
-                        </Form.Group>
-                    </Row>
+                    <Form.Group className="mb-3 " controlId="formEmployeeID">
+                    <Form.Label>Employee ID</Form.Label>
+                    <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {employeeid || ""} 
+                        onChange = {e => setEmployeeId(e.target.value)}
+                    />
+                    </Form.Group>
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formRoleName">
@@ -92,8 +80,8 @@ const AddPromotion = () => {
 
                     <Form.Group className="mb-3 " controlId="formEmployeeID">
                         <Form.Label>Approver ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {approverid || ""}
-                            onChange = {e => setApproverid(e.target.value)}
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" defaultValue = {approveBy || ""}
+                            onChange = {e => setApproveBy(e.target.value)}
                         />
                     </Form.Group>
          
