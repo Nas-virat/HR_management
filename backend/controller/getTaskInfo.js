@@ -54,20 +54,32 @@ const addNewTask = () => {
             res.status(500).json({'error':err});
             return;
         }
+        
         const taskdesc = req.body.taskdesc;
         const superID = req.body.SupervisorID;
         const type = req.body.Type;
         const deadline = req.body.deadline;
+        const employeeid = req.body.EmployeeID;
         
         connection.query(`INSERT INTO task (taskdesc, SupervisorID, Type, deadline) VALUES (?,?,?,?)`,
         [taskdesc,superID,type,deadline],
         (err,result) => {
-            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            //res.send(result);
+        });
+        connection.query(
+            `INSERT INTO employeeontask (TaskID, EmployeeID) 
+             VALUES (SELECT MAX(TaskID) FROM task, ?)`,
+        [employeeid],
+        (err,result) => {
             if (err) {
                 console.log(err);
             }
             res.send(result);
         });
+        
         console.log("Add New task");
     });
 };

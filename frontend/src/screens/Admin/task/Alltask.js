@@ -41,7 +41,7 @@ const Alltask = () => {
             .catch(err => {
             console.log(err);
             });
-            console.log(res.data);
+            console.log("res data",res.data);
             setTaskInfo(res.data);
         }
         fetchData();

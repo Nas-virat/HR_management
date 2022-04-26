@@ -18,7 +18,7 @@ const TaskRow = ({info}) => {
         }
         </div>
         <div>{info.TotalMembers}</div>
-        <Button variant="success" onClick={() => navigate(`/viewtask/${info.TaskID}`) }>Go</Button>
+        <Button variant="success" onClick={() => navigate(`/viewtask/${info.taskID}`) }>Go</Button>
       </div>
       )
   }
