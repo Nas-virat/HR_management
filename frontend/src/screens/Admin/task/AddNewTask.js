@@ -12,6 +12,8 @@ import '../Forms.css';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+import axios from 'axios';
+
 const AddNewTask = () => {
 
     let defaultDate = new Date();
@@ -28,7 +30,23 @@ const AddNewTask = () => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
+        axios.post('http://localhost:8080/taskadd', 
+            {
+                'EmployeeID': employeeid,
+                'taskdesc': taskdescription,
+                'Type': tasktype,
+                'SupervisorID': supervisorid,
+                'deadline': date
+            })
+            .then(res => {
+                console.log("Add new task res",res.data);
+            }).catch(err => {
+                console.log(err);
+            })
+    
+    
         console.log({
                     'EmployeeId':employeeid,
                     'TaskDescription':taskdescription,

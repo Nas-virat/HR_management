@@ -69,6 +69,7 @@ const addNewTask = () => {
             }
             //res.send(result);
         });
+        
         connection.query(
             `INSERT INTO employeeontask (TaskID, EmployeeID) 
              VALUES (SELECT MAX(TaskID) FROM task, ?)`,

@@ -21,6 +21,7 @@ const { insertRole } = require('./controller/getRoleInfo');
 
 const { getAllTaskInfo,
         getTaskInfoByID, 
+        addNewTask,
         updateTaskStatus,
         TaskMember,
         TaskSupervisor,
@@ -46,7 +47,7 @@ app.get("/", (req, res) => {
 //employee
 app.get('/employee', getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
-app.post('/insertEmployee/:id', insertEmployee);
+app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee/:id', updateEmployee);
 app.delete('/deleteemployee', deleteEmployee);
 
@@ -61,6 +62,7 @@ app.post('/insertRole',insertRole);
 
 //Task
 app.get('/task', getAllTaskInfo);
+app.post('/taskadd', addNewTask);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
 app.get('/taskmember/:id',TaskMember);

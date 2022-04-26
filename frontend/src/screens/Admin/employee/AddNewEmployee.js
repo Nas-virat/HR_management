@@ -41,22 +41,6 @@ const AddNewEmployee = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert({
-            'fname':fname,
-            'lname':lname,
-            'Address':address,
-            'Email':email,
-            'Gender':gender,
-            'DOB': date,
-            'BankRecive' : bankreceive,
-            'AccountNo' : accountno,
-            'Edulevel' :edulevel,
-            'Institution' : institution,
-            'Major': major,
-            'YearGrads' : yeargrads,
-            'GPAX' : gpax,
-            'password' : password  
-        });
         try{
             const res = await axios.post('http://localhost:8080/insertEmployee', {
                 'fname':fname,
@@ -81,6 +65,7 @@ const AddNewEmployee = () => {
         catch(err){
             console.log("err:",err);
         }
+        alert('Successfully Added');
 
     }
 

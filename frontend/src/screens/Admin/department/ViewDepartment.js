@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -33,7 +32,6 @@ const Header = () => {
 
 
 const ViewDepartment = () => {
-  const [add, setAdd] = useState(false);
   const [departmentinfo, setDepartmentInfo] = useState({});
   const [departmentmember,setDepartmentMember] = useState([]);
   const [departmenthead,setDepartmentHead] = useState([]);
@@ -90,7 +88,6 @@ const ViewDepartment = () => {
             </div>
             <div className ="allemployee-title">
             <h5>Members</h5>
-            <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
             </div>
             <div className = "viewtask-members-bg">
                 <Header />
@@ -99,22 +96,6 @@ const ViewDepartment = () => {
                       <EmployeeRow info = {departmentmember} key = {index}/>
                     )
                   })
-                }
-                {add && 
-                  <div className='form'>
-                    <Form> 
-                      <Row className="mb-3">
-                          <Form.Group as={Col} controlId="formOTRate">
-                          <Form.Label>Employee ID</Form.Label>
-                          <Form.Control type="text" placeholder="Enter Employee ID" />
-                          </Form.Group>
-                      </Row>
-                        
-                        <Button variant="success" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                  </div>
                 }
             </div>
         </div>
