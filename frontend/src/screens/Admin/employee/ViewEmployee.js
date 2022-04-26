@@ -6,6 +6,8 @@ import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
 
 import { Button } from 'react-bootstrap';
 
+import { useParams } from 'react-router-dom';
+
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar'; 
 import Homecard from '../../../components/Homecard';
@@ -73,6 +75,8 @@ const ViewEmployee = () => {
 
   let navigate = useNavigate();
 
+  const { id } = useParams();
+
   return (
     <div>
       <Navbar/>
@@ -101,8 +105,8 @@ const ViewEmployee = () => {
                       <p>12/12/2000</p>
                     </div>
                   </div>
-                  <Button variant="success" onClick = {() => navigate(`/employee/001/edit`)}>EDIT</Button>
-                  <Button variant="success" onClick = {() => navigate(`/viewemployee/001/moreinfo`)}>MORE INFO</Button>
+                  <Button variant="success" onClick = {() => navigate(`/employee/${id}/edit`)}>EDIT</Button>
+                  <Button variant="success" onClick = {() => navigate(`/viewemployee/${id}/moreinfo`)}>MORE INFO</Button>
                   
                 </div>
             </div>

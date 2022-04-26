@@ -174,15 +174,17 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 */
 SELECT s.EmployeeID, s.fname, s.lname, s.BaseSalary, IFNULL(s.totalDeduction,0) AS totalDeduction,
 IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) AS OTamount,
-IFNULL((s.BaseSalary + ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) - s.totalDeduction),0) AS TotalPayment
+(s.BaseSalary + IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) - IFNULL(s.totalDeduction,0)) AS TotalPayment
 FROM ot o
-RIGHT JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate
+RIGHT JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate, d.datetime
 FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
     p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                 LEFT JOIN deduction d ON p.EmployeeID = d.EmployeeID
+            	AND MONTH(d.datetime) = '{SelectedMonth}' AND YEAR(d.datetime) = '{SelectedYear}'
                 INNER JOIN role r ON p.RoleID = r.RoleID
                	GROUP BY EmployeeID
                 ORDER BY EmployeeID
  ) s
  ON o.EmployeeID = s.EmployeeID 
+ AND MONTH(o.otdate) = '{SelectedMonth}' AND YEAR(o.otdate) = '{SelectedYear}'
  GROUP BY EmployeeID

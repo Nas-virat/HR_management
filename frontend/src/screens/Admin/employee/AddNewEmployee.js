@@ -41,7 +41,7 @@ const AddNewEmployee = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
+        alert({
             'fname':fname,
             'lname':lname,
             'Address':address,
@@ -72,7 +72,7 @@ const AddNewEmployee = () => {
                 'Major': major,
                 'YearGrads' : yeargrads,
                 'GPAX' : gpax,
-                'password' : password,
+                'Password' : password,
                 'DprtID' : department,
                 'RoleID' : role  
             });

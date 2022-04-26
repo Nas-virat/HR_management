@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import axios from 'axios';
+
+import { useParams } from 'react-router-dom';
 
 import '../Forms.css';
 
@@ -13,54 +16,64 @@ import Sidebar from '../../../components/Sidebar';
 
 const EmployeeEdit = () => {
 
-    let defaultDate = new Date();
-    defaultDate.setDate(defaultDate.getDate());
-
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [address, setAddress] = useState('');
     const [email, setEmail] = useState('');
-    const [gender, setGender] = useState('');
-    const [date, setDate] = useState(defaultDate);
     const [bankreceive, setBankreceive] = useState('');
     const [accountno, setAccountNo] = useState('');
 
-    const [edulevel, setEdulevel] = useState('');
-    const [institution, setInstitution] = useState('');
-    const [major, setMajor] = useState('');
-    const [yeargrads, setYearGrads] = useState(0);
-    const [gpax, setGPAX] = useState(0);
     const [password, setPassword] = useState('');
 
-    const [department, setDepartment] = useState('');
-    const [role, setRole] = useState('');
+    const { id } = useParams();
 
-    const onSetDate = (event) => {
-      setDate(new Date(event.target.value))
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (id) {
+                    const res = await axios.get(`http://localhost:8080/employee/${id}`);
+                    setFname(res.data[0].fname);
+                    setLname(res.data[0].lname);
+                    setAddress(res.data[0].Address);
+                    setEmail(res.data[0].Email);
+                    setBankreceive(res.data[0].BankRecive);
+                    setAccountNo(res.data[0].AccountNo);
+                    setPassword(res.data[0].Password);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(
-            {
-                    'FirstName':fname,
-                    'LastName':lname,
-                    'Address':address,
-                    'Email':email,
-                    'Gender':gender,
-                    'DOB':date,
-                    'BankReceive': bankreceive,
-                    'AccountNo':accountno,
-                    'EduLevel':edulevel,
-                    'Institution':institution,
-                    'Major':major,
-                    'YearGrads':yeargrads,
-                    'GPAX':gpax,
-                    'Password': password,
-                    'Department':department,
-                    'Role':role,
-            }
-        )
+        console.log({
+            'fname':fname,
+            'lname':lname,
+            'Address':address,
+            'Email':email,
+            'BankRecive' : bankreceive,
+            'AccountNo' : accountno,
+            'Password' : password  
+        });
+        try{
+            const res = await axios.put(`http://localhost:8080/updateEmployee/${id}`, {
+                'fname':fname,
+                'lname':lname,
+                'Address':address,
+                'Email':email,
+                'BankRecive' : bankreceive,
+                'AccountNo' : accountno,
+                'Password' : password,
+            });
+            console.log("Update New Employee",res);
+        }
+        catch(err){
+            console.log("err:",err);
+        }
+
     }
 
     return (
@@ -96,49 +109,12 @@ const EmployeeEdit = () => {
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name" defaultValue = {email || ""} 
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Name" defaultValue = {email || ""} 
                             onChange = {e => setEmail(e.target.value)}
-                        />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formDOB">
-                        <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type="date" placeholder="Enter Date of Birth" defaultValue = {date.toLocaleDateString('en-CA')}
-                            onChange = {onSetDate}
                         />
                         </Form.Group>
                     </Row>
 
-                    <Form.Label>Gender</Form.Label>
-                    <div key={`inline-radio`} className="mb-3">
-                        <Form.Check
-                          inline
-                          label="Male"
-                          name="gender"
-                          type= 'radio'
-                          id= 'inline-radio-male'
-                          onChange = {e => setGender('M')}
-                        />
-
-                        <Form.Check
-                          inline
-                          label="Female"
-                          name="gender"
-                          type= 'radio'
-                          id= 'inline-radio-female'
-                          onChange = {e => setGender('F')}
-                        />
-
-                        <Form.Check
-                          inline
-                          label="Others"
-                          name="gender"
-                          type= 'radio'
-                          id= 'inline-radio-others'
-                          onChange = {e => setGender('O')}
-                        />
-
-                    </div>
 
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formBankName">
@@ -156,80 +132,8 @@ const EmployeeEdit = () => {
                         </Form.Group>
                     </Row>
 
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formInstitution">
-                        <Form.Label>Institution</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Institution" defaultValue = {institution || ""}
-                            onChange = {e => setInstitution(e.target.value)}
-                        />
-                        </Form.Group>
 
-                        <Form.Group as={Col} controlId="formMajor">
-                        <Form.Label>Major</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Major" defaultValue = {major || ""}
-                            onChange = {e => setMajor(e.target.value)}
-                        />
-                        </Form.Group>
-                    </Row>
-
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formYearGrad">
-                        <Form.Label>Graduation Year</Form.Label>
-                        <Form.Control type="number" placeholder="Enter Graduation Year" defaultValue = {yeargrads || ""}
-                            onChange = {e => setYearGrads(e.target.value)}
-                        />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formGPAX">
-                        <Form.Label>GPAX</Form.Label>
-                        <Form.Control type="number" placeholder="Enter GPAX" defaultValue = {gpax || ""}
-                            onChange = {e => setGPAX(e.target.value)}
-                        />
-                        </Form.Group>
-                    </Row>
-
-                    <div key={`radio`} className="mb-3">
-                        <Form.Check
-                          label="Bachelor Degree"
-                          name="degree"
-                          type= 'radio'
-                          id= 'radio-bachelor'
-                          onChange = {e => setEdulevel('B')}
-                        />
-
-                        <Form.Check
-                          label="Master Degree"
-                          name="degree"
-                          type= 'radio'
-                          id= 'radio-master'
-                          onChange = {e => setEdulevel('M')}
-                        />
-
-                        <Form.Check
-                          label="Doctor of Philosophy"
-                          name="degree"
-                          type= 'radio'
-                          id= 'radio-phd'
-                          onChange = {e => setEdulevel('P')}
-                        />
-
-                    </div>
-
-                    <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formDepartmentID">
-                        <Form.Label>Department ID</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Department ID" defaultValue = {department || ""} 
-                            onChange = {e => setDepartment(e.target.value)}
-                        />
-                        </Form.Group>
-
-                        <Form.Group as={Col} controlId="formRoleID">
-                        <Form.Label>Role</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Role ID" defaultValue = {role ||""}
-                            onChange = {e => setRole(e.target.value)}
-                        />
-                        </Form.Group>
-                    </Row>
+                   
 
                     <Form.Group className="mb-3 " controlId="formPassword">
                         <Form.Label>Password</Form.Label>

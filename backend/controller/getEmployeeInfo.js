@@ -87,7 +87,7 @@ const insertEmployee = (req, res) =>{
         const major = req.body.Major;
         const yearGrads = req.body.YearGrads;
         const gpax = req.body.GPAX;
-        const Password = req.body.password;
+        const Password = req.body.Password;
         
         const Dprtid = req.body.DprtID;
         const Roleid = req.body.RoleID;
@@ -129,10 +129,24 @@ const updateEmployee = (req,res) =>{
              res.status(500).json({'error':err});
              return;
         }
-        const EmployeeID = req.body.EmployeeID;
+        const fname = req.body.fname;
+        const lname = req.body.lname;
+        const address = req.body.Address;
+        const email = req.body.Email;
+        const AccountNo = req.body.AccountNo;
+        const BankRecive = req.body.BankRecive;
+        const Password = req.body.Password;
 
-        connection.query("UPDATE employee SET fname = 'TunwaAA' WHERE EmployeeID = ?" ,
-        [EmployeeID]
+        connection.query(
+            `UPDATE employee SET fname = ?, 
+                                 lname = ?,
+                                 Address = ?,
+                                 Email = ?,
+                                 AccountNo = ?,
+                                 BankRecive = ?,
+                                 Password = ?
+                WHERE EmployeeID = ?` ,
+        [fname,lname,address,email,AccountNo,BankRecive,Password,req.params.id]
         , (err, result) => {
              connection.release();
              if (err) {
@@ -140,7 +154,7 @@ const updateEmployee = (req,res) =>{
              }
              res.send(result);
          });
-         console.log(`Update Employee :${EmployeeID}`);
+         console.log(`Update Employee :${req.params.id}`);
     });
 };
 

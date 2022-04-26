@@ -11,20 +11,27 @@ import '../Forms.css';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+
 const OTtask = () => {
 
 
-    const [employeeid, setEmployeeId] = useState('');
-    const [bonus, setBonus] = useState(0);
-    const [adminid, setAdminId] = useState('');
+    const [taskId, setTaskId] = useState('');
+    const [sDate, setSDate] = useState();
+    const [eDate, setEDate] = useState();
+    const [employeeId, setEmployeeId] = useState('');
+    const [supervisorId, setSupervisorId] = useState('');
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({'EmployeeId' :employeeid, 
-                    'Bonus Amount':bonus, 
-                    'AdminId': adminid
-                    });
-        alert(`EmployeeId : ${employeeid}\nBonus Amount : ${bonus}\nAdminId : ${adminid}`);
+        console.log({
+            'TaskID':taskId,
+            'StartDate':sDate,
+            'EndDate':eDate,
+            'EmployeeID':employeeId,
+            'SupervisorID':supervisorId
+        });
+
     }
 
     return (
@@ -32,22 +39,37 @@ const OTtask = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>BONUS</h5>
+            <h5>OT Task</h5>
             <div className='form'>
-                <Form> 
-                    <Form.Group className="mb-3 " controlId="formBasicEmail">
-                        <Form.Label>Amount</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter OT Amount" defaultValue={employeeid || ""} onChange= {e=> setEmployeeId(e.target.value)}/>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formOTTaskID">
+                        <Form.Label>Task ID</Form.Label>
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Task ID"
+                        onChange = {e => setTaskId(e.target.value)} />
                     </Form.Group>
 
-                    <Form.Group className="mb-3 " controlId="formBasicEmail">
-                        <Form.Label>Start Date</Form.Label>
-                        <Form.Control className = "inputform" type="number" placeholder="Enter Start Date" defaultValue={bonus || ""} onChange= {e=> setBonus(e.target.value)}/>
+                    <Form.Group className="mb-3 " controlId="formOTSTime">
+                        <Form.Label>Start Time</Form.Label>
+                        <Form.Control className = "inputform" type="time" placeholder="Enter Start Time" 
+                        onChange = {e => setSDate(e.target.value)}/>
                     </Form.Group>
                     
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>End Date</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter End Date" defaultValue={adminid || ""} onChange= {e=> setAdminId(e.target.value)}/>
+                    <Form.Group className="mb-3" controlId="formOTETime">
+                        <Form.Label>End Time</Form.Label>
+                        <Form.Control className = "inputform" type="time" placeholder="Enter End Time" 
+                        onChange = {e => setEDate(e.target.value)}/>
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3" controlId="formOTEmployeeID">
+                        <Form.Label>Employee ID</Form.Label>
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Employee ID" 
+                        onChange = {e => setEmployeeId(e.target.value)}/>
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3" controlId="formOTSupervisorID">
+                        <Form.Label>Supervisor ID</Form.Label>
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Supervisor ID" 
+                        onChange = {e => setSupervisorId(e.target.value)}/>
                     </Form.Group>
                     <Button variant="success" type="submit" onClick={handleSubmit}>
                         Submit

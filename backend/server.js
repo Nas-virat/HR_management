@@ -44,8 +44,8 @@ app.get("/", (req, res) => {
 //employee
 app.get('/employee', getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
-app.post('/insertEmployee', insertEmployee);
-app.put('/updateemployee', updateEmployee);
+app.post('/insertEmployee/:id', insertEmployee);
+app.put('/updateemployee/:id', updateEmployee);
 app.delete('/deleteemployee', deleteEmployee);
 
 //Department
