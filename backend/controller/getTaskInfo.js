@@ -11,7 +11,10 @@ const getAllTaskInfo = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        connection.query("SELECT * FROM task ORDER BY TaskID DESC", (err, result) => {
+        connection.query(`SELECT t.taskID, t.taskdesc, t.SupervisorID, t.status, COUNT(*) AS TotalMembers 
+                            FROM task t INNER JOIN employeeontask et ON t.TaskID = et.TaskID
+                            GROUP BY t.TaskID ORDER BY t.TaskID DESC`, 
+            (err, result) => {
             connection.release();
             if (err) {
                 console.log(err);

@@ -22,6 +22,7 @@ const Header = () => {
          <div className="task-desc">Task Description</div>
          <div className="task-supervisorID">SupervisorID</div>
          <div className="task-status">Status</div>
+         <div className="task-status">Total Employee</div>
        </div>
        <hr className="solid"></hr>
      </>

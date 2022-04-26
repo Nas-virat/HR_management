@@ -100,14 +100,21 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 
 /* 
     Backend : getTaskInfo.js
-    frontend : ViewTask.js - MEMBERS 
+    frontend : AllTask.js - 
+    Description : get list of all task  
+*/
+SELECT t.taskID, t.taskdesc, t.SupervisorID, t.status, COUNT(*) AS TotalMembers 
+FROM task t INNER JOIN employeeontask et ON t.TaskID = et.TaskID
+GROUP BY t.TaskID ORDER BY t.TaskID DESC;
+
+
+
+
+/* 
+    Backend : getTaskInfo.js
+    frontend : AllTask.js - MEMBERS 
     Description : get specfic Task Desc  
 */
-SELECT taskdesc, deadline FROM task WHERE TaskID = '{TASKID}';
-
-
-
-
 
 /* 
     Backend : getDepartmentInfo.js
@@ -160,21 +167,21 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 
 /*
 
-    Backend : 
-    frontend :
-    Description : 
+    Backend : getPayment.js
+    frontend : ViewEmployee.js - EMPLOYEE INFO
+    Description : display employee information
 
 */
 SELECT o.EmployeeID, s.fname, s.BaseSalary, s.totalDeduction,
-ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))s.OTRate((s.BaseSalary/30)/7),2) AS OTamount,
-(s.BaseSalary + ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))s.OTRate((s.BaseSalary/30)/7),2) - s.totalDeduction) AS TotalPayment
+ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) AS OTamount,
+(s.BaseSalary + ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) - s.totalDeduction) AS TotalPayment
 FROM ot o
 INNER JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate
 FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
     p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                 INNER JOIN deduction d ON p.EmployeeID = d.EmployeeID
                 INNER JOIN role r ON p.RoleID = r.RoleID
-                   GROUP BY EmployeeID
+               	GROUP BY EmployeeID
                 ORDER BY employeeid
  ) s
  ON s.EmployeeID = o.EmployeeID 
