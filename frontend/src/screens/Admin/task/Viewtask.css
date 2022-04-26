@@ -25,25 +25,25 @@
     backdrop-filter: blur(4px);
 }
 
-.header-content {
+.task-header-content {
     display: flex;
 }
 
-.header-content > div{
+.task-header-content > div{
     flex: 1;
 }
 
-.header-content-Name{
+.task-header-content-Name{
     position: relative;
     right: 15px;
 }
 
-.header-content-Position{
+.task-header-content-Position{
     position: relative;
     right: 25px;
 }
 
-.header-content-Department{
+.task-header-content-Department{
     position: relative;
     right: 40px;
 }

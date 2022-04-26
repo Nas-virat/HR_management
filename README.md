@@ -11,7 +11,7 @@ HRMS by SPFNA is HR management system
 - [x] Display All Employee page
 - [x] Display All Department page
 - [x] Display All Task page
-- [x] ViewTask Page
+- [x] ViewTask Page 
 - [x] ViewDepartment Page
 - [ ] ViewEmployee Page
 - [ ] Employeemore Page
@@ -19,7 +19,7 @@ HRMS by SPFNA is HR management system
 - [x] EmployeeEdit Page
 - [x] Deduction Page
 - [x] OTtask Page (frontend + API)
-- [ ] Adding new task to database (complex tranactions)
+- [x] Adding new task to database (complex tranactions)
 - [x] Employee Promotion (complex tranactions)
 - [x] Adding New Employee to database (complex tranactions)
 - [x] Checking Attendance  (complex tranactions)

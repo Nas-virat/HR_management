@@ -47,7 +47,7 @@ const getTaskInfoByID = (req, res) => {
 
 
 /*Not sure that it's working */
-const addNewTask = () => {
+const addNewTask = (req, res) => {
     pool.getConnection((err, connection) => {
         if (err) {
             console.log(err);
@@ -69,12 +69,24 @@ const addNewTask = () => {
             }
             //res.send(result);
         });
-        
+
         connection.query(
             `INSERT INTO employeeontask (TaskID, EmployeeID) 
-             VALUES (SELECT MAX(TaskID) FROM task, ?)`,
+             VALUES ((SELECT MAX(TaskID) FROM task), ?)`,
         [employeeid],
         (err,result) => {
+            if (err) {
+                console.log(err);
+            }
+            //res.send(result);
+        });
+
+        connection.query(
+            `INSERT INTO employeeontask (TaskID, EmployeeID) 
+             VALUES ((SELECT MAX(TaskID) FROM task), ?)`,
+        [superID],
+        (err,result) => {
+            connection.release();
             if (err) {
                 console.log(err);
             }
@@ -136,6 +148,7 @@ const TaskMember = (req, res) => {
    });
 };
 
+/** query is wrong */
 const TaskSupervisor = (req, res) => {
 
     pool.getConnection((err, connection) => {

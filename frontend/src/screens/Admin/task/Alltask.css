@@ -52,5 +52,10 @@
 
 .task-status{
     position: relative;
+    right:30px
+}
+
+.task-Employee{
+    position: relative;
     right:40px
 }

@@ -20,11 +20,11 @@ import EmployeeRow from '../../../components/EmployeeRow';
 const Header = () => {
    return(
     <>
-      <div className = "header-content">
-        <div className = "header-content-ID">ID</div>
-        <div className = "header-content-Name">Name</div>
-        <div className = "header-content-Position">Position</div>
-        <div className = "header-content-Department">Department</div>
+      <div className = "task-header-content">
+        <div className = "task-header-content-ID">ID</div>
+        <div className = "task-header-content-Name">Name</div>
+        <div className = "task-header-content-Position">Position</div>
+        <div className = "task-header-content-Department">Department</div>
       </div>
       <hr className="solid"></hr>
     </>
@@ -37,7 +37,7 @@ const Viewtask = () => {
   const [status,setStatus] = useState('A');
   const [taskInfo, setTaskInfo] = useState({});
   const [taskMember, setTaskMember] = useState([]);
-  const [taskSupervisor, setTaskSupervisor] = useState([]);
+  const [taskSupervisor, setTaskSupervisor] = useState();
   const { id } = useParams();
 
   //console.log(id);
