@@ -6,7 +6,7 @@ HRMS by SPFNA is HR management system
 
 1. Frontend - react,react-boostrap
 2. Backend - node, express
-3. Database - MySql
+3. Database - MySql XAMPP
 ## Feature 
 - [x] Display All Employee page
 - [x] Display All Department page
