@@ -152,6 +152,32 @@ const TaskSupervisor = (req, res) => {
 };
 
 
+const OTtask = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+        const taskid = req.body.TaskID;
+        const sTime = req.body.StartTime;
+        const eTime = req.body.EndTime;
+        const employeeID = req.body.EmployeeID;
+        const supervisorID = req.body.SupervisorID; 
+        
+        connection.query(`INSERT INTO ot (EmployeeID,TaskID,SupervisorID,start_time,end_time) VALUES (?,?,?,?,?)`,
+        [employeeID,taskid,supervisorID,sTime,eTime],
+        (err,result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log("Add New OT task");
+    });
+};
+
 
 
 
@@ -160,4 +186,6 @@ module.exports = { getAllTaskInfo,
                    getTaskInfoByID,
                    updateTaskStatus,
                    TaskMember,
-                   TaskSupervisor };
+                   TaskSupervisor,
+                   OTtask
+                };

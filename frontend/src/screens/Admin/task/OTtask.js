@@ -12,12 +12,14 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
 
+import axios from 'axios';
+
 const OTtask = () => {
 
 
     const [taskId, setTaskId] = useState('');
-    const [sDate, setSDate] = useState();
-    const [eDate, setEDate] = useState();
+    const [sTime, setSTime] = useState();
+    const [eTime, setETime] = useState();
     const [employeeId, setEmployeeId] = useState('');
     const [supervisorId, setSupervisorId] = useState('');
 
@@ -26,12 +28,20 @@ const OTtask = () => {
         e.preventDefault();
         console.log({
             'TaskID':taskId,
-            'StartDate':sDate,
-            'EndDate':eDate,
+            'StartTime':sTime,
+            'EndTime':eTime,
             'EmployeeID':employeeId,
             'SupervisorID':supervisorId
         });
-
+        axios.post(`http://localhost:8080/ottask`,{
+            'TaskID':taskId,
+            'StartTime':sTime,
+            'EndTime':eTime,
+            'EmployeeID':employeeId,
+            'SupervisorID':supervisorId
+        })
+             .then(res => console.log ("res:",res))
+             .catch(err => console.log("err", err))
     }
 
     return (
@@ -51,13 +61,13 @@ const OTtask = () => {
                     <Form.Group className="mb-3 " controlId="formOTSTime">
                         <Form.Label>Start Time</Form.Label>
                         <Form.Control className = "inputform" type="time" placeholder="Enter Start Time" 
-                        onChange = {e => setSDate(e.target.value)}/>
+                        onChange = {e => setSTime(e.target.value)}/>
                     </Form.Group>
                     
                     <Form.Group className="mb-3" controlId="formOTETime">
                         <Form.Label>End Time</Form.Label>
                         <Form.Control className = "inputform" type="time" placeholder="Enter End Time" 
-                        onChange = {e => setEDate(e.target.value)}/>
+                        onChange = {e => setETime(e.target.value)}/>
                     </Form.Group>
                     
                     <Form.Group className="mb-3" controlId="formOTEmployeeID">

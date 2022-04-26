@@ -1,9 +1,10 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import axios from 'axios';
 
 import './Forms.css';
 
@@ -13,23 +14,39 @@ import Sidebar from '../../components/Sidebar';
 
 const Deduction = () => {
 
-    const [deductionid, setDeductionId] = useState('');
     const [employeeid, setEmployeeId] = useState('');
     const [deductiondescription, setDeductionDescription] = useState('');
     const [deductiontype, setDeductionType] = useState('');
     const [amount, setAmount] = useState(0);
     const [adminid, setAdminId] = useState('');
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({'DeductionId' :deductionid,
+        axios.post(`http://localhost:8080/deduction`, 
+            {
+                'EmployeeID': employeeid,
+                'Description': deductiondescription,
+                'TypeDeduction': deductiontype,
+                'Amount': amount,
+                'AdminID': adminid
+            })
+            .then(res => {
+                console.log("Deduction ",res);
+                console.log("Deduction res data",res.data);
+            })
+            .catch(err => {
+                console.log(err);
+        });
+   
+        console.log({
                     'EmployeeId':employeeid,
                     'Deduction Description':deductiondescription,
                     'Deduction Type':deductiontype,
                     'Amount':amount,
                     'AdminId': adminid
                     });
-        alert(`DeductionId : ${deductionid}\nEmployeeId : ${employeeid}\nDeduction Description : ${deductiondescription}\nDeduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
+        alert(`EmployeeId : ${employeeid}\nDeduction Description : ${deductiondescription}\nDeduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
     }
 
     return (
@@ -112,5 +129,6 @@ const Deduction = () => {
     </div>  
   )
 }
+
 
 export default Deduction;
