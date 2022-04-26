@@ -20,6 +20,7 @@ import Attendance from './screens/Admin/Attendance';
 import Deduction from './screens/Admin/Deduction';
 import EmployeeMore from './screens/Admin/employee/EmployeeMore';
 import EmployeeEdit from './screens/Admin/employee/EmployeeEdit';
+import OTtask from './screens/Admin/task/OTtask';
 
 import './App.css';
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route exact path='/task' element={<Alltask />} />
         <Route exact path='/viewtask/:id' element={<Viewtask />} />
         <Route exact path='/task/add' element={<AddNewTask/>} />
+        <Route exact path='/OTtask' element={<OTtask />} />
 
         {/* Employee*/}
         <Route exact path='/employee' element={<AllEmployee />} />

@@ -39,7 +39,7 @@ const EmployeeEdit = () => {
       setDate(new Date(event.target.value))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(
             {
@@ -60,7 +60,7 @@ const EmployeeEdit = () => {
                     'Department':department,
                     'Role':role,
             }
-        );
+        )
     }
 
     return (
@@ -94,14 +94,14 @@ const EmployeeEdit = () => {
                     </Form.Group>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formFirstName">
+                        <Form.Group as={Col} controlId="formEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" defaultValue = {email || ""} 
                             onChange = {e => setEmail(e.target.value)}
                         />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formLsatName">
+                        <Form.Group as={Col} controlId="formDOB">
                         <Form.Label>Date of Birth</Form.Label>
                         <Form.Control type="date" placeholder="Enter Date of Birth" defaultValue = {date.toLocaleDateString('en-CA')}
                             onChange = {onSetDate}
@@ -173,14 +173,14 @@ const EmployeeEdit = () => {
                     </Row>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formInstitution">
+                        <Form.Group as={Col} controlId="formYearGrad">
                         <Form.Label>Graduation Year</Form.Label>
                         <Form.Control type="number" placeholder="Enter Graduation Year" defaultValue = {yeargrads || ""}
                             onChange = {e => setYearGrads(e.target.value)}
                         />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formMajor">
+                        <Form.Group as={Col} controlId="formGPAX">
                         <Form.Label>GPAX</Form.Label>
                         <Form.Control type="number" placeholder="Enter GPAX" defaultValue = {gpax || ""}
                             onChange = {e => setGPAX(e.target.value)}

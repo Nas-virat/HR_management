@@ -172,17 +172,17 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
     Description : display employee information
 
 */
-SELECT o.EmployeeID, s.fname, s.BaseSalary, s.totalDeduction,
-ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) AS OTamount,
-(s.BaseSalary + ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) - s.totalDeduction) AS TotalPayment
+SELECT s.EmployeeID, s.fname, s.lname, s.BaseSalary, IFNULL(s.totalDeduction,0) AS totalDeduction,
+IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) AS OTamount,
+IFNULL((s.BaseSalary + ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2) - s.totalDeduction),0) AS TotalPayment
 FROM ot o
-INNER JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate
+RIGHT JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate
 FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
     p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
-                INNER JOIN deduction d ON p.EmployeeID = d.EmployeeID
+                LEFT JOIN deduction d ON p.EmployeeID = d.EmployeeID
                 INNER JOIN role r ON p.RoleID = r.RoleID
                	GROUP BY EmployeeID
-                ORDER BY employeeid
+                ORDER BY EmployeeID
  ) s
- ON s.EmployeeID = o.EmployeeID 
+ ON o.EmployeeID = s.EmployeeID 
  GROUP BY EmployeeID

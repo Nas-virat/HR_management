@@ -30,7 +30,7 @@ const Sidebar = () => {
                 <SectionLink name="Promotion" to = '/promotion'/>
                 <SectionLink name="Deduction" to = '/deduction'/>
                 <SectionLink name="AddNewRole" to = '/addroles'/>
-
+                <SectionLink name="OTtask" to = '/OTtask'/>
             </div>
         </div>
     )

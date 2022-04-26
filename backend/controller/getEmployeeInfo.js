@@ -79,17 +79,45 @@ const insertEmployee = (req, res) =>{
         const address = req.body.Address;
         const email = req.body.Email;
         const gender = req.body.Gender;
+        const DOB = req.body.DOB;
+        const AccountNo = req.body.AccountNo;
+        const BankRecive = req.body.BankRecive;
+        const eduLevel = req.body.Edulevel;
+        const institution = req.body.Institution;
+        const major = req.body.Major;
+        const yearGrads = req.body.YearGrads;
+        const gpax = req.body.GPAX;
+        const Password = req.body.password;
+        
+        const Dprtid = req.body.DprtID;
+        const Roleid = req.body.RoleID;
 
-        connection.query("INSERT INTO employee (fname, lname,Address,Email,Gender) VALUES (?,?,?,?,?)" ,
-        [fname,lname,address,email,gender]
+
+        connection.query(`INSERT INTO employee (fname, lname, Address, Email, Gender, DOB, AccountNo, BankRecive,
+                                                EduLevel, Institution, Major, YearGrads, GPAX, Password) 
+                          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                          `,
+        [fname,lname,address,email,gender,DOB,AccountNo,BankRecive,eduLevel,institution,major,yearGrads,gpax,Password]
         , (err, result) => {
-             connection.release();
              if (err) {
                  console.log(err);
              }
-             res.send(result);
+             //res.send(result);
          });
-         console.log(`Insert Employee : ${fname} ${lname}`);
+        console.log(`Insert Employee : ${fname} ${lname}`);
+
+        connection.query(`INSERT INTO promotionhistory (EmployeeID, DprtID, RoleID, ApproveBy, ExtraSalary) 
+                            VALUES ((SELECT MAX(EmployeeID) FROM employee),?,?,1001,0)`,
+        [Dprtid,Roleid]
+        , (err, result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log(`PROMOTE Employee : ${Dprtid} ${Roleid}`);
+         
     });
 } 
 

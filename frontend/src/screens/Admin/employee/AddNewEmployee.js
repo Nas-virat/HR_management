@@ -25,7 +25,6 @@ const AddNewEmployee = () => {
     const [date, setDate] = useState(defaultDate);
     const [bankreceive, setBankreceive] = useState('');
     const [accountno, setAccountNo] = useState('');
-
     const [edulevel, setEdulevel] = useState('');
     const [institution, setInstitution] = useState('');
     const [major, setMajor] = useState('');
@@ -42,26 +41,22 @@ const AddNewEmployee = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        /*console.log(
-            {
-                'FirstName':fname,
-                'LastName':lname,
-                'Address':address,
-                'Email':email,
-                'Gender':gender,
-                'DOB':date,
-                'BankReceive': bankreceive,
-                'AccountNo':accountno,
-                'EduLevel':edulevel,
-                'Institution':institution,
-                'Major':major,
-                'YearGrads':yeargrads,
-                'GPAX':gpax,
-                'Password': password,
-                'Department':department,
-                'Role':role,
-            }
-        ); */
+        console.log({
+            'fname':fname,
+            'lname':lname,
+            'Address':address,
+            'Email':email,
+            'Gender':gender,
+            'DOB': date,
+            'BankRecive' : bankreceive,
+            'AccountNo' : accountno,
+            'Edulevel' :edulevel,
+            'Institution' : institution,
+            'Major': major,
+            'YearGrads' : yeargrads,
+            'GPAX' : gpax,
+            'password' : password  
+        });
         try{
             const res = await axios.post('http://localhost:8080/insertEmployee', {
                 'fname':fname,
@@ -69,6 +64,17 @@ const AddNewEmployee = () => {
                 'Address':address,
                 'Email':email,
                 'Gender':gender,
+                'DOB': date,
+                'BankRecive' : bankreceive,
+                'AccountNo' : accountno,
+                'Edulevel' :edulevel,
+                'Institution' : institution,
+                'Major': major,
+                'YearGrads' : yeargrads,
+                'GPAX' : gpax,
+                'password' : password,
+                'DprtID' : department,
+                'RoleID' : role  
             });
             console.log("Add New Employee",res);
         }
@@ -109,14 +115,14 @@ const AddNewEmployee = () => {
                     </Form.Group>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formFirstName">
+                        <Form.Group as={Col} controlId="formEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" defaultValue = {email || ""} 
                             onChange = {e => setEmail(e.target.value)}
                         />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formLsatName">
+                        <Form.Group as={Col} controlId="formDOB">
                         <Form.Label>Date of Birth</Form.Label>
                         <Form.Control type="date" placeholder="Enter Date of Birth" defaultValue = {date.toLocaleDateString('en-CA')}
                             onChange = {onSetDate}
@@ -188,14 +194,14 @@ const AddNewEmployee = () => {
                     </Row>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formInstitution">
+                        <Form.Group as={Col} controlId="formYearGrad">
                         <Form.Label>Graduation Year</Form.Label>
                         <Form.Control type="number" placeholder="Enter Graduation Year" defaultValue = {yeargrads || ""}
                             onChange = {e => setYearGrads(e.target.value)}
                         />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formMajor">
+                        <Form.Group as={Col} controlId="formGPAX">
                         <Form.Label>GPAX</Form.Label>
                         <Form.Control type="number" placeholder="Enter GPAX" defaultValue = {gpax || ""}
                             onChange = {e => setGPAX(e.target.value)}
