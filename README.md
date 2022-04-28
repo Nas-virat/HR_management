@@ -11,8 +11,8 @@ HRMS by SPFNA is HR management system
 - [x] Display All Employee page
 - [x] Display All Department page
 - [x] Display All Task page 
-- [ ] Task Page add member
-- [ ] ViewTask Page (Bug status button)
+- [x] viewTask add member
+- [x] ViewTask Page 
 - [x] ViewDepartment Page
 - [ ] ViewEmployee Page (Payment section left)
 - [x] Employeemore Page

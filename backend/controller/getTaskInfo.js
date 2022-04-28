@@ -229,6 +229,29 @@ const EmployeeTask = (req, res) => {
 }
 
 
+const addEmployeeToTask = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+        const taskID = req.body.TaskID;
+        const employeeID = req.body.EmployeeID; 
+        
+        connection.query(`INSERT INTO employeeontask (TaskID, EmployeeID) VALUES (?,?)`,
+        [taskID,employeeID],
+        (err,result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log("Add Member to Task");
+    });
+};
+
 
 module.exports = { getAllTaskInfo, 
                    addNewTask, 
@@ -237,5 +260,6 @@ module.exports = { getAllTaskInfo,
                    TaskMember,
                    TaskSupervisor,
                    OTtask,
-                   EmployeeTask
+                   EmployeeTask,
+                   addEmployeeToTask
                 };

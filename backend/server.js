@@ -27,7 +27,8 @@ const { getAllTaskInfo,
         TaskMember,
         TaskSupervisor,
         OTtask,
-        EmployeeTask } = require('./controller/getTaskInfo');
+        EmployeeTask,
+        addEmployeeToTask } = require('./controller/getTaskInfo');
 
 const { checkAttendance,
         getAttendanceByID } = require('./controller/checkAttendance');
@@ -73,6 +74,7 @@ app.get('/taskmember/:id',TaskMember);
 app.get('/tasksupervisor/:id',TaskSupervisor);
 app.post('/ottask',OTtask);
 app.get('/employeetask/:id', EmployeeTask);
+app.post('/addemployeetotask',addEmployeeToTask);
 
 
 //attendance

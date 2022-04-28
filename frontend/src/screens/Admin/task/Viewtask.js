@@ -38,6 +38,7 @@ const Viewtask = () => {
   const [taskInfo, setTaskInfo] = useState({});
   const [taskMember, setTaskMember] = useState([]);
   const [taskSupervisor, setTaskSupervisor] = useState();
+  const [addemployee, setAddemployee] = useState();
 
   const { id } = useParams();
 
@@ -74,6 +75,15 @@ const Viewtask = () => {
     .then((res) => console.log("CANCEL Status: ", res))
     .catch((err) => console.log("err : ",err))
   }
+
+  const addMember = () => {
+    axios.post(`http://localhost:8080/addemployeetotask`, {
+      "TaskID" : taskInfo.TaskID,
+      "EmployeeID" : addemployee})
+    .then((res) => console.log("ADD Member: ", res))
+    .catch((err) => console.log("err : ",err))
+
+  };
   
   /*
    * get Task Description in viewtask
@@ -142,11 +152,13 @@ const Viewtask = () => {
                 {add && 
                   <div className='form'>
                     <Form> 
-                      <Form.Group className='mb-3' controlId="formOTRate">
+                      <Form.Group className='mb-3' controlId="formAddEmployeeTask">
                         <Form.Label>Employee ID</Form.Label>
-                        <Form.Control className="inputform" type="text" placeholder="Enter Employee ID" />
+                        <Form.Control className="inputform" type="text" placeholder="Enter Employee ID" 
+                        defaultvalue = { addemployee || "" }
+                        onChange = {e => setAddemployee(e.target.value)}/>
                       </Form.Group>
-                      <Button variant="success" type="submit">
+                      <Button variant="success" type="submit" onClick = { addMember }>
                           Submit
                       </Button>
                     </Form>

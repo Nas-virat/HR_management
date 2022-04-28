@@ -150,14 +150,14 @@ const ViewEmployee = () => {
             </div>
           </div>
           <div className ="Viewemployee-top-right">
-            <Homecard color='#339331' text='Total Attendance' value = {EmployeeAttendance.ontime} /> 
+            <Homecard color='#339331' text='On-Time' value = {EmployeeAttendance.ontime} /> 
             <Homecard color='#D9D22E' text='Total Late' value = {EmployeeAttendance.late}/>
             <Homecard color='#E74242' text='Total Absent' value = {EmployeeAttendance.absent}/>
           </div>
         </div>
         <div className = "Viewemployee-bottom">
           <div className='Viewemployee-bottom-left'>
-            <h5>Tasks</h5>
+            <h5>TASKS</h5>
             <div className = "Viewemployee-bottom-left-tasks">
               <Header />
               {
@@ -166,7 +166,7 @@ const ViewEmployee = () => {
                 ) : <p style={{color:"red"}}>No Task</p>
               }
             </div>
-            <h5>Attendace</h5>
+            <h5>ATTENDANCE</h5>
             <div className = "Viewemployee-bottom-left-attendance">
               <div>
                 <div className = "Viewemployee-header-content">
@@ -188,13 +188,13 @@ const ViewEmployee = () => {
             </div>
           </div>
           <div className = "Viewemployee-bottom-right">
-            <h5>Payment</h5>
+            <h5>PAYMENT</h5>
             <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
               <PaymentRow text = 'January 2022 Invoice' value ={25000}/>
               <PaymentRow text = 'February 2022 Invoice' value = {23000}/>
             </div>
             <div className="Viewemployee-thismonth">
-              <h5>This month</h5>
+              <h5>THIS MONTH</h5>
               <div className="Viewemployee-incomededuct">
                 <Homecard color='#D9D22E' text='Late' value = {4} />
                 <Homecard color='#E74242' text='Absent' value = {4} />
