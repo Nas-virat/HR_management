@@ -45,7 +45,7 @@ const AddPromotion = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>PROMOTION</h5>
+            <h5>Promotion</h5>
             <div className='form'>
                 <Form> 
                     <Form.Group className="mb-3 " controlId="formEmployeeID">

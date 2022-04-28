@@ -54,7 +54,7 @@ const Deduction = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>DEDUCTION</h5>
+            <h5>Deduction</h5>
             <div className='form'>
                 <Form> 
                     <Form.Group className="mb-3 " controlId="formEmployeeID">

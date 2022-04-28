@@ -53,7 +53,7 @@ const Alltask = () => {
             <Sidebar/>
             <div className='alltask-form-container'>
                 <div className='allemployee-title'>
-                    <h5>ALL TASKS</h5>
+                    <h5>All Tasks</h5>
                     <Button variant="success" onClick ={() => navigate('/task/add')}>Add</Button>{' '}
                 </div>
                 <div className = 'alltask-form'>

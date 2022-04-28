@@ -145,14 +145,18 @@ const EmployeeMore = () => {
             <div className='EmployeeMore-bottom-right'>
                 <h5>Promotion History</h5>
                 <div className='EmployeeMore-Promotion'>
-                  <Header />
-                  {
-                    EmployeePromotion && EmployeePromotion.map((info,index) => {
-                      return(
-                        <PromotionRow info = {info} key = {index}/>
-                      )
-                    })
-                  }
+                  <div className='EmployeeMore-Promotion-header'>
+                    <Header />
+                  </div>
+                  <div className='EmployeeMore-Promotion-content'>
+                    {
+                      EmployeePromotion && EmployeePromotion.map((info,index) => {
+                        return(
+                          <PromotionRow info = {info} key = {index}/>
+                        )
+                      })
+                    }
+                  </div>
                 </div>
             </div>
         </div>

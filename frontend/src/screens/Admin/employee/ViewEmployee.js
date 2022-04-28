@@ -159,12 +159,16 @@ const ViewEmployee = () => {
           <div className='Viewemployee-bottom-left'>
             <h5>TASKS</h5>
             <div className = "Viewemployee-bottom-left-tasks">
-              <Header />
-              {
-                EmployeeTask.length ? EmployeeTask.map(
-                  (task,index) => <TaskRow key = {index} info = {task}/>
-                ) : <p style={{color:"red"}}>No Task</p>
-              }
+              <div className = "Viewemployee-bottom-left-tasks-header">
+                <Header />
+               </div>
+              <div className = "Viewemployee-bottom-left-tasks-body">
+                {
+                  EmployeeTask.length ? EmployeeTask.map(
+                    (task,index) => <TaskRow key = {index} info = {task}/>
+                  ) : <p style={{color:"red"}}>No Task</p>
+                }
+              </div>
             </div>
             <h5>ATTENDANCE</h5>
             <div className = "Viewemployee-bottom-left-attendance">
@@ -189,7 +193,7 @@ const ViewEmployee = () => {
           </div>
           <div className = "Viewemployee-bottom-right">
             <h5>PAYMENT</h5>
-            <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
+            <div className = "Viewemployee-bottom-right-payment">
               <PaymentRow text = 'January 2022 Invoice' value ={25000}/>
               <PaymentRow text = 'February 2022 Invoice' value = {23000}/>
             </div>
@@ -200,7 +204,7 @@ const ViewEmployee = () => {
                 <Homecard color='#E74242' text='Absent' value = {4} />
               </div>
             </div>
-            <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
+            <div className = "Viewemployee-bottom-right-payment">
               <PaymentRow text = 'Base Salary' value = {25000}/>
               <PaymentRow text = 'Medical Expense' value = {-500}/>
               <PaymentRow text = 'Overtime Payment' value = {1000}/>

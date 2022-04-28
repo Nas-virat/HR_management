@@ -165,6 +165,12 @@
     backdrop-filter: blur(4px);
 }
 
+.EmployeeMore-Promotion-content {
+    height: 140px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .promotion-content{
     display:flex;
     margin-top: 10px;

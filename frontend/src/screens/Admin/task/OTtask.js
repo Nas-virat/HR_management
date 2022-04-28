@@ -49,7 +49,7 @@ const OTtask = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>OT Task</h5>
+            <h5>OT</h5>
             <div className='form'>
                 <Form>
                     <Form.Group className="mb-3" controlId="formOTTaskID">

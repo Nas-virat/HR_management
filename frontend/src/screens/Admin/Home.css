@@ -6,6 +6,10 @@
     color: #077777;
 }
 
+.home-container > h5{
+    font-weight: bold;
+}
+
 .dashboard{
     width: 100%;
     height: 100%;

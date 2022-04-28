@@ -32,7 +32,7 @@ const Bonus = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>BONUS</h5>
+            <h5>Bonus</h5>
             <div className='form'>
                 <Form> 
                     <Form.Group className="mb-3 " controlId="formBasicEmail">
