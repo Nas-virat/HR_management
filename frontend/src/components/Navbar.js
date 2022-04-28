@@ -12,7 +12,7 @@ const Navbar = () => {
                 <img src={Logo} alt='hr-logo'></img>
             </Link>
             <div className="user-profile-navbar">
-                <Link to ='/viewemployee/E000312' className='profile-img'>
+                <Link to ='/viewemployee/1004' className='profile-img'>
                     <img className="image-profile" src={ProfilePicture} alt='hr-logo'></img> 
                 </Link> 
                 <div className="right-profile">

@@ -7,6 +7,7 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar'; 
 
 import axios from 'axios';
+import Moment from 'react-moment';
 
 import './EmployeeMore.css';
 
@@ -28,7 +29,7 @@ const Header = () => {
 const PromotionRow = ({info}) => {
     return(
       <div className = "promotion-content">
-        <div className="promotion-Date">{info.Datetime}</div>
+        <div className="promotion-Date"><Moment format="YYYY-MM-DD">{info.Datetime}</Moment></div>
         <div className="promotion-position">{info.RoleName}</div>
         <div className="promotion-Department">{info.DprtName}</div>
       </div>
@@ -100,7 +101,7 @@ const EmployeeMore = () => {
                         <p>Recruitment Date</p>
                       </div>
                       <div className='EmployeeMore-right-content'>
-                        <p>{EmployeeInfo.RecruitDate}</p>
+                        <p><Moment format="YYYY-MM-DD">{EmployeeInfo.RecruitDate}</Moment></p>
                       </div>
                     </div>
                     <div className='EmployeeMore-Bank'>
@@ -132,7 +133,8 @@ const EmployeeMore = () => {
                   <div className='EmployeeMore-right-content'>
                     <p>
                     {
-                      EmployeeInfo.EduLevel === 'B' ? "Bachelor's Degree" : EmployeeInfo.EduLevel === 'P' ? "Doctor of Philosophy (Ph.D)" : "Master Degree"
+                      EmployeeInfo.EduLevel === 'B' ? "Bachelor's Degree" : 
+                      EmployeeInfo.EduLevel === 'P' ? "Doctor of Philosophy (Ph.D)" : "Master Degree"
                     }
                     </p>
                     <p>{EmployeeInfo.Institution}</p>

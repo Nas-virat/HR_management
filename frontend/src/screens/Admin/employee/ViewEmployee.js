@@ -7,6 +7,7 @@ import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
 
 import { Button } from 'react-bootstrap';
 
+import Moment from 'react-moment';
 
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar'; 
@@ -38,8 +39,8 @@ const Header = () => {
       <div className = "ViewEmployee-task-content">
         <div>{info.TaskID}</div>
         <div>{info.taskdesc}</div>
-        <div>{info.startdate}</div>
-        <div>{info.deadline}</div>
+        <div><Moment format="YYYY-MM-DD">{info.startdate}</Moment></div>
+        <div><Moment format="YYYY-MM-DD">{info.deadline}</Moment></div>
         <Button variant="success" onClick={() => navigate(`/viewtask/${info.TaskID}`)}>Go</Button>
       </div>
       )
@@ -141,7 +142,7 @@ const ViewEmployee = () => {
                     <p>Recruitment Date</p>
                   </div>
                   <div className='ViewEmployee-right-content'>
-                    <p>{EmployeeInfo.RecruitDate}</p>
+                    <p><Moment format="YYYY-MM-DD">{EmployeeInfo.RecruitDate}</Moment></p>
                   </div>
                 </div>
               </div>
