@@ -148,7 +148,7 @@ const TaskMember = (req, res) => {
    });
 };
 
-/** query is wrong */
+
 const TaskSupervisor = (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -205,6 +205,29 @@ const OTtask = (req, res) => {
 };
 
 
+const EmployeeTask = (req, res) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+        
+        connection.query(`SELECT t.TaskID, t.taskdesc, e.startdate, t.deadline 
+                            FROM task t INNER JOIN employeeontask e ON t.TaskID = e.TaskID 
+                            WHERE e.EmployeeID = ? AND t.status = 'A'`,
+        [req.params.id],
+        (err,result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log("Employee Task schedule",req.params.id);
+    });
+}
+
 
 
 module.exports = { getAllTaskInfo, 
@@ -213,5 +236,6 @@ module.exports = { getAllTaskInfo,
                    updateTaskStatus,
                    TaskMember,
                    TaskSupervisor,
-                   OTtask
+                   OTtask,
+                   EmployeeTask
                 };

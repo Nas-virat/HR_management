@@ -17,13 +17,14 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
     frontend : ViewEmployee.js - TASKS 
     Description : Task information for a specific employee
 */
-SELECT t.TaskID, t.taskdate, e.startdate, t.deadline 
-FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID WHERE e.EmployeeID = '{EMPLOYEEID}';
+SELECT t.TaskID, t.taskdesc, e.startdate, t.deadline 
+FROM task t JOIN employeeontask e ON t.TaskID = e.TaskID 
+WHERE t.status = 'A' AND e.EmployeeID = '{EmployeeID}'
 
 
 
 /*  Backend :  getEmployeeinfo.js
-    frontend : EmployeeMore.js - Personal Information 
+    frontend : ViewEmployee.js EmployeeMore.js - Personal Information 
     Description : Employee information for a specific employee
 */    
 SELECT e.fname, e.lname, d.DprtName, r.RoleName, e.Email, e.RecruitDate, e.Address, e.BankRecive, e.AccountNo 
@@ -32,6 +33,17 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 				INNER JOIN department d ON p.DprtID = d.DprtID
                 INNER JOIN role r ON p.RoleID = r.RoleID
    WHERE e.EmployeeID = '{EMPLOYEEID}';
+
+
+
+/*  Backend :  getEmployeeinfo.js
+    frontend : ViewEmployee.js EmployeeMore.js - ATTENDANCE
+    Description : ATTENDANCE information for a specific employee
+*/  
+SELECT Status, Time    
+FROM attendance where EmployeeID= 1001    
+Order By Time DESC LIMIT 5;
+
 
 /*
     Backend : getEmployeeInfo.js
@@ -63,7 +75,11 @@ VALUES ('{TASKDESC}', '{SupervisorID}', '{Type}' , '{DEADLINE}');
 
 INSERT INTO employeeontask (EmployeeID, TaskID) VALUES ('{EMPLOYEEID}', '{TASKID}');
 
-/* 
+/* etime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                INNER JOIN department d ON p.DprtID = d.DprtID 
+                INNER JOIN role r ON p.RoleID = r.RoleID
+                INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
+                WHERE et.taskID = '{TASKID}';
     CANCEL/FINISH TASK BUTTON (UPDATE API) 
 */
 UPDATE task SET status = '{TASKSTATUS}' WHERE TaskID = '{TASKID}';
@@ -173,8 +189,8 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 
 */
 SELECT s.EmployeeID, s.fname, s.lname, s.BaseSalary, IFNULL(s.totalDeduction,0) AS totalDeduction,
-IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) AS OTamount,
-(s.BaseSalary + IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) - IFNULL(s.totalDeduction,0)) AS TotalPayment
+IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) AS 'OvertimePayment',
+(s.BaseSalary + IFNULL(ROUND(SUM(HOUR(SUBTIME(o.end_time, o.start_time)))*s.OTRate*((s.BaseSalary/30)/7),2),0) - IFNULL(s.totalDeduction,0)) AS 'Total Amount'
 FROM ot o
 RIGHT JOIN (SELECT e.EmployeeID, e.fname, e.lname, SUM(d.Amount) AS totalDeduction, r.BaseSalary, r.OTrate, d.datetime
 FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
@@ -187,4 +203,5 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
  ) s
  ON o.EmployeeID = s.EmployeeID 
  AND MONTH(o.otdate) = '{SelectedMonth}' AND YEAR(o.otdate) = '{SelectedYear}'
- GROUP BY EmployeeID
+ WHERE s.EmployeeID = '{EmployeeID}'
+ GROUP BY EmployeeID;

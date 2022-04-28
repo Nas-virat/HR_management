@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar'; 
+
+import axios from 'axios';
+
 import './EmployeeMore.css';
 
 import Logo from '../../../assets/img/employee1.jpg';
@@ -22,19 +25,43 @@ const Header = () => {
     )
  }
 
-const PromotionRow = () => {
+const PromotionRow = ({info}) => {
     return(
       <div className = "promotion-content">
-        <div className="promotion-Date">2002-12-12</div>
-        <div className="promotion-position">CEO</div>
-        <div className="promotion-Department">WEEEDing Engineering</div>
+        <div className="promotion-Date">{info.Datetime}</div>
+        <div className="promotion-position">{info.RoleName}</div>
+        <div className="promotion-Department">{info.DprtName}</div>
       </div>
       )
   }
 
 const EmployeeMore = () => {
-
+  const [EmployeeInfo, setEmployeeInfo] = useState({});
+  const [EmployeePromotion, setEmployeePromotion] = useState([]);
   let navigate = useNavigate();
+
+  const { id } = useParams();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const res = await axios.get(`http://localhost:8080/employee/${id}`)
+          setEmployeeInfo(res.data[0]);
+          console.log("Employee Object",res.data[0]);
+
+          const resPromotion = await axios.get(`http://localhost:8080/employeepromotion/${id}`);
+          setEmployeePromotion(resPromotion.data);
+          console.log("Promotion Object: ",resPromotion.data);
+
+        }
+      }
+      catch (err){
+        console.log("err",err);
+      }
+    }
+    fetchData();
+  },[id]);
 
   return (
     <div>
@@ -44,31 +71,50 @@ const EmployeeMore = () => {
         <div className ="EmployeeMore-top">
                 <div className = "EmployeeMore-img">
                     <img src={Logo} alt='employee1'></img>
-                    <p>E000001</p>
+                    <p>{EmployeeInfo.EmployeeID}</p>
                 </div>
                 <div className ="EmployeeMore-top-content">
-                  <h1>Mr. Meow SEANSEAN</h1>
-                  <h5>HR Admin, Human Resource Department</h5>
+                  <h1>{EmployeeInfo.fname} {EmployeeInfo.lname}</h1>
+                  <h5>{EmployeeInfo.RoleName}, {EmployeeInfo.DprtName}</h5>
                   <br></br>
                   <h6>Personal information</h6>
                   <div className="EmployeeMore-information">
-                    <div className='EmployeeMore-left-content'>
-                      <p>Email</p>
-                      <p>Phone</p>
-                      <p>Recruitment Date</p>
-                      <p>Address</p>
-                      <p>Bank Account</p>
+                    <div className='EmployeeMore-Email'>
+                      <div className='EmployeeMore-left-content'>
+                        <p>Email</p>
+                      </div>
+                      <div className='EmployeeMore-right-content'>
+                        <p>{EmployeeInfo.Email}</p>
+                      </div>
                     </div>
-                    <div className='EmployeeMore-right-content'>
-                      <p>meawsean@mail.kmutt.ac.th</p>
-                      <p>081-123-4569</p>
-                      <p>12/12/2000</p>
-                      <p>Under the bridge</p>
-                      <p>Meow Bank, 123-1-12345-1</p>
+                    <div className='EmployeeMore-Address'>
+                      <div className='EmployeeMore-left-content'>
+                        <p>Address</p>
+                      </div>
+                      <div className='EmployeeMore-right-content'>
+                        <p>{EmployeeInfo.Address}</p>
+                      </div>
+                    </div>
+                    <div className='EmployeeMore-Recruitment'>
+                      <div className='EmployeeMore-left-content'>
+                        <p>Recruitment Date</p>
+                      </div>
+                      <div className='EmployeeMore-right-content'>
+                        <p>{EmployeeInfo.RecruitDate}</p>
+                      </div>
+                    </div>
+                    <div className='EmployeeMore-Bank'>
+                      <div className='EmployeeMore-left-content'>
+                        <p>Bank Account</p>
+                      </div>
+                      <div className='EmployeeMore-right-content'>
+                        <p>{EmployeeInfo.BankRecive}, {EmployeeInfo.AccountNo}</p>
+                      </div>
                     </div>
                   </div>
                   <div className='EmployeeMore-button'>
-                    <Button variant="success" onClick = {() => navigate(`/employee/001/edit`)}>EDIT</Button>
+                    <Button variant="success" onClick = {() => navigate(`/employee/${EmployeeInfo.EmployeeID}/edit`)}>EDIT</Button>
+                    <Button variant="success" onClick={() => navigate(`/viewemployee/${EmployeeInfo.EmployeeID}`)}>BACK</Button>
                   </div>
                 </div>
         </div>
@@ -81,14 +127,18 @@ const EmployeeMore = () => {
                     <p>Institution</p>
                     <p>Major</p>
                     <p>Graduation Year</p>
-                    <p>Gpax</p>
+                    <p>GPAX</p>
                   </div>
                   <div className='EmployeeMore-right-content'>
-                    <p>Doctor of Philosophy (Ph.D.)</p>
-                    <p>KMUTT</p>
-                    <p>Computer Engineering</p>
-                    <p>2012</p>
-                    <p>4.00</p>
+                    <p>
+                    {
+                      EmployeeInfo.EduLevel === 'B' ? "Bachelor's Degree" : EmployeeInfo.EduLevel === 'P' ? "Doctor of Philosophy (Ph.D)" : "Master Degree"
+                    }
+                    </p>
+                    <p>{EmployeeInfo.Institution}</p>
+                    <p>{EmployeeInfo.Major}</p>
+                    <p>{EmployeeInfo.YearGrads}</p>
+                    <p>{EmployeeInfo.GPAX}</p>
                   </div>
                 </div>
             </div>
@@ -96,8 +146,13 @@ const EmployeeMore = () => {
                 <h5>Promotion History</h5>
                 <div className='EmployeeMore-Promotion'>
                   <Header />
-                  <PromotionRow />
-                  <PromotionRow />
+                  {
+                    EmployeePromotion && EmployeePromotion.map((info,index) => {
+                      return(
+                        <PromotionRow info = {info} key = {index}/>
+                      )
+                    })
+                  }
                 </div>
             </div>
         </div>

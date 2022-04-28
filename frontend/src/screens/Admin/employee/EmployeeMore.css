@@ -35,6 +35,8 @@
 
 .EmployeeMore-img > p {
     text-align: center;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .EmployeeMore-information {
@@ -43,6 +45,39 @@
     margin-top: 20px;
     padding-left: 20px;
     margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.EmployeeMore-Email {
+    display: flex;
+}
+
+.EmployeeMore-Email > div {
+    flex: 1;
+}
+
+.EmployeeMore-Address {
+    display: flex;
+}
+
+.EmployeeMore-Address > div {
+    flex: 1;
+}
+
+.EmployeeMore-Recruitment {
+    display: flex;
+}
+
+.EmployeeMore-Recruitment > div {
+    flex: 1;
+}
+
+.EmployeeMore-Bank {
+    display: flex;
+}
+
+.EmployeeMore-Bank > div {
+    flex: 1;
 }
 
 .EmployeeMore-top-content {
@@ -77,9 +112,19 @@
     width: 50%;
 }
 
+.EmployeeMore-bottom-left > h5 {
+    color: #077777;
+    font-weight: bold;
+}
+
 .EmployeeMore-bottom-right {
     min-width: 400px;
     width: 50%;
+}
+
+.EmployeeMore-bottom-right > h5 {
+    color: #077777;
+    font-weight: bold;
 }
 
 .EmployeeMore-Education {
@@ -127,4 +172,8 @@
 
 .promotion-content > div {
     flex: 1;
+}
+
+.EmployeeMore-button > button{
+    margin-right: 10px;
 }

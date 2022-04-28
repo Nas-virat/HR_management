@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
 
 import { Button } from 'react-bootstrap';
 
-import { useParams } from 'react-router-dom';
 
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar'; 
@@ -15,12 +15,7 @@ import './ViewEmployee.css';
 
 import Logo from '../../../assets/img/employee1.jpg';
 
-const data = {
-    taskid: 'T000001',
-    description: 'Collect the data from the user',
-    startdate: '17/04/2022',
-    deadline: '09/05/2022'
-}
+import axios from 'axios';
 
 const Header = () => {
     return(
@@ -41,11 +36,11 @@ const Header = () => {
     let navigate = useNavigate();
     return(
       <div className = "ViewEmployee-task-content">
-        <div>{info.taskid}</div>
-        <div>{info.description}</div>
+        <div>{info.TaskID}</div>
+        <div>{info.taskdesc}</div>
         <div>{info.startdate}</div>
         <div>{info.deadline}</div>
-        <Button variant="success" onClick={() => navigate(`/viewtask/${info.taskid}`)}>Go</Button>
+        <Button variant="success" onClick={() => navigate(`/viewtask/${info.TaskID}`)}>Go</Button>
       </div>
       )
   }
@@ -75,7 +70,39 @@ const ViewEmployee = () => {
 
   let navigate = useNavigate();
 
+  const [ EmployeeInfo,setEmployeeInfo ] = useState({});
+  const [ EmployeeTask, setEmployeeTask ] = useState([]);
+  const [ EmployeeAttendance, setEmployeeAttendance ] = useState({});
+  //const [ EmployeePayment, setEmployeePayment] = useState();
+
   const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id) {
+          const res = await axios.get(`http://localhost:8080/employee/${id}`)
+          setEmployeeInfo(res.data[0]);
+          console.log("Employee Object",res.data[0]);
+
+          const resTask = await axios.get(`http://localhost:8080/employeetask/${id}`);
+          setEmployeeTask(resTask.data);
+          console.log("Employee Task Object: ",resTask.data);
+
+          const resAttendance = await axios.get(`http://localhost:8080/employeeattendance/${id}`);
+          setEmployeeAttendance(resAttendance.data);
+          console.log("Employee Attendance Object: ",resAttendance.data);
+
+          //const resPayment = await axios.get(`http://localhost:8080/employeepayment/${id}`);
+          //setEmployeePayment(resPayment.data);
+          //console.log("Employee Payment Object: ",resPayment.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [id]);
 
   return (
     <div>
@@ -85,62 +112,75 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
             <div className ="Viewemployee-top-left">
                 <div className = "viewemployee-img">
-                    <img src={Logo} alt='employee1'></img>
-                    <p>E000001</p>
+                  <img src = {Logo} alt = "Employee Image"/>
+                  <p>{EmployeeInfo.EmployeeID}</p>
                 </div>
                 <div className ="Viewemployee-top-left-content">
-                  <h1>Mr. Meow SEANSEAN</h1>
+                  <h1>{EmployeeInfo.fname} {EmployeeInfo.lname}</h1>
  
-                  <h5>HR Admin, Human Resource Department</h5>
+                  <h5>{EmployeeInfo.RoleName}, {EmployeeInfo.DprtName}</h5>
 
                   <div className="viewemployee-information">
-                    <div className='ViewEmployee-left-content'>
-                      <p>Email</p>
-                      <p>Phone</p>
-                      <p>Recruitment Date</p>
+                    <div className='ViewEmployee-Email'>
+                      <div className='ViewEmployee-left-content'>
+                        <p>Email</p>
+                      </div>
+                      <div className='ViewEmployee-right-content'>
+                        <p>{EmployeeInfo.Email}</p>
+                      </div>
                     </div>
-                    <div className='ViewEmployee-right-content'>
-                      <p>meawsean@mail.kmutt.ac.th</p>
-                      <p>081-123-4569</p>
-                      <p>12/12/2000</p>
+                    <div className='ViewEmployee-Address'>
+                      <div className='ViewEmployee-left-content'>
+                        <p>Address</p>
+                      </div>
+                      <div className='ViewEmployee-right-content'>
+                        <p>{EmployeeInfo.Address}</p>
+                      </div>
+                    </div>
+                    <div className='ViewEmployee-Recruitment'>
+                      <div className='ViewEmployee-left-content'>
+                        <p>Recruitment Date</p>
+                      </div>
+                      <div className='ViewEmployee-right-content'>
+                        <p>{EmployeeInfo.RecruitDate}</p>
+                      </div>
                     </div>
                   </div>
                   <Button variant="success" onClick = {() => navigate(`/employee/${id}/edit`)}>EDIT</Button>
                   <Button variant="success" onClick = {() => navigate(`/viewemployee/${id}/moreinfo`)}>MORE INFO</Button>
-                  
                 </div>
             </div>
-
             <div className ="Viewemployee-top-right">
-                <Homecard color='#077777' text='Today Attendance' value = {4} /> 
-                <Homecard color='#077777' text='Late' value = {4}/>
-                <Homecard color='#077777' text='Absent' value = {4}/>
+                <Homecard color='#339331' text='Total Attendance' value = {EmployeeAttendance.ontime} /> 
+                <Homecard color='#D9D22E' text='Total Late' value = {EmployeeAttendance.late}/>
+                <Homecard color='#E74242' text='Total Absent' value = {EmployeeAttendance.absent}/>
             </div>
-        </div>
-        
+          </div>
         <div className = "Viewemployee-bottom">
             <div className='Viewemployee-bottom-left'>
-               <h5>TASKS</h5>
+               <h5>Tasks</h5>
                 <div className = "Viewemployee-bottom-left-tasks">
                     <div>
                         <div>
                             <Header />
-                            <TaskRow info = {data}/>
-                            <TaskRow info = {data}/>
-                            <TaskRow info = {data}/>
+                            {
+                              EmployeeTask.length ? EmployeeTask.map(
+                                (task,index) => <TaskRow key = {index} info = {task}/>
+                              ) : <p style={{color:"red"}}>No Task</p>
+                            }
                         </div>
                     </div>
                 </div>
-                <h5>ATTENDANCE</h5>
+                <h5>Attendace</h5>
                 <div className = "Viewemployee-bottom-left-attendance">
                     <div>
                         <div className = "alltask-header-content">
                             <div>12/12/2001</div>
                             <div>13/12/2001</div>
-                            <div>14/12/2001</div>
-                            <div>15/12/2001</div>
-                            <div>16/12/2001</div>
-                        </div>
+                            <div>12/12/2001</div>
+                            <div>13/12/2001</div>
+                            <div>13/12/2001</div>
+                        <div>
                         <hr className="solid"></hr>
                         <div className= 'attendance-icon'>
                             <div><FcOk /></div>
@@ -152,6 +192,8 @@ const ViewEmployee = () => {
                     </div>
                 </div>
             </div>
+          </div>
+        </div>
             <div className = "Viewemployee-bottom-right">
               <h5>Payment</h5>
               <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
@@ -161,8 +203,8 @@ const ViewEmployee = () => {
               <div className="Viewemployee-thismonth">
                 <h5>This month</h5>
                 <div className="Viewemployee-incomededuct">
-                    <Homecard color='#339331' text='income' value = {4} />
-                    <Homecard color='#E74242' text='Today Attendance' value = {4} />
+                    <Homecard color='#D9D22E' text='Late' value = {4} />
+                    <Homecard color='#E74242' text='Absent' value = {4} />
                 </div>
                 <div className = "Viewemployee-bottom-right-payment Viewemployee-bottom-left-tasks">
                   <PaymentRow text = 'Base Salary' value = {25000}/>
@@ -174,7 +216,7 @@ const ViewEmployee = () => {
               </div>
             </div>
         </div>
-        </div>
+      </div>
     </div>
   )
 }

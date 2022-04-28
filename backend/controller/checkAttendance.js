@@ -26,7 +26,31 @@ const checkAttendance = (req, res) =>{
     });
 } 
 
+const getAttendanceByID = (req, res) =>{
+    pool.getConnection((err, connection) => {
+        if (err) {
+             console.log(err);
+             res.status(500).json({'error':err});
+             return;
+        }
+
+        connection.query(`SELECT EmployeeID, 
+                            SUM(status = 'O') AS ontime, 
+                            SUM(status = 'L') AS late, 
+                            SUM(status = 'A') AS absent
+                            FROM attendance
+                            WHERE EmployeeID = ?` ,
+        [req.params.id]
+        , (err, result) => {
+             connection.release();
+             if (err) {
+                 console.log(err);
+             }
+             res.send(result);
+         });
+         console.log(`Get Attendance information for ID: ${req.params.id}`);
+    });
+} 
 
 
-
-module.exports = { checkAttendance };
+module.exports = { checkAttendance, getAttendanceByID };

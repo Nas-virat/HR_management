@@ -38,7 +38,6 @@
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    margin-right: 30px;
     margin-bottom: 20px;
     object-fit: cover;
     
@@ -46,6 +45,8 @@
 
 .viewemployee-img > p {
     text-align: center;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .viewemployee-information{
@@ -54,18 +55,19 @@
     margin-top: 20px;
     padding-left: 20px;
     margin-bottom: 50px;
+    flex-direction: column;
 }
 
 
 .ViewEmployee-left-content {
     text-align: left;
     font-weight: bold;
-    width: 50%;
+    width: 30%;
 }
 
 .ViewEmployee-right-content {
     text-align: right;
-    width: 50%;
+    width: 70%;
 }
 
 .Viewemployee-top-left-content > h1{
@@ -74,6 +76,30 @@
 
 .Viewemployee-top-left-content > Button {
     margin-right: 10px;
+}
+
+.ViewEmployee-Email {
+    display: flex;
+}
+
+.ViewEmployee-Email > div {
+    flex:1
+}
+
+.ViewEmployee-Address {
+    display: flex;
+}
+
+.ViewEmployee-Address > div {
+    flex:1
+}
+
+.ViewEmployee-Recruitment {
+    display: flex;
+}
+
+.ViewEmployee-Recruitment {
+    flex: 1;
 }
 
 .Viewemployee-top-right {
@@ -108,7 +134,7 @@
 }
 
 .Viewemployee-bottom-left > h5 {
-    color:#077777;
+    color: #077777;
     font-weight: bold;
 }
 .Viewemployee-bottom-left-attendance{
@@ -148,6 +174,11 @@
     display: flex;
     flex: 1;
     justify-content: space-between;
+}
+
+.Viewemployee-thismonth > h5 {
+    color: #077777;
+    font-weight: bold;
 }
 
 .Viewemployee-incomededuct{

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 //css
 import '../Forms.css';
+import './ViewDepartment.css';
 
 //components
 import Navbar from '../../../components/Navbar';
@@ -17,11 +18,11 @@ import axios from 'axios';
 const Header = () => {
    return(
     <>
-      <div className = "header-content">
-        <div className = "header-content-ID">ID</div>
-        <div className = "header-content-Name">Name</div>
-        <div className = "header-content-Position">Position</div>
-        <div className = "header-content-Department">Department</div>
+      <div className = "ViewDepartment-header-content">
+        <div className = "ViewDepartment-header-content-ID">ID</div>
+        <div className = "ViewDepartment-header-content-Name">Name</div>
+        <div className = "ViewDepartment-header-content-Position">Position</div>
+        <div className = "ViewDepartment-header-content-Department">Department</div>
       </div>
       <hr className="solid"></hr>
     </>

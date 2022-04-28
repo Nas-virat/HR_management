@@ -34,7 +34,8 @@ const Header = () => {
 
 const Viewtask = () => {
   const [add, setAdd] = useState(false);
-  const [status,setStatus] = useState('A');
+  const [status,setStatus] = useState();
+  const [statusNext,setStatusNext] = useState();
   const [taskInfo, setTaskInfo] = useState({});
   const [taskMember, setTaskMember] = useState([]);
   const [taskSupervisor, setTaskSupervisor] = useState();
@@ -46,22 +47,30 @@ const Viewtask = () => {
   const updateStatus = () => {
     if (status === 'A') {
       setStatus('F');
+      taskInfo.status = 'F';
     }
-    else {
+    if(status === 'F'){
       setStatus('A');
+      taskInfo.status = 'A';
     }
+    if(status === 'C'){
+      setStatus('A');
+      taskInfo.status = 'A';
+    }
+    console.log("updateStatus");
       axios.put('http://localhost:8080/updateTaskStatus', {
           "TaskID" : taskInfo.TaskID,
-          "status" : status })
+          "status" : taskInfo.status })
         .then((res) => console.log("UPDATE Status: ", res))
         .catch((err) => console.log("err : ",err))
   }
   
   const cancelStatus = () => {
     setStatus('C');
+    taskInfo.status = 'C';
      axios.put('http://localhost:8080/updateTaskStatus', {
       "TaskID" : taskInfo.TaskID,
-      "status" : status })
+      "status" : 'C'})
     .then((res) => console.log("CANCEL Status: ", res))
     .catch((err) => console.log("err : ",err))
   }
@@ -76,6 +85,8 @@ const Viewtask = () => {
         const res = await axios.get(`http://localhost:8080/task/${id}`)
         setTaskInfo(res.data[0]);
         console.log("Task Object",res.data[0]); 
+        setStatus(res.data[0].status);
+        console.log("status init",status);
         
         const resMember = await axios.get(`http://localhost:8080/taskmember/${id}`);
         setTaskMember(resMember.data);
@@ -107,8 +118,8 @@ const Viewtask = () => {
                   <h1>{taskInfo.TaskID}</h1>
                   <p>Description: {taskInfo.taskdesc}</p>
                   <p>Deadline: {taskInfo.deadline}</p>
-                  <Button variant = {status === 'A' ? "success" : "warning" } onClick = {updateStatus}>Status : {status === 'A' ? 'Active' :'Finish'}</Button>
-                  <Button variant = "danger" onClick = {cancelStatus}>Cancel</Button>
+                  <Button variant = {taskInfo.status === 'A' ? "success" :taskInfo.status === 'F' ? "warning" : "danger" } onClick = {updateStatus}>Status : {taskInfo.status}</Button>
+                  <Button variant = {taskInfo.status === "danger"} onClick = {cancelStatus}>Cancel</Button>
                 </div>
             </div>
             <h5>Supervisor</h5>

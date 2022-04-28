@@ -15,7 +15,8 @@ const { getAllEmployee,
         getEmployeeByID, 
         insertEmployee,
         updateEmployee,
-        deleteEmployee } = require('./controller/getEmployeeInfo');
+        deleteEmployee,
+        getEmployeePromotion } = require('./controller/getEmployeeInfo');
 
 const { insertRole } = require('./controller/getRoleInfo');
 
@@ -25,9 +26,11 @@ const { getAllTaskInfo,
         updateTaskStatus,
         TaskMember,
         TaskSupervisor,
-        OTtask} = require('./controller/getTaskInfo');
+        OTtask,
+        EmployeeTask } = require('./controller/getTaskInfo');
 
-const { checkAttendance } = require('./controller/checkAttendance');
+const { checkAttendance,
+        getAttendanceByID } = require('./controller/checkAttendance');
 
 
 const { insertPromotion } = require('./controller/promotion');
@@ -50,6 +53,7 @@ app.get('/employee/:id', getEmployeeByID);
 app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee/:id', updateEmployee);
 app.delete('/deleteemployee', deleteEmployee);
+app.get('/employeepromotion/:id', getEmployeePromotion);
 
 //Department
 app.get('/department', getAllDepartment);
@@ -68,10 +72,12 @@ app.put('/updateTaskStatus',updateTaskStatus);
 app.get('/taskmember/:id',TaskMember);
 app.get('/tasksupervisor/:id',TaskSupervisor);
 app.post('/ottask',OTtask);
+app.get('/employeetask/:id', EmployeeTask);
+
 
 //attendance
 app.post('/attendance', checkAttendance);
-
+app.get('/employeeattendance/:id', getAttendanceByID);
 
 //promotion
 app.post('/promotion',insertPromotion);

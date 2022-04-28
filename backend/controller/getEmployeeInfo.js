@@ -35,7 +35,13 @@ const getEmployeeByID = (req, res) => {
              res.status(500).json({'error':err});
              return;
         }
-        connection.query("SELECT * FROM employee WHERE EmployeeID = ?", [req.params.id] , (err, result) => {
+        connection.query(`SELECT e.*, d.DprtName, r.RoleName
+                            FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
+                            p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                            INNER JOIN department d ON p.DprtID = d.DprtID
+                            INNER JOIN role r ON p.RoleID = r.RoleID
+                            WHERE e.EmployeeID = ?`
+        ,[req.params.id] , (err, result) => {
              connection.release();
              if (err) {
                  console.log(err);
@@ -46,16 +52,21 @@ const getEmployeeByID = (req, res) => {
     });
 }
 
-/*
-const getEmployeeOnTask = (req, res) =>{
+
+const getEmployeePromotion = (req, res) =>{
     pool.getConnection((err, connection) => {
         if (err) {
              console.log(err);
              res.status(500).json({'error':err});
              return;
         }
-        console.log("Select EmployeeID : " + req.params.id);
-        connection.query("SELECT * FROM employee WHERE employeeontask = ?", [req.params.id] , (err, result) => {
+        console.log("Select Promoted EmployeeID : " + req.params.id);
+        connection.query(`SELECT p.Datetime, r.RoleName, d.DprtName
+                            FROM promotionhistory p INNER JOIN role r ON p.RoleID = r.RoleID 
+                                                    INNER JOIN department d ON p.DprtID = d.DprtID
+                            WHERE p.EmployeeID = ?
+                            ORDER BY p.Datetime DESC;`, 
+        [req.params.id] , (err, result) => {
              connection.release();
              if (err) {
                  console.log(err);
@@ -64,7 +75,7 @@ const getEmployeeOnTask = (req, res) =>{
          });
     });
 }
-*/
+
 
 
 const insertEmployee = (req, res) =>{
@@ -181,4 +192,4 @@ const deleteEmployee = (req,res) =>{
     });
 };
 
-module.exports = {getAllEmployee, getEmployeeByID, insertEmployee, updateEmployee, deleteEmployee};
+module.exports = {getAllEmployee, getEmployeeByID, insertEmployee, updateEmployee, deleteEmployee, getEmployeePromotion};
