@@ -90,8 +90,8 @@ const ViewEmployee = () => {
           console.log("Employee Task Object: ",resTask.data);
 
           const resAttendance = await axios.get(`http://localhost:8080/employeeattendance/${id}`);
-          setEmployeeAttendance(resAttendance.data);
-          console.log("Employee Attendance Object: ",resAttendance.data);
+          setEmployeeAttendance(resAttendance.data[0]);
+          console.log("Employee Attendance Object: ",resAttendance.data[0]);
 
           //const resPayment = await axios.get(`http://localhost:8080/employeepayment/${id}`);
           //setEmployeePayment(resPayment.data);
@@ -112,7 +112,7 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
           <div className ="Viewemployee-top-left">
             <div className = "viewemployee-img">
-              <img src = {Logo} alt = "Employee-Image"/>
+              <img src = {Logo} alt = "Employee-img"/>
               <p>{EmployeeInfo.EmployeeID}</p>
             </div>
             <div className ="Viewemployee-top-left-content">

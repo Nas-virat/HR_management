@@ -119,7 +119,7 @@ const Viewtask = () => {
                   <p>Description: {taskInfo.taskdesc}</p>
                   <p>Deadline: {taskInfo.deadline}</p>
                   <Button variant = {taskInfo.status === 'A' ? "success" :taskInfo.status === 'F' ? "warning" : "danger" } onClick = {updateStatus}>Status : {taskInfo.status}</Button>
-                  <Button variant = {taskInfo.status === "danger"} onClick = {cancelStatus}>Cancel</Button>
+                  <Button variant = "danger" onClick = {cancelStatus}>Cancel</Button>
                 </div>
             </div>
             <h5>Supervisor</h5>
