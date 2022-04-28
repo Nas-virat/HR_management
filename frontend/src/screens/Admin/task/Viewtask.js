@@ -35,10 +35,10 @@ const Header = () => {
 const Viewtask = () => {
   const [add, setAdd] = useState(false);
   const [status,setStatus] = useState();
-  const [statusNext,setStatusNext] = useState();
   const [taskInfo, setTaskInfo] = useState({});
   const [taskMember, setTaskMember] = useState([]);
   const [taskSupervisor, setTaskSupervisor] = useState();
+
   const { id } = useParams();
 
   //console.log(id);
@@ -102,7 +102,7 @@ const Viewtask = () => {
       }
     }
     fetchData();
-  }, [id]);
+  }, [id,status]);
 
   
 

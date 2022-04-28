@@ -147,6 +147,14 @@
     backdrop-filter: blur(4px);
 }
 
+.Viewemployee-header-content{
+    display:flex;
+}
+
+.Viewemployee-header-content > div{
+    flex: 1;
+}
+
 .attendance-icon {
     display: flex;
 }
