@@ -102,13 +102,14 @@ const insertEmployee = (req, res) =>{
         
         const Dprtid = req.body.DprtID;
         const Roleid = req.body.RoleID;
+        const image = req.body.Image;
 
 
         connection.query(`INSERT INTO employee (fname, lname, Address, Email, Gender, DOB, AccountNo, BankRecive,
-                                                EduLevel, Institution, Major, YearGrads, GPAX, Password) 
-                          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                                                EduLevel, Institution, Major, YearGrads, GPAX, Password,Image) 
+                          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                           `,
-        [fname,lname,address,email,gender,DOB,AccountNo,BankRecive,eduLevel,institution,major,yearGrads,gpax,Password]
+        [fname,lname,address,email,gender,DOB,AccountNo,BankRecive,eduLevel,institution,major,yearGrads,gpax,Password,image]
         , (err, result) => {
              if (err) {
                  console.log(err);

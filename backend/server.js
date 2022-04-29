@@ -124,7 +124,7 @@ app.get('/mostlateemployee',mostLateEmployee);
 
 
 //upload image
-app.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('image'), (req, res) => {
   console.log("file Uploaded sucessfully");
   res.send(req.file);
 });

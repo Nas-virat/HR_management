@@ -34,6 +34,9 @@ const AddNewEmployee = () => {
 
     const [department, setDepartment] = useState('');
     const [role, setRole] = useState('');
+    const [image, setImage] = useState({});
+
+    const [file, setfile] = useState('');
 
     const onSetDate = (event) => {
       setDate(new Date(event.target.value))
@@ -41,6 +44,24 @@ const AddNewEmployee = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('image',image);
+
+        try {
+            const response = await axios({
+              method: "post",
+              url: "http://localhost:8080/upload",
+              data: formData,
+              headers: { "Content-Type": "multipart/form-data" },
+            });
+            console.log(response.data);
+            setfile(response.data.filename);
+          } catch(error) {
+            console.log("err on upload photo",error);
+          }
+
+
+
         try{
             const res = await axios.post('http://localhost:8080/insertEmployee', {
                 'fname':fname,
@@ -58,7 +79,8 @@ const AddNewEmployee = () => {
                 'GPAX' : gpax,
                 'Password' : password,
                 'DprtID' : department,
-                'RoleID' : role  
+                'RoleID' : role,  
+                'Image' : file
             });
             console.log("Add New Employee",res);
         }
@@ -66,9 +88,7 @@ const AddNewEmployee = () => {
             console.log("err:",err);
         }
         alert('Successfully Added');
-
     }
-
     return (
     <div>
         <Navbar />
@@ -245,7 +265,11 @@ const AddNewEmployee = () => {
 
                     <Form.Group controlId="formPictureFile" className="mb-3">
                       <Form.Label>Profile Picture</Form.Label>
-                      <Form.Control className = "inputform" type="file" />
+                      <Form.Control className = "inputform" type="file" 
+                            onChange = {e => {
+                                console.log(e.target.files[0])
+                                setImage(e.target.files[0])}
+                                }/>
                     </Form.Group>
 
                     <Button variant="success" type="submit" onClick={handleSubmit}>
