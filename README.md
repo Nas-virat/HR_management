@@ -17,6 +17,7 @@ HRMS by SPFNA is HR management system
 - [ ] ViewEmployee Page (Payment section left)
 - [x] Employeemore Page
 - [ ] Dashboard
+- [ ] Payment Status
 - [x] EmployeeEdit Page
 - [x] Deduction Page
 - [x] OTtask Page (frontend + API)
