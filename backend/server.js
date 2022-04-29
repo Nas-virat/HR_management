@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const express = require('express');
 const cors = require("cors");
+const multer = require('multer');
 
 
 const { getAllDepartment,
@@ -46,6 +47,24 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
+
+app.use('/uploads', express.static('uploads'));
+
+
+const storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, __dirname);
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + "-" +file.originalname);
+  }
+  });
+
+  const upload = multer({storage});
+
+
+
+
 
 //initial route
 app.get("/", (req, res) => {
@@ -104,6 +123,11 @@ app.get('/companyinfo',companyInfo);
 app.get('/mostlateemployee',mostLateEmployee);
 
 
+//upload image
+app.post('/upload', upload.single('file'), (req, res) => {
+  console.log("file Uploaded sucessfully");
+  res.send(req.file);
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));
