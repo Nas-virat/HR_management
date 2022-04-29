@@ -52,5 +52,27 @@ const getAttendanceByID = (req, res) =>{
     });
 } 
 
+const lastAttendanceByID = (req, res) =>{
+    pool.getConnection((err, connection) => {
+        if (err) {
+             console.log(err);
+             res.status(500).json({'error':err});
+             return;
+        }
 
-module.exports = { checkAttendance, getAttendanceByID };
+        connection.query(`SELECT * FROM attendance WHERE EmployeeID = ? 
+        ORDER BY Time DESC LIMIT 5;` ,
+        [req.params.id]
+        , (err, result) => {
+             connection.release();
+             if (err) {
+                 console.log(err);
+             }
+             res.send(result);
+         });
+         console.log(`Get Attendance information for ID: ${req.params.id}`);
+    });
+} 
+
+
+module.exports = { checkAttendance, getAttendanceByID, lastAttendanceByID };

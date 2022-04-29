@@ -42,6 +42,7 @@ const OTtask = () => {
         })
              .then(res => console.log ("res:",res))
              .catch(err => console.log("err", err))
+        alert("Submit successful");
     }
 
     return (

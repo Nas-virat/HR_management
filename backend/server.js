@@ -31,11 +31,13 @@ const { getAllTaskInfo,
         addEmployeeToTask } = require('./controller/getTaskInfo');
 
 const { checkAttendance,
-        getAttendanceByID } = require('./controller/checkAttendance');
+        getAttendanceByID,
+        lastAttendanceByID } = require('./controller/checkAttendance');
 
 
 const { insertPromotion } = require('./controller/promotion');
 const { insertDeduction } = require('./controller/deduction');
+const { getPaymentByID } = require('./controller/payment');
 
 const app = express();
 app.use(express.json());
@@ -80,12 +82,20 @@ app.post('/addemployeetotask',addEmployeeToTask);
 //attendance
 app.post('/attendance', checkAttendance);
 app.get('/employeeattendance/:id', getAttendanceByID);
+app.get('/lastattendance/:id', lastAttendanceByID);
+
 
 //promotion
 app.post('/promotion',insertPromotion);
 
 //deduction
 app.post('/deduction', insertDeduction)
+
+
+//payment 
+app.get('/payment/:id', getPaymentByID);
+
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));

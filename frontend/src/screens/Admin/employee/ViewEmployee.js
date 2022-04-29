@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-
-import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
-
 import { Button } from 'react-bootstrap';
-
+import { FcOk, FcHighPriority, FcVlc } from "react-icons/fc";
 import Moment from 'react-moment';
 
 import Navbar from '../../../components/Navbar';
@@ -48,7 +45,7 @@ const Header = () => {
 
 const PaymentRow = ({text,value}) => {
 
-  if(value > 0){
+  if(value >= 0){
     return (
       <div className = 'Viewemployee-payment-row'>
         <p>{text}</p>
@@ -74,7 +71,8 @@ const ViewEmployee = () => {
   const [ EmployeeInfo,setEmployeeInfo ] = useState({});
   const [ EmployeeTask, setEmployeeTask ] = useState([]);
   const [ EmployeeAttendance, setEmployeeAttendance ] = useState({});
-  //const [ EmployeePayment, setEmployeePayment] = useState();
+  const [ EmployeePayment, setEmployeePayment] = useState({});
+  const [ LastAttendance, setLastAttendance] = useState([]);
 
   const { id } = useParams();
 
@@ -94,9 +92,13 @@ const ViewEmployee = () => {
           setEmployeeAttendance(resAttendance.data[0]);
           console.log("Employee Attendance Object: ",resAttendance.data[0]);
 
-          //const resPayment = await axios.get(`http://localhost:8080/employeepayment/${id}`);
-          //setEmployeePayment(resPayment.data);
-          //console.log("Employee Payment Object: ",resPayment.data);
+          const resPayment = await axios.get(`http://localhost:8080/payment/${id}`);
+          setEmployeePayment(resPayment.data[0]);
+          console.log("Employee Payment Object: ",resPayment.data[0]);
+
+          const reslastattendance = await axios.get(`http://localhost:8080/lastattendance/${id}`);
+          setLastAttendance(reslastattendance.data);
+          console.log("Employee Last Attendance Object: ",reslastattendance.data);
         }
       } catch (error) {
         console.log(error);
@@ -175,19 +177,22 @@ const ViewEmployee = () => {
             <div className = "Viewemployee-bottom-left-attendance">
               <div>
                 <div className = "Viewemployee-header-content">
-                  <div>12/12/2001</div>
-                  <div>13/12/2001</div>
-                  <div>12/12/2001</div>
-                  <div>13/12/2001</div>
-                  <div>13/12/2001</div>
+                  {
+                    LastAttendance.length ? LastAttendance.map(
+                      (attendance,index) => <div key = {index}><Moment format="YYYY/MM/DD">{attendance.Time}</Moment></div>
+                    ) : <p style={{color:"red"}}>No Attendance</p>
+                  }
                 </div>
                 <hr className="solid"></hr>
                 <div className= 'attendance-icon'>
-                  <div><FcOk /></div>
-                  <div><FcHighPriority /></div>
-                  <div><FcVlc /></div>
-                  <div><FcVlc /></div>
-                  <div><FcOk /></div>
+                  {
+                    LastAttendance.length ? LastAttendance.map(
+                      (attendance,index) => 
+                      <div key = {index}>
+                        {attendance.Status === 'A' ? <FcHighPriority /> : attendance.Status === 'O' ? <FcOk /> : <FcVlc />}
+                      </div>
+                    ) : <p style={{color:"red"}}>No Attendance</p>
+                  }
                 </div>
               </div>
             </div>
@@ -201,16 +206,16 @@ const ViewEmployee = () => {
             <div className="Viewemployee-thismonth">
               <h5>THIS MONTH</h5>
               <div className="Viewemployee-incomededuct">
-                <Homecard color='#D9D22E' text='Late' value = {4} />
-                <Homecard color='#E74242' text='Absent' value = {4} />
+                <Homecard color='#339331' text='Income' value = {EmployeePayment.BaseSalary + EmployeePayment.OvertimePayment} />
+                <Homecard color='#E74242' text='Deduction' value = {EmployeePayment.totalDeduction} />
               </div>
             </div>
             <div className = "Viewemployee-bottom-right-payment">
-              <PaymentRow text = 'Base Salary' value = {25000}/>
-              <PaymentRow text = 'Medical Expense' value = {-500}/>
-              <PaymentRow text = 'Overtime Payment' value = {1000}/>
+              <PaymentRow text = 'Base Salary' value = {EmployeePayment.BaseSalary}/>
+              <PaymentRow text = 'Total Deduction' value = {EmployeePayment.totalDeduction * (-1)}/>
+              <PaymentRow text = 'Overtime Payment' value = {EmployeePayment.OvertimePayment}/>
               <hr className="solid"></hr>
-              <PaymentRow text = 'Total Amount' value = {25500}/>
+              <PaymentRow text = 'Total Amount' value = {EmployeePayment.TotalAmount}/>
             </div>
           </div>
         </div>
