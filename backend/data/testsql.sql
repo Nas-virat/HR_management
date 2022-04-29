@@ -208,3 +208,14 @@ FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND
 
 
  SELECT * FROM attendance WHERE EmployeeID = 1001 ORDER BY Time DESC LIMIT 5;
+
+ SELECT 
+(SELECT COUNT(*) FROM employee WHERE WorkStatus != 'Q') AS TotalEmployee, 
+(SELECT COUNT(*)  FROM department) AS TotalDepartment, 
+(SELECT COUNT(*)  FROM task WHERE status != 'F') AS TotalTask
+FROM employee LIMIT 1;
+
+SELECT a.EmployeeID, e.fname, e.lname, COUNT(*) AS TotalLate FROM attendance a 
+INNER JOIN employee e ON e.EmployeeID = a.EmployeeID 
+WHERE a.Status = 'L'
+GROUP BY a.EmployeeID;

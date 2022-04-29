@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Home.css';
@@ -12,20 +12,42 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaBeer } from 'react-icons/fa';
 import Logo from '../../assets/img/employee1.jpg';
 
-const HomeEmployeeRow = () =>{
+import axios from 'axios';
+
+const HomeEmployeeRow = ({data}) =>{
     let navigate = useNavigate();
-    return(
+    return (
       <div className = "home-employee-content">
         <div className = "home-employee-image"><img src={Logo} alt='employee1'></img></div>
-        <div className = "home-employee-id">1001</div>
-        <div className = "home-employee-name">Meaw Sean</div>
-        <div className = "home-employee-department">Human Resource</div> 
-        <Button variant="success" onClick={() => navigate(`/viewemployee/:id`)}>Go</Button>
+        <div className = "home-employee-id">{data.EmployeeID}</div>
+        <div className = "home-employee-name">{data.fname} {data.lname}</div>
+        <div className = "home-employee-department">Total Late : {data.TotalLate}</div> 
+        <Button variant="success" onClick={() => navigate(`/viewemployee/${data.EmployeeID}`)}>Go</Button>
       </div>
-      )
+    )
   }
 
 const Home = () => {
+
+    const [HeadInformation, setHeadInformation] = useState({});
+    const [EmployeeLate, setEmployeeLate] = useState([]);
+    
+    useEffect(() => {
+        axios.get('http://localhost:8080/companyinfo')
+        .catch(err => console.log("err",err))
+        .then(res => {
+            console.log("HeadInformation",res.data) 
+            setHeadInformation(res.data[0])
+        })
+        axios.get('http://localhost:8080/mostlateemployee')
+        .catch(err => console.log("err",err))
+        .then(res => { 
+            console.log("Employeelate",res.data)
+            setEmployeeLate(res.data)
+        })
+
+    },[]);
+
     return(
         <div>
             <Navbar />
@@ -35,35 +57,20 @@ const Home = () => {
             <h5><FaBeer/>DASHBOARD</h5>
                 <div className="dashboard">
                     <div className='dashboard-upper-container'> 
-                        <Homecard color='#339331' text='Today Attendance' /> 
-                        <Homecard color='#D9D22E' text='Late' />
-                        <Homecard color='#E74242' text='Absent' />
-                    </div>
-                    <div className='dashboard-lower-container'> 
-                        <div>
-                            <p>Payment</p>
-                            <h1>500,000</h1>
-                        </div>
+                        <Homecard color='#339331' text='Total Employee' value={HeadInformation.TotalEmployee}/> 
+                        <Homecard color='#D9D22E' text='Total Department' value={HeadInformation.TotalDepartment}/>
+                        <Homecard color='#E74242' text='Total Task' value = {HeadInformation.TotalTask}/>
                     </div>
                 </div>
-                <h5>INFORMATION</h5>
+                <h5>INFORMATION Top Employee Late (Times)</h5>
                 <div className="information-contatainer">
                     <div className='information-employee'>
-                        <HomeEmployeeRow />
-                        <HomeEmployeeRow />
-                        <HomeEmployeeRow />
+                        {EmployeeLate.map((data,index) => <HomeEmployeeRow key={index} data={data}/>)}
                     </div>
-                    <div className='total-info'>
-                        <Homecard color='#077777' text='Total Employee' />
-                        <Homecard color='#077777' text='Total Employee' />
-                    </div>
-                </div>
-                <div className='login'>
-                <Button href="login" variant="outline-primary">Log In</Button>{' '}
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default Home;

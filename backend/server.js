@@ -39,6 +39,9 @@ const { insertPromotion } = require('./controller/promotion');
 const { insertDeduction } = require('./controller/deduction');
 const { getPaymentByID } = require('./controller/payment');
 
+const {companyInfo,
+       mostLateEmployee} = require('./controller/dashboard');
+
 const app = express();
 app.use(express.json());
 
@@ -94,6 +97,11 @@ app.post('/deduction', insertDeduction)
 
 //payment 
 app.get('/payment/:id', getPaymentByID);
+
+
+//dashboard
+app.get('/companyinfo',companyInfo);
+app.get('/mostlateemployee',mostLateEmployee);
 
 
 
