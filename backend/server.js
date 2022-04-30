@@ -4,6 +4,7 @@ require("dotenv").config();
 const express = require('express');
 const cors = require("cors");
 const multer = require('multer');
+const path = require('path');
 
 
 const { getAllDepartment,
@@ -53,7 +54,7 @@ app.use('/uploads', express.static('uploads'));
 
 const storage = multer.diskStorage({
   destination: function(req, file, callback) {
-    callback(null, __dirname);
+    callback(null, path.join(__dirname, 'uploads'));
   },
   filename: function (req, file, callback) {
     callback(null, Date.now() + "-" +file.originalname);
