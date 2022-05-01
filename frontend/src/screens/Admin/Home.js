@@ -36,7 +36,7 @@ const Home = () => {
         axios.get('http://localhost:8080/companyinfo')
         .catch(err => console.log("err",err))
         .then(res => {
-            console.log("HeadInformation",res.data) 
+            console.log("HeadInformation",res) 
             setHeadInformation(res.data[0])
         })
         axios.get('http://localhost:8080/mostlateemployee')

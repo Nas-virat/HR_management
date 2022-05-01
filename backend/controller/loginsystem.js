@@ -3,6 +3,7 @@ const pool = require("../config/db");
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const TokenExpiredError = require("jsonwebtoken/lib/TokenExpiredError");
 
 const login = async (req, res) => {
 
@@ -36,6 +37,7 @@ const login = async (req, res) => {
             return;
           }
           const user = rows[0];
+          console.log(user);
           // Validate password
           console.log("Finish query for user identification, compare the password");
           bcrypt.compare(password, user.Password, (err, result) => {
@@ -47,9 +49,15 @@ const login = async (req, res) => {
             console.log("password is correct");
             if (result) {
               // Create JWT token
-              const token = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN, { expiresIn: '2h' });
+              const token = jwt.sign({ id: user.EmployeeID }, process.env.ACCESS_TOKEN, { expiresIn: '2h' });
               
-              res.status(200).json({ token });
+              let options = {
+                maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours
+                httpOnly: true, // The cookie only accessible by the web server
+              }
+        
+              res.cookie('x-access-token',token, options);
+              res.status(200).json({ "token" : token });
               console.log("login success");
             } else {
               res.status(401).send("Invalid password");

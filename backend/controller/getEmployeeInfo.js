@@ -103,7 +103,7 @@ const insertEmployee = (req, res) =>{
         const gpax = req.body.GPAX;
         const Password = req.body.Password;
         
-        const PasswordCrypt =  bcrypt.hashSync(Password,20);
+        const PasswordCrypt =  bcrypt.hashSync(Password,5);
         
         const Dprtid = req.body.DprtID;
         const Roleid = req.body.RoleID;

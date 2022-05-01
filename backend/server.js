@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require("cors");
 const multer = require('multer');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const auth = require('./middleware/auth');
 
@@ -49,8 +50,12 @@ const { login } = require('./controller/loginsystem');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(cors());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname,"frontend","public")))
 app.use('/uploads', express.static('uploads'));
@@ -78,7 +83,7 @@ app.get("/", (req, res) => {
 
 
 //employee
-app.get('/employee', getAllEmployee);
+app.get('/employee',auth,getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
 app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee/:id', updateEmployee);

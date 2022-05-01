@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from "axios";
 
+import moment from 'moment';
+
 import '../Forms.css';
 
 //import components
@@ -63,7 +65,7 @@ const AddNewEmployee = () => {
                     'Address':address,
                     'Email':email,
                     'Gender':gender,
-                    'DOB': date,
+                    'DOB': moment(date).format("YYYY-MM-DD"),
                     'BankRecive' : bankreceive,
                     'AccountNo' : accountno,
                     'Edulevel' :edulevel,

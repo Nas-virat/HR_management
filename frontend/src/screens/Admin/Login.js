@@ -26,17 +26,13 @@ const Login = () => {
             'password': password
         })
         .then(res => {
-            console.log(res);
-            console.log(res.data);
             if(res.data){
                 console.log("TOKEN", res.data.token);
                 localStorage.setItem('token', res.data.token);
                 alert('Login Successful');
                 navigate('/home');
-                
             }
-        }
-        )
+        })
         .catch(err => {
             console.log(err);
             alert("FAILED TO LOGIN:" + err); 
@@ -46,6 +42,7 @@ const Login = () => {
     const handleKeypress = (e) => {
         if (e.key === "Enter") {
           console.log('Enter pressed');
+          handleSubmit(e);
         }
       };
       
