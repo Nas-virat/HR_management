@@ -1,4 +1,6 @@
 
+const bcrypt = require('bcrypt'); 
+
 const pool = require("../config/db");
 
 const getAllEmployee = (req, res) => {
@@ -101,16 +103,18 @@ const insertEmployee = (req, res) =>{
         const gpax = req.body.GPAX;
         const Password = req.body.Password;
         
+        const PasswordCrypt =  bcrypt.hashSync(Password,20);
+        
         const Dprtid = req.body.DprtID;
         const Roleid = req.body.RoleID;
         const image = req.body.Image;
 
 
         connection.query(`INSERT INTO employee (fname, lname, Address, Email, Gender, DOB, AccountNo, BankRecive,
-                                                EduLevel, Institution, Major, YearGrads, GPAX, Password,Image) 
+                                                EduLevel, Institution, Major, YearGrads, GPAX, Password, Image) 
                           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                           `,
-        [fname,lname,address,email,gender,DOB,AccountNo,BankRecive,eduLevel,institution,major,yearGrads,gpax,Password,image]
+        [fname,lname,address,email,gender,DOB,AccountNo,BankRecive,eduLevel,institution,major,yearGrads,gpax,PasswordCrypt,image]
         , (err, result) => {
              if (err) {
                  console.log(err);
@@ -161,7 +165,7 @@ const updateEmployee = (req,res) =>{
                                  Password = ?,
                                  WorkStatus = ?
                 WHERE EmployeeID = ?` ,
-        [fname,lname,address,email,AccountNo,BankRecive,Password, workstatus,req.params.id]
+        [fname,lname,address,email,AccountNo,BankRecive,Password, workstatus, req.params.id]
         , (err, result) => {
              connection.release();
              if (err) {

@@ -54,7 +54,7 @@ const Home = () => {
             <Sidebar />
             <div className="home-container">
                 
-            <h5><FaBeer/>DASHBOARD</h5>
+            <h5>Dashboard <FaBeer/></h5>
                 <div className="dashboard">
                     <div className='dashboard-upper-container'> 
                         <Homecard color='#339331' text='Total Employee' value={HeadInformation.TotalEmployee}/> 
@@ -62,7 +62,7 @@ const Home = () => {
                         <Homecard color='#E74242' text='Total Active Task' value = {HeadInformation.TotalTask}/>
                     </div>
                 </div>
-                <h5>INFORMATION Top Employee Late (Times)</h5>
+                <h5>Information Top Employee Late (Times)</h5>
                 <div className="information-contatainer">
                     <div className='information-employee'>
                         {EmployeeLate.map((data,index) => <HomeEmployeeRow key={index} data={data}/>)}

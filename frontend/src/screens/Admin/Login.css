@@ -9,19 +9,23 @@
 
 .login-container {
     width: 500px;
-    height: 500px;
+    height: 400px;
     margin: auto;
     padding: 20px;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
     
 }
 
 .login-container > img {
     width: 200px;
     border-radius: 10px;
+    position: relative;
+    left: 50%;
+    transform: translate(-60%, 0%);
+    margin-bottom: 10px;
 }
 
 .login-form{
@@ -37,6 +41,10 @@
 }
 
 .login-form > Button {
-    width: 20%;
-    height: 10%;
+    margin-top: 20px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    justify-content: center;
+    border-radius: 20px;
 }

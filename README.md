@@ -14,12 +14,11 @@ HRMS by SPFNA is HR management system
 - [x] viewTask add member
 - [x] ViewTask Page 
 - [x] ViewDepartment Page
-- [ ] ViewEmployee Page (Payment section left top)
 - [ ] Bonus on viewEmployee (query + UI)
 - [x] Employeemore Page
 - [x] Dashboard
-- [ ] Payment Status
-- [ ] Employee Work Status Apply (employee leave the company)
+- [ ] Payment Status (WTF)
+- [x] Employee Work Status Apply (employee leave the company)
 - [x] EmployeeEdit Page
 - [x] Deduction Page
 - [x] OTtask Page (frontend + API)

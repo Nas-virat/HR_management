@@ -6,6 +6,7 @@ const cors = require("cors");
 const multer = require('multer');
 const path = require('path');
 
+const auth = require('./middleware/auth');
 
 const { getAllDepartment,
         getDepartmentInfoByID,
@@ -41,8 +42,10 @@ const { insertPromotion } = require('./controller/promotion');
 const { insertDeduction } = require('./controller/deduction');
 const { getPaymentByID } = require('./controller/payment');
 
-const {companyInfo,
-       mostLateEmployee} = require('./controller/dashboard');
+const { companyInfo,
+        mostLateEmployee } = require('./controller/dashboard');
+
+const { login } = require('./controller/loginsystem');
 
 const app = express();
 app.use(express.json());
@@ -75,7 +78,7 @@ app.get("/", (req, res) => {
 
 
 //employee
-app.get('/employee', getAllEmployee);
+app.get('/employee',getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
 app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee/:id', updateEmployee);
@@ -130,6 +133,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
   console.log("file Uploaded sucessfully");
   res.send(req.file);
 });
+
+
+app.post('/login', login);
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,()=> console.log(`HRMS Server is running on port ${PORT}`));
