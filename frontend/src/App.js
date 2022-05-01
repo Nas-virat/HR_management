@@ -23,6 +23,7 @@ import EmployeeEdit from './screens/Admin/employee/EmployeeEdit';
 import OTtask from './screens/Admin/task/OTtask';
 
 import './App.css';
+import Login from './screens/Admin/Login';
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route exact path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
         {/* Home = dashboard */}
         <Route exact path='/home' element={<Home />} /> 
 

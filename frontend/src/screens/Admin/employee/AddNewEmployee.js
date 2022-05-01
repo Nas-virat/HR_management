@@ -36,7 +36,7 @@ const AddNewEmployee = () => {
     const [role, setRole] = useState('');
     const [image, setImage] = useState({});
 
-    const [file, setfile] = useState('');
+    //const [file, setfile] = useState('');
 
     const onSetDate = (event) => {
       setDate(new Date(event.target.value))
@@ -54,40 +54,40 @@ const AddNewEmployee = () => {
               data: formData,
               headers: { "Content-Type": "multipart/form-data" },
             });
-            console.log(response.data);
-            setfile(response.data.filename);
+            console.log(response.data.filename);
+            
+            try{
+                const res = await axios.post('http://localhost:8080/insertEmployee', {
+                    'fname':fname,
+                    'lname':lname,
+                    'Address':address,
+                    'Email':email,
+                    'Gender':gender,
+                    'DOB': date,
+                    'BankRecive' : bankreceive,
+                    'AccountNo' : accountno,
+                    'Edulevel' :edulevel,
+                    'Institution' : institution,
+                    'Major': major,
+                    'YearGrads' : yeargrads,
+                    'GPAX' : gpax,
+                    'Password' : password,
+                    'DprtID' : department,
+                    'RoleID' : role,  
+                    'Image' : response.data.filename
+                });
+                console.log("Add New Employee",res);
+            }
+            catch(err){
+                console.log("err:",err);
+            }
+            alert('Successfully Added');
           } catch(error) {
             console.log("err on upload photo",error);
           }
 
 
 
-        try{
-            const res = await axios.post('http://localhost:8080/insertEmployee', {
-                'fname':fname,
-                'lname':lname,
-                'Address':address,
-                'Email':email,
-                'Gender':gender,
-                'DOB': date,
-                'BankRecive' : bankreceive,
-                'AccountNo' : accountno,
-                'Edulevel' :edulevel,
-                'Institution' : institution,
-                'Major': major,
-                'YearGrads' : yeargrads,
-                'GPAX' : gpax,
-                'Password' : password,
-                'DprtID' : department,
-                'RoleID' : role,  
-                'Image' : file
-            });
-            console.log("Add New Employee",res);
-        }
-        catch(err){
-            console.log("err:",err);
-        }
-        alert('Successfully Added');
     }
     return (
     <div>
@@ -176,7 +176,7 @@ const AddNewEmployee = () => {
 
                         <Form.Group as={Col} controlId="formAccountNo">
                         <Form.Label>Account No.</Form.Label>
-                        <Form.Control type="number" placeholder="Enter OT Rate" defaultValue = {accountno || ""}
+                        <Form.Control type="number" placeholder="Enter Account No." defaultValue = {accountno || ""}
                             onChange = {e => setAccountNo(e.target.value)}
                         />
                         </Form.Group>

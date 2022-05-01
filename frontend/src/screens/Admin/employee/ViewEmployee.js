@@ -71,8 +71,8 @@ const ViewEmployee = () => {
   const [ EmployeeInfo,setEmployeeInfo ] = useState({});
   const [ EmployeeTask, setEmployeeTask ] = useState([]);
   const [ EmployeeAttendance, setEmployeeAttendance ] = useState({});
-  const [ EmployeePayment, setEmployeePayment] = useState({});
-  const [ LastAttendance, setLastAttendance] = useState([]);
+  const [ EmployeePayment, setEmployeePayment ] = useState({});
+  const [ LastAttendance, setLastAttendance ] = useState([]);
 
   const { id } = useParams();
 
@@ -147,6 +147,14 @@ const ViewEmployee = () => {
                     <p><Moment format="YYYY-MM-DD">{EmployeeInfo.RecruitDate}</Moment></p>
                   </div>
                 </div>
+                <div className='ViewEmployee-WorkStatus'>
+                  <div className='ViewEmployee-left-content'>
+                    <p>Status</p>
+                  </div>
+                  <div className='ViewEmployee-right-content'>
+                    <p>{EmployeeInfo.WorkStatus === 'E' ? "Employed" : EmployeeInfo.WorkStatus === 'S' ? "Suspended" : "Quit"}</p>
+                  </div>
+                </div>
               </div>
               <Button variant="success" onClick = {() => navigate(`/employee/${id}/edit`)}>EDIT</Button>
               <Button variant="success" onClick = {() => navigate(`/viewemployee/${id}/moreinfo`)}>MORE INFO</Button>
@@ -198,11 +206,6 @@ const ViewEmployee = () => {
             </div>
           </div>
           <div className = "Viewemployee-bottom-right">
-            <h5>PAYMENT</h5>
-            <div className = "Viewemployee-bottom-right-payment">
-              <PaymentRow text = 'January 2022 Invoice' value ={25000}/>
-              <PaymentRow text = 'February 2022 Invoice' value = {23000}/>
-            </div>
             <div className="Viewemployee-thismonth">
               <h5>THIS MONTH</h5>
               <div className="Viewemployee-incomededuct">

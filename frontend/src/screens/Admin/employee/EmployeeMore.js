@@ -112,6 +112,14 @@ const EmployeeMore = () => {
                         <p>{EmployeeInfo.BankRecive}, {EmployeeInfo.AccountNo}</p>
                       </div>
                     </div>
+                    <div className='EmployeeMore-WorkStatus'>
+                      <div className='EmployeeMore-left-content'>
+                        <p>Status</p>
+                      </div>
+                      <div className='EmployeeMore-right-content'>
+                        <p>{EmployeeInfo.WorkStatus === 'E' ? "Employed" : EmployeeInfo.WorkStatus === 'S' ? "Suspended" : "Quit"}</p>
+                      </div>
+                    </div>
                   </div>
                   <div className='EmployeeMore-button'>
                     <Button variant="success" onClick = {() => navigate(`/employee/${EmployeeInfo.EmployeeID}/edit`)}>EDIT</Button>

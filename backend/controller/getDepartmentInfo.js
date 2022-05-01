@@ -15,6 +15,7 @@ const getAllDepartment = (req, res) => {
                             FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
                                 p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID
+                            WHERE e.WorkStatus != 'Q'
                             GROUP BY d.DprtID`, 
             (err, result) => {
             connection.release();
@@ -62,7 +63,7 @@ const DepartmentMember = (req, res) => {
                                 p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID 
                             INNER JOIN role r ON p.RoleID = r.RoleID
-                            WHERE d.DprtID = ?`,
+                            WHERE d.DprtID = ? AND e.WorkStatus != 'Q'`,
         [req.params.id], (err, result) => {
             connection.release();
             if (err) {
@@ -88,7 +89,7 @@ const DepartmentHead = (req, res) => {
                                 p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID 
                             INNER JOIN role r ON p.RoleID = r.RoleID
-                            WHERE d.DprtID = ? AND e.EmployeeID = d.HeadDeptID`,
+                            WHERE d.DprtID = ? AND e.WorkStatus != 'Q' AND e.EmployeeID = d.HeadDeptID`,
         [req.params.id], (err, result) => {
             connection.release();
             if (err) {

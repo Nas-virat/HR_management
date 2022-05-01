@@ -9,11 +9,12 @@ const getAllEmployee = (req, res) => {
             res.status(500).json({'error':err});
             return;
         }
-        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+        connection.query(`SELECT e.EmployeeID, e.fname, e.lname ,e.Image, r.RoleName, d.DprtName
                             FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
                                 p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID 
                             INNER JOIN role r ON p.RoleID = r.RoleID
+                            WHERE e.WorkStatus != 'Q'
                             ORDER BY e.EmployeeID ASC`, 
             (err, result) => {
             connection.release();
@@ -148,6 +149,7 @@ const updateEmployee = (req,res) =>{
         const AccountNo = req.body.AccountNo;
         const BankRecive = req.body.BankRecive;
         const Password = req.body.Password;
+        const workstatus = req.body.WorkStatus;
 
         connection.query(
             `UPDATE employee SET fname = ?, 
@@ -156,9 +158,10 @@ const updateEmployee = (req,res) =>{
                                  Email = ?,
                                  AccountNo = ?,
                                  BankRecive = ?,
-                                 Password = ?
+                                 Password = ?,
+                                 WorkStatus = ?
                 WHERE EmployeeID = ?` ,
-        [fname,lname,address,email,AccountNo,BankRecive,Password,req.params.id]
+        [fname,lname,address,email,AccountNo,BankRecive,Password, workstatus,req.params.id]
         , (err, result) => {
              connection.release();
              if (err) {

@@ -59,7 +59,7 @@ const Home = () => {
                     <div className='dashboard-upper-container'> 
                         <Homecard color='#339331' text='Total Employee' value={HeadInformation.TotalEmployee}/> 
                         <Homecard color='#D9D22E' text='Total Department' value={HeadInformation.TotalDepartment}/>
-                        <Homecard color='#E74242' text='Total Task' value = {HeadInformation.TotalTask}/>
+                        <Homecard color='#E74242' text='Total Active Task' value = {HeadInformation.TotalTask}/>
                     </div>
                 </div>
                 <h5>INFORMATION Top Employee Late (Times)</h5>

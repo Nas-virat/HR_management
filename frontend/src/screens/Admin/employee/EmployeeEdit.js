@@ -25,6 +25,8 @@ const EmployeeEdit = () => {
 
     const [password, setPassword] = useState('');
 
+    const [status, setStatus] = useState('');
+
     const { id } = useParams();
 
     useEffect(() => {
@@ -39,6 +41,7 @@ const EmployeeEdit = () => {
                     setBankreceive(res.data[0].BankRecive);
                     setAccountNo(res.data[0].AccountNo);
                     setPassword(res.data[0].Password);
+                    setStatus(res.data[0].WorkStatus);
                 }
             } catch (error) {
                 console.log(error);
@@ -56,7 +59,8 @@ const EmployeeEdit = () => {
             'Email':email,
             'BankRecive' : bankreceive,
             'AccountNo' : accountno,
-            'Password' : password  
+            'Password' : password,
+            'WorkStatus' : status  
         });
         try{
             const res = await axios.put(`http://localhost:8080/updateEmployee/${id}`, {
@@ -67,6 +71,7 @@ const EmployeeEdit = () => {
                 'BankRecive' : bankreceive,
                 'AccountNo' : accountno,
                 'Password' : password,
+                'WorkStatus' : status
             });
             console.log("Update New Employee",res);
         }
@@ -140,6 +145,40 @@ const EmployeeEdit = () => {
                         <Form.Control className = "inputform" type="password" placeholder="Enter Password" defaultValue={password || ""} 
                             onChange= {e=> setPassword(e.target.value)}/>
                     </Form.Group>
+
+                    <Form.Label>Work Status</Form.Label>
+                    <div key={`inline-radio`} className="mb-3">
+                        <Form.Check
+                          inline
+                          label="Employed"
+                          name="status"
+                          type= 'radio'
+                          id= 'inline-radio-employed'
+                          checked = {status === 'E'}
+                          onChange = {e => setStatus('E')}
+                        />
+
+                        <Form.Check
+                          inline
+                          label="Suspended"
+                          name="status"
+                          type= 'radio'
+                          id= 'inline-radio-suspended'
+                          checked = {status === 'S'}
+                          onChange = {e => setStatus('S')}
+                        />
+
+                        <Form.Check
+                          inline
+                          label="Quit"
+                          name="status"
+                          type= 'radio'
+                          id= 'inline-radio-quit'
+                          checked = {status === 'Q'}
+                          onChange = {e => setStatus('Q')}
+                        />
+
+                    </div>
 
                     <Form.Group controlId="formPictureFile" className="mb-3">
                       <Form.Label>Profile Picture</Form.Label>

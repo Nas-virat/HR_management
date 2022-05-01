@@ -13,6 +13,8 @@ const getAllTaskInfo = (req, res) => {
         }
         connection.query(`SELECT t.taskID, t.taskdesc, t.SupervisorID, t.status, COUNT(*) AS TotalMembers 
                             FROM task t INNER JOIN employeeontask et ON t.TaskID = et.TaskID
+                            INNER JOIN employee e ON et.EmployeeID = e.EmployeeID
+                            WHERE e.WorkStatus != 'Q'
                             GROUP BY t.TaskID ORDER BY t.TaskID DESC`, 
             (err, result) => {
             connection.release();
@@ -136,7 +138,7 @@ const TaskMember = (req, res) => {
                           INNER JOIN department d ON p.DprtID = d.DprtID 
                           INNER JOIN role r ON p.RoleID = r.RoleID
                           INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
-                          WHERE et.taskID = ?`,
+                          WHERE et.taskID = ? AND e.WorkStatus != 'Q'`,
         [req.params.id], (err, result) => {
             connection.release();
             if (err) {
@@ -165,7 +167,7 @@ const TaskSupervisor = (req, res) => {
                             INNER JOIN role r ON p.RoleID = r.RoleID
                             INNER JOIN employeeontask et ON e.EmployeeID = et.EmployeeID
                             INNER JOIN task t ON et.TaskID = t.TaskID
-                            WHERE et.taskID = ? AND e.EmployeeID = t.SupervisorID`,
+                            WHERE et.taskID = ? AND e.WorkStatus != 'Q' AND e.EmployeeID = t.SupervisorID`,
         [req.params.id], (err, result) => {
             connection.release();
             if (err) {
