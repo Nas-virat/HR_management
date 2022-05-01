@@ -78,7 +78,7 @@ app.get("/", (req, res) => {
 
 
 //employee
-app.get('/employee',getAllEmployee);
+app.get('/employee', getAllEmployee);
 app.get('/employee/:id', getEmployeeByID);
 app.post('/insertEmployee', insertEmployee);
 app.put('/updateemployee/:id', updateEmployee);

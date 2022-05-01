@@ -10,6 +10,8 @@ import Logo from '../../assets/img/HRMS.png'
 
 import { Form, Button } from 'react-bootstrap'
 
+
+
 const Login = () => {
     const [employeeid, setEmployeeid] = useState('');
     const [password, setPassword] = useState('');
@@ -27,9 +29,11 @@ const Login = () => {
             console.log(res);
             console.log(res.data);
             if(res.data){
+                console.log("TOKEN", res.data.token);
+                localStorage.setItem('token', res.data.token);
                 alert('Login Successful');
                 navigate('/home');
-                localStorage.setItem('token', res.data.token);
+                
             }
         }
         )
@@ -39,6 +43,12 @@ const Login = () => {
         });  
     }
 
+    const handleKeypress = (e) => {
+        if (e.key === "Enter") {
+          console.log('Enter pressed');
+        }
+      };
+      
     return( 
         <div className="login-all-container">
             <div className="login-container">
@@ -47,13 +57,13 @@ const Login = () => {
                     <Form.Group className="mb-4" controlId="loginUser">
                         <Form.Label>Employee ID</Form.Label>
                         <Form.Control type="text" placeholder="Enter Employee ID" defaultValue={ employeeid || ""} 
-                            onChange = {e => {setEmployeeid(e.target.value)}}/>
+                            onChange = {e => {setEmployeeid(e.target.value)}} onKeyPress={handleKeypress} />
                     </Form.Group>
 
                     <Form.Group className="mb-4" controlId="loginPass">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter password" defaultValue={ password || ""}
-                            onChange={e => {setPassword(e.target.value)}}/>
+                            onChange={e => {setPassword(e.target.value)}} onKeyPress={handleKeypress} />
                     </Form.Group>
 
                     <Button variant="success" type="submit" onClick = {handleSubmit}>

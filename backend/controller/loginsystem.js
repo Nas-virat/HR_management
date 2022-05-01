@@ -48,6 +48,7 @@ const login = async (req, res) => {
             if (result) {
               // Create JWT token
               const token = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN, { expiresIn: '2h' });
+              
               res.status(200).json({ token });
               console.log("login success");
             } else {
