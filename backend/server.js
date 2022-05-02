@@ -52,7 +52,12 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+var corsOptions = {
+  origin: "*",
+  credentials: false,
+  Headers: "x-access-token"
+};
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
