@@ -48,7 +48,12 @@ const AllEmployee = () => {
       console.log("All Employee",res.data);
       setInfo(res.data);
     }
+    if(localStorage.getItem('token')){
     fetchData();
+    }
+    else{
+      navigate('/login');
+    }
   },[]);
 
   return (
