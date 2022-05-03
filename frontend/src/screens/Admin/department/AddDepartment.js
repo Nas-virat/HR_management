@@ -14,7 +14,6 @@ import Sidebar from '../../../components/Sidebar';
 
 const AddDepartment = () => {
 
-    const [departmentid, setDepartmentId] = useState('');
     const [departmentname, setDepartmentName] = useState('');
     const [departmentdescription, setDepartmentDescription] = useState('');
     const [headid, setHeadId] = useState('');
@@ -22,12 +21,12 @@ const AddDepartment = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log({
-                    'DepartmentId':departmentid,
+
                     'DepartmentName':departmentname,
                     'DepartmentDescription':departmentdescription,
                     'HeadId':headid
                     });
-        alert(`DepartmentId : ${departmentid}\nDepartmentName : ${departmentname}\nDepartmentDescription : ${departmentdescription}\nHeadId : ${headid}`);
+        alert(`DepartmentName : ${departmentname}\nDepartmentDescription : ${departmentdescription}\nHeadId : ${headid}`);
     }
 
 
@@ -39,16 +38,9 @@ const AddDepartment = () => {
             <h5>ADD DEPARTMENT</h5>
             <div className='form'>
                 <Form> 
-                    <Form.Group className="mb-3 " controlId="formDepartmentID">
-                        <Form.Label>Department ID</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Department ID" defaultValue = {departmentid || ""}
-                            onChange = {e => setDepartmentId(e.target.value)}
-                        />
-                    </Form.Group>
-
                     <Form.Group className="mb-3 " controlId="formDepartmentName">
                         <Form.Label>Department Name</Form.Label>
-                        <Form.Control className = "inputform" type="text" placeholder="Enter Head of Department ID" defaultValue = {departmentname || ""}
+                        <Form.Control className = "inputform" type="text" placeholder="Enter Department Name" defaultValue = {departmentname || ""}
                             onChange = {e => setDepartmentName(e.target.value)}
                         />
                     </Form.Group>
