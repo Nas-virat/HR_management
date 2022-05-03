@@ -8,6 +8,8 @@ import axios from "axios";
 
 import moment from 'moment';
 
+import { useNavigate } from 'react-router-dom';
+
 import '../Forms.css';
 
 //import components
@@ -39,6 +41,8 @@ const AddNewEmployee = () => {
     const [image, setImage] = useState({});
 
     //const [file, setfile] = useState('');
+
+    const navigate = useNavigate();
 
     const onSetDate = (event) => {
       setDate(new Date(event.target.value))
@@ -84,6 +88,7 @@ const AddNewEmployee = () => {
                 console.log("err:",err);
             }
             alert('Successfully Added');
+            navigate('/employee');
           } catch(error) {
             console.log("err on upload photo",error);
           }

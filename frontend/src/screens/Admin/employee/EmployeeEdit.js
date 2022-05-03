@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import '../Forms.css';
 
@@ -29,6 +29,7 @@ const EmployeeEdit = () => {
     const [status, setStatus] = useState('');
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -77,12 +78,17 @@ const EmployeeEdit = () => {
                     'Image' : response.data.filename
                 });
                 console.log("Update New Employee",res.data);
+                alert("Update Employee Success");
+                navigate(`/viewemployee/${id}`);
+                
             }
             catch(err){
                 console.log("err:",err);
+                navigate('/login');
             }
         } catch(err){
             console.log("err:",err);
+            navigate('/login');
         }
 
     }

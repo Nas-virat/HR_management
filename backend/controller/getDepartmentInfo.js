@@ -75,6 +75,51 @@ const DepartmentMember = (req, res) => {
    });
 };
 
+
+const AddDepartment = (req,res) =>{
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+
+        const {DprtName, DprtDesc, HeadDeptID} = req.body;
+        
+        connection.query(`INSERT INTO department (DprtName, DprtDesc, HeadDeptID) VALUES (?,?,?)`,
+        [DprtName, DprtDesc, HeadDeptID], (err, result) => {
+            //connection.release();
+            if (err) {
+                console.log(err);
+            }
+            //res.send(result);
+        });
+        connection.query(`SELECT r.RoleID FROM role r 
+                            RIGHT JOIN promotionhistory p ON p.RoleID = r.RoleID WHERE p.EmployeeID = ? AND
+                            p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = ?)`,
+        [HeadDeptID, HeadDeptID], (err, result) => {
+            console.log(result[0].RoleID);
+
+            const RoleID = result[0].RoleID;
+            connection.query(`INSERT INTO promotionhistory (EmployeeID, DprtID,RoleID,ApproveBy, ExtraSalary) 
+                                VALUES (?, 
+                                (SELECT MAX(DprtID) FROM department),
+                                ?,
+                                1001, 0)`,
+            [HeadDeptID,RoleID], (err, result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log(`ADD DEPARTMENT`);
+        });
+        
+   });
+}
+
+
 const DepartmentHead = (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -86,10 +131,10 @@ const DepartmentHead = (req, res) => {
 
         connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
                             FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
-                                p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
+                            p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID 
                             INNER JOIN role r ON p.RoleID = r.RoleID
-                            WHERE d.DprtID = ? AND e.WorkStatus != 'Q' AND e.EmployeeID = d.HeadDeptID`,
+                            WHERE e.EmployeeID = (SELECT HeadDeptID FROM department WHERE DprtID = ?) AND e.WorkStatus != 'Q'`,
         [req.params.id], (err, result) => {
             connection.release();
             if (err) {
@@ -101,4 +146,4 @@ const DepartmentHead = (req, res) => {
    });
 };
 
-module.exports = {getAllDepartment, getDepartmentInfoByID, DepartmentMember, DepartmentHead};
+module.exports = {getAllDepartment, getDepartmentInfoByID, DepartmentMember, DepartmentHead, AddDepartment};

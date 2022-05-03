@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
 
 import '../Forms.css';
 
@@ -18,15 +21,21 @@ const AddDepartment = () => {
     const [departmentdescription, setDepartmentDescription] = useState('');
     const [headid, setHeadId] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({
+    const navigate = useNavigate();
 
-                    'DepartmentName':departmentname,
-                    'DepartmentDescription':departmentdescription,
-                    'HeadId':headid
-                    });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8080/adddepartment',
+            {
+                'DprtName':departmentname,
+                'DprtDesc':departmentdescription,
+                'HeadDeptID':headid
+            })
+            .then(res => {console.log("add department")})
+            .catch(err => {console.log("err",err)})
+
         alert(`DepartmentName : ${departmentname}\nDepartmentDescription : ${departmentdescription}\nHeadId : ${headid}`);
+        navigate('/department');
     }
 
 

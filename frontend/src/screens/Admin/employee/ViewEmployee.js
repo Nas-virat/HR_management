@@ -216,9 +216,10 @@ const ViewEmployee = () => {
             <div className = "Viewemployee-bottom-right-payment">
               <PaymentRow text = 'Base Salary' value = {EmployeePayment.BaseSalary}/>
               <PaymentRow text = 'Total Deduction' value = {EmployeePayment.totalDeduction * (-1)}/>
-              <PaymentRow text = 'Overtime Payment' value = {EmployeePayment.OvertimePayment}/>
+              <PaymentRow text = 'Bonus'value = {EmployeePayment.BonusAmount}/>
+              <PaymentRow text = 'Overtime Payment' value = {EmployeePayment.OTamount}/>
               <hr className="solid"></hr>
-              <PaymentRow text = 'Total Amount' value = {EmployeePayment.TotalAmount}/>
+              <PaymentRow text = 'Total Amount' value = {EmployeePayment.TotalPayment}/>
             </div>
           </div>
         </div>

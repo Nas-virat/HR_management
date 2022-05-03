@@ -12,7 +12,8 @@ const auth = require('./middleware/auth');
 const { getAllDepartment,
         getDepartmentInfoByID,
         DepartmentMember,
-        DepartmentHead } = require('./controller/getDepartmentInfo.js');
+        DepartmentHead,
+        AddDepartment } = require('./controller/getDepartmentInfo.js');
 
 
 const { getAllEmployee, 
@@ -99,6 +100,7 @@ app.get('/department', getAllDepartment);
 app.get('/department/:id', getDepartmentInfoByID);
 app.get('/departmentmember/:id',DepartmentMember);
 app.get('/departmenthead/:id',DepartmentHead);
+app.post('/adddepartment', AddDepartment);
 
 //Role
 app.post('/insertRole',insertRole);
