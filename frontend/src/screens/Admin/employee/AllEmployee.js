@@ -45,8 +45,13 @@ const AllEmployee = () => {
       .catch(err => {
       console.log(err);
       });
+      try{
       console.log("All Employee",res.data);
       setInfo(res.data);
+      }catch(err){
+      console.log(err);
+      navigate('/login');
+      }
     }
     if(localStorage.getItem('token')){
     fetchData();
