@@ -3,27 +3,36 @@ import React from 'react'
 import Navbar from '../../components/Navbar'
 import Sidebar from '../../components/Sidebar'
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import authHeader from '../../auth-header';
 
 import { Form, Button } from 'react-bootstrap'
 
 const Attendance = () => {
 
+  const navigate = useNavigate();
   const [employeeid, setEmployeeId] = useState('');
   const [Status, setStatus] = useState(''); // O,L,A
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:8080/attendance`,
-            {
-              'EmployeeID': employeeid,
-              'Status': Status
-            })
-         .then(res => console.log("insert employee attendance",res))
-         .catch(err => console.log("Error :", err))
-    
-    alert(`EmployeeId : ${employeeid}\nStatus : ${Status}\n`);
+    if(localStorage.getItem('token') === null){
+      navigate('/login');
+    }
+    else {
+      axios.post(`http://localhost:8080/attendance`,
+              {
+                'EmployeeID': employeeid,
+                'Status': Status
+              },
+              { headers: authHeader() })
+          .then(res => console.log("insert employee attendance",res))
+          .catch(err => console.log("Error :", err))
+      
+      alert(`EmployeeId : ${employeeid}\nStatus : ${Status}\n`);
+      navigate('/employee');
+    }
 }
 
   return (

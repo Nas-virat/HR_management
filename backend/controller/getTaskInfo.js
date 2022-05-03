@@ -132,7 +132,7 @@ const TaskMember = (req, res) => {
             return;
         }
 
-        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, e.Image, r.RoleName, d.DprtName
                           FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
                           p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                           INNER JOIN department d ON p.DprtID = d.DprtID 
@@ -160,7 +160,7 @@ const TaskSupervisor = (req, res) => {
             return;
         }
 
-        connection.query(`SELECT e.EmployeeID, e.fname, e.lname, r.RoleName, d.DprtName
+        connection.query(`SELECT e.EmployeeID, e.fname, e.lname,e.Image, r.RoleName, d.DprtName
                             FROM employee e INNER JOIN promotionhistory p ON e.EmployeeID = p.EmployeeID AND 
                                 p.Datetime = (SELECT MAX(Datetime) FROM promotionhistory WHERE EmployeeID = e.EmployeeID)
                             INNER JOIN department d ON p.DprtID = d.DprtID 

@@ -43,6 +43,7 @@ const EmployeeEdit = () => {
                     setBankreceive(res.data[0].BankRecive);
                     setAccountNo(res.data[0].AccountNo);
                     setStatus(res.data[0].WorkStatus);
+                    setImage(res.data[0].Image);
                 }
             } catch (error) {
                 console.log(error);
@@ -194,7 +195,7 @@ const EmployeeEdit = () => {
 
                     <Form.Group controlId="formPictureFile" className="mb-3">
                       <Form.Label>Profile Picture</Form.Label>
-                      <Form.Control className = "inputform" type="file" 
+                      <Form.Control className = "inputform" type="file"
                             onChange = {e => {
                                 console.log(e.target.files[0])
                                 setImage(e.target.files[0])}

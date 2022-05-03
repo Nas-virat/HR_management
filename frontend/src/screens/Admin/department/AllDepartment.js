@@ -11,6 +11,7 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
 import axios from 'axios';
+import authHeader from "../../../auth-header";
 
 const Header = () => {
     return(
@@ -46,15 +47,24 @@ const AllDepartment = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:8080/department')
+      const res = await axios.get('http://localhost:8080/department', { headers: authHeader() })
       .catch(err => {
       console.log(err);
       });
+      try{
       console.log("All department :",res.data);
       setDepartmentInfo(res.data);
-      //console.log("DepartmentInfo",departmentinfo);
+      }catch(err){
+        navigate('/login');
+        console.log(err);
+      }
     }
-    fetchData();
+    if(localStorage.getItem('token')){
+      fetchData();
+      }
+      else{
+        navigate('/login');
+      }
   },[]);
 
   return (

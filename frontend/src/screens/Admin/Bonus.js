@@ -1,10 +1,10 @@
 import React from 'react';
 import {useState} from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+import axios from 'axios';
 import './Forms.css';
 
 //import components
@@ -18,13 +18,25 @@ const Bonus = () => {
     const [bonus, setBonus] = useState(0);
     const [adminid, setAdminId] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({'EmployeeId' :employeeid, 
-                    'Bonus Amount':bonus, 
-                    'AdminId': adminid
-                    });
+
+        axios.post(`http://localhost:8080/bonus`, {
+            'EmployeeID': employeeid,
+            'Amount': bonus,
+            'AdminID': adminid
+        })
+        .then(res => {
+            console.log(res);
+            console.log(res.data);})
+        .catch(err => {
+            console.log(err);
+        });
+        
         alert(`EmployeeId : ${employeeid}\nBonus Amount : ${bonus}\nAdminId : ${adminid}`);
+        navigate('/employee');
     }
 
     return (

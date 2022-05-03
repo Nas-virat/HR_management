@@ -35,7 +35,7 @@ const mostLateEmployee = (req, res) => {
             return;
         }
 
-        connection.query(`SELECT a.EmployeeID, e.fname, e.lname, COUNT(*) AS TotalLate FROM attendance a 
+        connection.query(`SELECT a.EmployeeID, e.lname, e.fname, e.Image, COUNT(*) AS TotalLate FROM attendance a 
                             INNER JOIN employee e ON e.EmployeeID = a.EmployeeID 
                             WHERE a.Status = 'L'
                             GROUP BY a.EmployeeID
@@ -51,6 +51,32 @@ const mostLateEmployee = (req, res) => {
         console.log(`list of Late Employee`);
    });
 }
+
+const mostAbsentEmployee = (req, res) => { 
+    
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+
+        connection.query(`SELECT a.EmployeeID, e.lname, e.fname, e.Image, COUNT(*) AS TotalAbsent FROM attendance a 
+                            INNER JOIN employee e ON e.EmployeeID = a.EmployeeID 
+                            WHERE a.Status = 'A'
+                            GROUP BY a.EmployeeID
+                            ORDER BY TotalAbsent
+                            DESC LIMIT 8`,
+        (err, result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log(`list of Absent Employee`);
+   });
+}
     
 
-module.exports = { companyInfo,mostLateEmployee};
+module.exports = { companyInfo, mostLateEmployee, mostAbsentEmployee};

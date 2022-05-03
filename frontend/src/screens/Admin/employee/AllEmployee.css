@@ -54,6 +54,12 @@
     flex: 1;
 }
 
+.employee-ID{
+    position: relative;
+    left:70px
+}
+
+
 .employee-Name{
     position: relative;
     right:10px

@@ -1,0 +1,23 @@
+.employeerow-image {
+    width: 75px;
+}
+
+.employeerow-image > img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.employeerow-name {
+    align-self: center;
+}
+
+.employeerow-role {
+    align-self: center;
+}
+
+.employeerow-dptname {
+    align-self: center;
+}

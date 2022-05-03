@@ -45,7 +45,10 @@ const { insertDeduction } = require('./controller/deduction');
 const { getPaymentByID } = require('./controller/payment');
 
 const { companyInfo,
-        mostLateEmployee } = require('./controller/dashboard');
+        mostLateEmployee,
+        mostAbsentEmployee } = require('./controller/dashboard');
+
+const { insertBonus } = require('./controller/bonus');
 
 const { login } = require('./controller/loginsystem');
 
@@ -96,7 +99,7 @@ app.delete('/deleteemployee', deleteEmployee);
 app.get('/employeepromotion/:id', getEmployeePromotion);
 
 //Department
-app.get('/department', getAllDepartment);
+app.get('/department',auth, getAllDepartment);
 app.get('/department/:id', getDepartmentInfoByID);
 app.get('/departmentmember/:id',DepartmentMember);
 app.get('/departmenthead/:id',DepartmentHead);
@@ -106,7 +109,7 @@ app.post('/adddepartment', AddDepartment);
 app.post('/insertRole',insertRole);
 
 //Task
-app.get('/task', getAllTaskInfo);
+app.get('/task',auth,getAllTaskInfo);
 app.post('/taskadd', addNewTask);
 app.get('/task/:id',getTaskInfoByID);
 app.put('/updateTaskStatus',updateTaskStatus);
@@ -129,14 +132,17 @@ app.post('/promotion',insertPromotion);
 //deduction
 app.post('/deduction', insertDeduction)
 
+//bonus
+app.post('/bonus', insertBonus)
 
 //payment 
 app.get('/payment/:id', getPaymentByID);
 
 
 //dashboard
-app.get('/companyinfo',companyInfo);
-app.get('/mostlateemployee',mostLateEmployee);
+app.get('/companyinfo',auth,companyInfo);
+app.get('/mostlateemployee',auth,mostLateEmployee);
+app.get('/mostabsentemployee',auth, mostAbsentEmployee);
 
 
 //upload image

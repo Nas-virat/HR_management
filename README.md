@@ -8,19 +8,20 @@ HRMS by SPFNA is HR management system
 2. Backend - node, express
 3. Database - MySql XAMPP
 ## Feature 
+
 - [x] Display All Employee page
 - [x] Display All Department page
 - [x] Display All Task page 
 - [x] viewTask add member
 - [x] ViewTask Page 
 - [x] ViewDepartment Page
-- [ ] Bonus on viewEmployee (query + UI)
+- [o] Bonus on viewEmployee (query + UI)
 - [x] Add Department (Backend is not finish)
-- [ ] Edit Department
 - [ ] Add every auth page
+- [ ] ERROR ON ViewEmployee?
 - [x] Employeemore Page
 - [x] Dashboard
-- [ ] Payment Status (WTF)
+- [ ] Payment Status (Analysis Report WTF)
 - [x] Hash in EmployeeEdit
 - [x] Employee Work Status Apply (employee leave the company)
 - [x] EmployeeEdit Page

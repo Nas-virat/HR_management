@@ -115,7 +115,7 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
           <div className ="Viewemployee-top-left">
             <div className = "viewemployee-img">
-              <img src = { `http://localhost:8080/image/${EmployeeInfo.Image}`} alt = "Employee-img"/>
+              <img src = {EmployeeInfo.Image === null ? Logo :`http://localhost:8080/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
               <p>{EmployeeInfo.EmployeeID}</p>
             </div>
             <div className ="Viewemployee-top-left-content">
@@ -209,14 +209,14 @@ const ViewEmployee = () => {
             <div className="Viewemployee-thismonth">
               <h5>THIS MONTH</h5>
               <div className="Viewemployee-incomededuct">
-                <Homecard color='#339331' text='Income' value = {EmployeePayment.BaseSalary + EmployeePayment.OvertimePayment} />
+                <Homecard color='#339331' text='Income' value = {EmployeePayment.BaseSalary + EmployeePayment.OTamount + EmployeePayment.BonusAmount} />
                 <Homecard color='#E74242' text='Deduction' value = {EmployeePayment.totalDeduction} />
               </div>
             </div>
             <div className = "Viewemployee-bottom-right-payment">
               <PaymentRow text = 'Base Salary' value = {EmployeePayment.BaseSalary}/>
               <PaymentRow text = 'Total Deduction' value = {EmployeePayment.totalDeduction * (-1)}/>
-              <PaymentRow text = 'Bonus'value = {EmployeePayment.BonusAmount}/>
+              <PaymentRow text = 'Bonus' value = {EmployeePayment.BonusAmount}/>
               <PaymentRow text = 'Overtime Payment' value = {EmployeePayment.OTamount}/>
               <hr className="solid"></hr>
               <PaymentRow text = 'Total Amount' value = {EmployeePayment.TotalPayment}/>

@@ -4,15 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
+import Logo from '../assets/img/employee1.jpg';
+
+import './EmployeeRow.css';
 
 const EmployeeRow = ({info}) =>{
     let navigate = useNavigate();
     return(
       <div className = "employee-content">
-        <div>{info.EmployeeID}</div>
-        <div>{info.fname} {info.lname}</div>
-        <div>{info.RoleName}</div>
-        <div>{info.DprtName}</div>
+        <div className = "employeerow-image"><img src = {info.Image === null ? Logo :`http://localhost:8080/image/${info.Image}` } alt = "Employee-img"/>{info.EmployeeID}</div>
+        <div className = "employeerow-name">{info.fname} {info.lname}</div>
+        <div className = "employeerow-role">{info.RoleName}</div>
+        <div className = "employeerow-dptname">{info.DprtName}</div>
         <Button variant="success" onClick={() => navigate(`/viewemployee/${info.EmployeeID}`)}>Go</Button>
       </div>
       )

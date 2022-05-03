@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 import './Forms.css';
@@ -14,6 +14,7 @@ import Sidebar from '../../components/Sidebar';
 
 const Deduction = () => {
 
+    const navigate = useNavigate();
     const [employeeid, setEmployeeId] = useState('');
     const [deductiondescription, setDeductionDescription] = useState('');
     const [deductiontype, setDeductionType] = useState('');
@@ -39,14 +40,10 @@ const Deduction = () => {
                 console.log(err);
         });
    
-        console.log({
-                    'EmployeeId':employeeid,
-                    'Deduction Description':deductiondescription,
-                    'Deduction Type':deductiontype,
-                    'Amount':amount,
-                    'AdminId': adminid
-                    });
-        alert(`EmployeeId : ${employeeid}\nDeduction Description : ${deductiondescription}\nDeduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
+        alert(`EmployeeId : ${employeeid}\nDeduction Description : ${deductiondescription}\n
+        Deduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
+
+        navigate('/employee');
     }
 
     return (

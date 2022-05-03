@@ -71,8 +71,8 @@ const EmployeeMore = () => {
       <div className = "EmployeeMore-all-container">
         <div className ="EmployeeMore-top">
                 <div className = "EmployeeMore-img">
-                    <img src={Logo} alt='employee1'></img>
-                    <p>{EmployeeInfo.EmployeeID}</p>
+                  <img src = {EmployeeInfo.Image === null ? Logo :`http://localhost:8080/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
+                  <p>{EmployeeInfo.EmployeeID}</p>
                 </div>
                 <div className ="EmployeeMore-top-content">
                   <h1>{EmployeeInfo.fname} {EmployeeInfo.lname}</h1>

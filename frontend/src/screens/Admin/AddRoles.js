@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useState } from 'react';
 
+import {useNavigate} from 'react-router-dom';
+
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,10 +21,10 @@ const AddRoles = () => {
     const [otrate,setOtrate] = useState(0);
     const [roledescription, setRoleDescription] = useState('');
     const [salary, setSalary] = useState(0);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(`RoleName : ${rolename}\nOTrate : ${otrate}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
         const res = await axios.post('http://localhost:8080/insertRole',{
             'RoleName':rolename,
             'OTRate':otrate,
@@ -30,6 +32,8 @@ const AddRoles = () => {
             'BaseSalary':salary
             }).catch((err) => console.log(err));
         console.log("POST data",res);
+        alert(`RoleName : ${rolename}\nOTrate : ${otrate}\nRoleDescription : ${roledescription}\nSalary : ${salary}`);
+        navigate('/employee');   
     }
 
 

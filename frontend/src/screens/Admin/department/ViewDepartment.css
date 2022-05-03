@@ -33,6 +33,11 @@
     flex: 1;
 }
 
+.ViewDepartment-header-content-ID {
+    position: relative;
+    left: 70px;
+}
+
 .ViewDepartment-header-content-Name {
     position: relative;
     right: 15px;

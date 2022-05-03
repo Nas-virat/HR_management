@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
+
 import axios from 'axios';
+import authHeader from '../../../auth-header';
 
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
@@ -37,14 +39,19 @@ const Alltask = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://localhost:8080/task')
+            const res = await axios.get('http://localhost:8080/task', { headers: authHeader() })
             .catch(err => {
             console.log(err);
             });
             console.log("res data",res.data);
             setTaskInfo(res.data);
         }
+        if(localStorage.getItem('token') === null){
+            navigate('/login');
+        }
+        else{
         fetchData();
+        }
     },[]);
 
     return (

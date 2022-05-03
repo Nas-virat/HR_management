@@ -33,6 +33,11 @@
     flex: 1;
 }
 
+.task-header-content-ID {
+    position: relative;
+    left: 70px;
+}
+
 .task-header-content-Name{
     position: relative;
     right: 15px;
