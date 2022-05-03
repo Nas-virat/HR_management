@@ -24,6 +24,7 @@ const EmployeeEdit = () => {
     const [accountno, setAccountNo] = useState('');
 
     const [password, setPassword] = useState('');
+    const [image, setImage] = useState({});
 
     const [status, setStatus] = useState('');
 
@@ -40,7 +41,6 @@ const EmployeeEdit = () => {
                     setEmail(res.data[0].Email);
                     setBankreceive(res.data[0].BankRecive);
                     setAccountNo(res.data[0].AccountNo);
-                    setPassword(res.data[0].Password);
                     setStatus(res.data[0].WorkStatus);
                 }
             } catch (error) {
@@ -52,30 +52,36 @@ const EmployeeEdit = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
-            'fname':fname,
-            'lname':lname,
-            'Address':address,
-            'Email':email,
-            'BankRecive' : bankreceive,
-            'AccountNo' : accountno,
-            'Password' : password,
-            'WorkStatus' : status  
-        });
-        try{
-            const res = await axios.put(`http://localhost:8080/updateEmployee/${id}`, {
-                'fname':fname,
-                'lname':lname,
-                'Address':address,
-                'Email':email,
-                'BankRecive' : bankreceive,
-                'AccountNo' : accountno,
-                'Password' : password,
-                'WorkStatus' : status
+        const formData = new FormData();
+        formData.append('image',image);
+
+        try {
+            const response = await axios({
+              method: "post",
+              url: "http://localhost:8080/upload",
+              data: formData,
+              headers: { "Content-Type": "multipart/form-data" },
             });
-            console.log("Update New Employee",res);
-        }
-        catch(err){
+            console.log(response);
+            console.log("\nfile upload is ",response.data.filename);
+            try{
+                const res = await axios.put(`http://localhost:8080/updateEmployee/${id}`, {
+                    'fname':fname,
+                    'lname':lname,
+                    'Address':address,
+                    'Email':email,
+                    'BankRecive' : bankreceive,
+                    'AccountNo' : accountno,
+                    'Password' : password,
+                    'WorkStatus' : status,
+                    'Image' : response.data.filename
+                });
+                console.log("Update New Employee",res.data);
+            }
+            catch(err){
+                console.log("err:",err);
+            }
+        } catch(err){
             console.log("err:",err);
         }
 
@@ -182,7 +188,11 @@ const EmployeeEdit = () => {
 
                     <Form.Group controlId="formPictureFile" className="mb-3">
                       <Form.Label>Profile Picture</Form.Label>
-                      <Form.Control className = "inputform" type="file" />
+                      <Form.Control className = "inputform" type="file" 
+                            onChange = {e => {
+                                console.log(e.target.files[0])
+                                setImage(e.target.files[0])}
+                                }/>
                     </Form.Group>
 
                     <Button variant="success" type="submit" onClick={handleSubmit}>

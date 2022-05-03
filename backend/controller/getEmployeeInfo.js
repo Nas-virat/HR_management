@@ -153,6 +153,8 @@ const updateEmployee = (req,res) =>{
         const AccountNo = req.body.AccountNo;
         const BankRecive = req.body.BankRecive;
         const Password = req.body.Password;
+        const PasswordCrypt =  bcrypt.hashSync(Password,5);
+        const image = req.body.Image;
         const workstatus = req.body.WorkStatus;
 
         connection.query(
@@ -163,9 +165,10 @@ const updateEmployee = (req,res) =>{
                                  AccountNo = ?,
                                  BankRecive = ?,
                                  Password = ?,
-                                 WorkStatus = ?
+                                 WorkStatus = ?,
+                                 Image = ?
                 WHERE EmployeeID = ?` ,
-        [fname,lname,address,email,AccountNo,BankRecive,Password, workstatus, req.params.id]
+        [fname,lname,address,email,AccountNo,BankRecive,PasswordCrypt, workstatus, image, req.params.id]
         , (err, result) => {
              connection.release();
              if (err) {
