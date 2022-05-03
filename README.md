@@ -19,6 +19,7 @@ HRMS by SPFNA is HR management system
 - [x] Employeemore Page
 - [x] Dashboard
 - [ ] Payment Status (WTF)
+- [ ] Hash in EmployeeEdit
 - [x] Employee Work Status Apply (employee leave the company)
 - [x] EmployeeEdit Page
 - [x] Deduction Page
