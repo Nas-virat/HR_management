@@ -115,7 +115,7 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
           <div className ="Viewemployee-top-left">
             <div className = "viewemployee-img">
-              <img src = {Logo} alt = "Employee-img"/>
+              <img src = { `http://localhost:8080/image/${EmployeeInfo.Image}`} alt = "Employee-img"/>
               <p>{EmployeeInfo.EmployeeID}</p>
             </div>
             <div className ="Viewemployee-top-left-content">
