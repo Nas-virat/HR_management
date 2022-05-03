@@ -46,7 +46,7 @@ const login = async (req, res) => {
               res.status(500).json({'error password vailated':err});
               return;
             }
-            console.log("password is correct");
+            console.log("password is",result);
             if (result) {
               // Create JWT token
               const token = jwt.sign({ id: user.EmployeeID }, process.env.ACCESS_TOKEN, { expiresIn: '2h' });
@@ -60,7 +60,7 @@ const login = async (req, res) => {
               res.status(200).json({ "token" : token });
               console.log("login success");
             } else {
-              res.status(401).send("Invalid password");
+              res.json({"token" :"invalid"});
             }
           });
         })

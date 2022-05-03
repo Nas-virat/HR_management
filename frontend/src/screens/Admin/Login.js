@@ -17,10 +17,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+
+    localStorage.clear();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        console.log(employeeid, password);
         axios.post(`http://localhost:8080/login`, {
             'employeeID': employeeid,
             'password': password
@@ -28,9 +30,14 @@ const Login = () => {
         .then(res => {
             if(res.data){
                 console.log("TOKEN", res.data.token);
+                if(res.data.token === "invalid"){
+                    alert("Invaild ID or Password");
+                }
+                else{
                 localStorage.setItem('token', res.data.token);
                 alert('Login Successful');
                 navigate('/home');
+                }
             }
         })
         .catch(err => {

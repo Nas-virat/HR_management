@@ -60,10 +60,9 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname,"frontend","public")))
-app.use('/uploads', express.static('uploads'));
+app.use("/image",express.static(path.join(__dirname, 'uploads')));
 
 
 const storage = multer.diskStorage({

@@ -31,6 +31,7 @@ const Sidebar = () => {
                 <SectionLink name="Deduction" to = '/deduction'/>
                 <SectionLink name="Add Role" to = '/addroles'/>
                 <SectionLink name="OT" to = '/OTtask'/>
+                <SectionLink name="logout" to = '/login'/>
             </div>
         </div>
     )
