@@ -7,7 +7,7 @@ import Sidebar from '../../components/Sidebar';
 import Homecard from '../../components/Homecard';
 
 import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import { FaBeer } from 'react-icons/fa';
 import Logo from '../../assets/img/employee1.jpg';
@@ -49,10 +49,8 @@ const Home = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('token') === null){
-            navigate('/login');
-        }   
-        else{
+
+        const fetchData = () => {
             axios.get('http://localhost:8080/companyinfo', { headers: authHeader() })
             .catch(err => console.log("err",err))
             .then(res => {
@@ -71,7 +69,14 @@ const Home = () => {
                 console.log("EmployeeAbsent",res.data)
                 setEmployeeAbsent(res.data)
             })
+        }    
+        if(localStorage.getItem("token")){
+            fetchData();
         }
+        else{
+            navigate("/login");
+        }
+        
     },[]);
 
     return(

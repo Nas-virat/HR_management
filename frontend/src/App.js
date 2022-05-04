@@ -21,6 +21,8 @@ import Deduction from './screens/Admin/Deduction';
 import EmployeeMore from './screens/Admin/employee/EmployeeMore';
 import EmployeeEdit from './screens/Admin/employee/EmployeeEdit';
 import OTtask from './screens/Admin/task/OTtask';
+import Paymentstatus from './screens/Admin/Paymentstatus';
+import AllRole from './screens/Admin/Allrole';
 
 import './App.css';
 import Login from './screens/Admin/Login';
@@ -31,7 +33,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Login />} />
         <Route path='/login' element={<Login />} />
         {/* Home = dashboard */}
         <Route exact path='/home' element={<Home />} /> 
@@ -54,10 +56,12 @@ const App = () => {
         <Route exact path='/viewemployee/:id/moreinfo' element={<EmployeeMore/>} />
         <Route exact path='/employee/:id/edit' element={<EmployeeEdit/>} />
 
-        
-
+        {/*Payment Status*/}
+        <Route exact path='/paymentstatus' element={<Paymentstatus />} />
+    
         {/* Role */}
-        <Route exact path='/addroles' element={<AddRoles />} />
+        <Route exact path='/role' element={<AllRole />} />
+        <Route exact path='/role/add' element={<AddRoles />} />
 
         <Route exact path='/attendance' element={<Attendance />} />
         <Route exact path='/bonus' element={<Bonus />} /> 

@@ -23,7 +23,8 @@ const { getAllEmployee,
         deleteEmployee,
         getEmployeePromotion } = require('./controller/getEmployeeInfo');
 
-const { insertRole } = require('./controller/getRoleInfo');
+const { insertRole,
+        AllRole } = require('./controller/getRoleInfo');
 
 const { getAllTaskInfo,
         getTaskInfoByID, 
@@ -42,7 +43,9 @@ const { checkAttendance,
 
 const { insertPromotion } = require('./controller/promotion');
 const { insertDeduction } = require('./controller/deduction');
-const { getPaymentByID } = require('./controller/payment');
+
+const { getPaymentByID, 
+        getPaymentStatus } = require('./controller/payment');
 
 const { companyInfo,
         mostLateEmployee,
@@ -107,6 +110,7 @@ app.post('/adddepartment', AddDepartment);
 
 //Role
 app.post('/insertRole',insertRole);
+app.get('/role',auth, AllRole);
 
 //Task
 app.get('/task',auth,getAllTaskInfo);
@@ -137,7 +141,7 @@ app.post('/bonus', insertBonus)
 
 //payment 
 app.get('/payment/:id', getPaymentByID);
-
+app.get('/paymentstatus', getPaymentStatus);
 
 //dashboard
 app.get('/companyinfo',auth,companyInfo);

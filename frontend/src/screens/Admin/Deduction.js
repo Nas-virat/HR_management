@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 
 import { Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
@@ -41,7 +40,7 @@ const Deduction = () => {
         });
    
         alert(`EmployeeId : ${employeeid}\nDeduction Description : ${deductiondescription}\n
-        Deduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
+               Deduction Type : ${deductiontype}\nAmount : ${amount}\nAdminId : ${adminid}`);
 
         navigate('/employee');
     }

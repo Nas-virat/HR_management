@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 
 import { Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {useNavigate} from 'react-router-dom';
 
 
 import '../Forms.css';
@@ -23,6 +23,7 @@ const OTtask = () => {
     const [employeeId, setEmployeeId] = useState('');
     const [supervisorId, setSupervisorId] = useState('');
 
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -43,6 +44,7 @@ const OTtask = () => {
              .then(res => console.log ("res:",res))
              .catch(err => console.log("err", err))
         alert("Submit successful");
+        navigate('/employee');
     }
 
     return (
@@ -50,7 +52,7 @@ const OTtask = () => {
         <Navbar />
         <Sidebar />
         <div className="form-container">
-            <h5>OT</h5>
+            <h5>Over Time (OT)</h5>
             <div className='form'>
                 <Form>
                     <Form.Group className="mb-3" controlId="formOTTaskID">

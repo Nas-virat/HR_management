@@ -47,7 +47,12 @@
 
 .department-Name{
     position: relative;
-    right:15px
+    right:125px
+}
+
+.departmentrow-Name{
+    position: relative;
+    right:105px
 }
 
 .department-Member{

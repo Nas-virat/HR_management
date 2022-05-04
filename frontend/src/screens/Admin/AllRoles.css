@@ -1,4 +1,4 @@
-.alltask-form-container {
+.role-form-container {
     min-width: 500px;
     margin-top: 120px;
     margin-left: 370px;
@@ -7,7 +7,22 @@
     min-width: 1000px;
 }
 
-.alltask-form {
+.role-title {
+    display: flex;
+}
+
+.role-title > h5{
+    align-self: center;
+    color: #077777;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.role-title > Button{
+    margin-left: 10px;
+}
+
+.role-form {
     width: 100%;
     height: 100%;
     margin-top: 20px;
@@ -19,44 +34,54 @@
     backdrop-filter: blur(4px);
 }
 
-.alltask-form-container h5 {
+.role-form-container h5 {
     color: #077777;
     font-weight: bold;
 }
 
-.alltask-header-content {
+.Role-header-content {
     display: flex;
 }
 
-.alltask-header-content > div {
+.Role-header-content > div {
     flex: 1;
 }
 
-.alltask-task-content {
+.Role-content {
     display: flex;
     margin-top: 10px;
 }
 
-.alltask-task-content > div {
+.Role-content > div {
     flex: 1;
 }
 
-.task-desc{
+.Role-Head-Name{
     position: relative;
-    right:150px
+    right:100px
 }
 
-.task-supervisorID{
+.Role-Head-Desc{
     position: relative;
-    right:25px
+    left:40px
 }
 
-.task-status{
+.Role-Head-Member{
     position: relative;
     right:30px
 }
 
-.task-Employee{
+.Role-Name{
     position: relative;
-    right:40px
+    right:100px
+}
+
+.Role-Desc{
+    position: relative;
+    right:100px
+}
+
+.Role-Member{
+    position: relative;
+    right:25px
 }

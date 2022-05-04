@@ -1,0 +1,37 @@
+.payment-header-content {
+    display: flex;
+}
+
+.payment-header-content > div {
+    flex: 1;
+}
+
+.payment-ID{
+    position: relative;
+    left: 20px;
+}
+
+.payment-name{
+    position: relative;
+    right: 10px;
+}
+
+.payment-amount{
+    position: relative;
+    right: 15px;
+}
+
+.payment-account{
+    position: relative;
+    right: 25px;
+}
+
+.payment-bank{
+    position: relative;
+    right: 35px;
+}
+
+.payment-approve{
+    position: relative;
+    right: 40px;
+}

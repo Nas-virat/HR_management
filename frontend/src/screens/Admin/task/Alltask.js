@@ -14,6 +14,8 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import TaskRow from '../../../components/TaskRow';
 
+import Search from '../../../components/Search';
+
 
 
 const Header = () => {
@@ -63,6 +65,14 @@ const Alltask = () => {
                     <h5>All Tasks</h5>
                     <Button variant="success" onClick ={() => navigate('/task/add')}>Add</Button>{' '}
                 </div>
+                <Search placeholder="Search Task"
+                options= {taskinfo.map(info => 
+                            ({
+                            label:info.taskID + ' ' + info.taskdesc ,
+                            value: info.taskID
+                            }))} 
+                link='/viewtask/'
+              />
                 <div className = 'alltask-form'>
                     <Header/>
                     {

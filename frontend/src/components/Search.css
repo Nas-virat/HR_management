@@ -1,16 +1,16 @@
 
-.searchemployee-container{
+.search-container{
     margin-top:10px;
     margin-bottom:10px;
     display: flex;
 }
 
-.searchemployee-select{
+.search-select{
     width: 100%;
     height: 40px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding-left: 10px;
+    margin-right: 10px;
     font-size: 14px;
     font-weight: 500;
     color: #333;

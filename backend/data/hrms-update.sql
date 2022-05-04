@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2022 at 11:05 AM
+-- Generation Time: May 04, 2022 at 12:30 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -46,10 +46,18 @@ INSERT INTO `attendance` (`EmployeeID`, `Status`, `Time`) VALUES
 (1001, 'L', '2022-04-29 09:33:49'),
 (1001, 'L', '2022-04-29 09:35:53'),
 (1001, 'L', '2022-04-29 09:35:55'),
+(1002, 'A', '2022-05-03 10:51:32'),
+(1002, 'A', '2022-05-03 10:51:39'),
+(1002, 'A', '2022-05-03 10:51:45'),
 (1002, 'O', '2022-07-26 01:44:47'),
 (1003, 'L', '2022-04-29 09:44:46'),
 (1003, 'L', '2022-04-29 09:45:09'),
 (1003, 'O', '2022-04-29 09:45:13'),
+(1003, 'A', '2022-05-03 10:24:25'),
+(1003, 'A', '2022-05-03 10:24:49'),
+(1003, 'A', '2022-05-03 10:50:47'),
+(1003, 'A', '2022-05-03 10:50:54'),
+(1003, 'A', '2022-05-03 10:51:03'),
 (1003, 'L', '2022-07-26 05:44:50'),
 (1004, 'O', '2022-04-20 16:19:02'),
 (1004, 'A', '2022-04-20 16:20:30'),
@@ -76,7 +84,9 @@ INSERT INTO `attendance` (`EmployeeID`, `Status`, `Time`) VALUES
 (1018, 'O', '2022-03-30 02:29:04'),
 (1018, 'O', '2022-11-17 01:59:26'),
 (1019, 'O', '2022-07-25 02:44:10'),
-(1020, 'O', '2022-12-12 02:40:35');
+(1020, 'O', '2022-12-12 02:40:35'),
+(1032, 'O', '2022-05-03 10:23:45'),
+(1033, 'O', '2022-05-03 10:24:26');
 
 -- --------------------------------------------------------
 
@@ -111,7 +121,9 @@ INSERT INTO `bonus` (`BonusID`, `EmployeeID`, `Amount`, `AdminID`, `BonusDate`) 
 (6012, 1014, 160000.00, 1001, '2022-05-03'),
 (6013, 1015, 250000.00, 1001, '2022-05-03'),
 (6014, 1016, 200000.00, 1001, '2022-05-03'),
-(6015, 1017, 10000.00, 1001, '2022-05-03');
+(6015, 1017, 10000.00, 1001, '2022-05-03'),
+(6016, 1004, 120300.00, 1001, '2022-05-03'),
+(6017, 1003, 6500.00, 1001, '2022-05-03');
 
 -- --------------------------------------------------------
 
@@ -152,7 +164,11 @@ INSERT INTO `deduction` (`DeductionID`, `EmployeeID`, `datetime`, `TypeDeduction
 (7016, 1001, '2022-04-26', 'I', 'HAHAHA', 50.00, 1001),
 (7017, 1027, '2022-04-26', 'P', 'FORGET TO RENAME VARIABLE', 20.00, 1001),
 (7018, 1001, '2022-04-29', 'P', 'To much base salary', 30000.00, 1004),
-(7019, 1007, '2022-04-29', 'I', 'deduction for no reason', 10000.00, 1004);
+(7019, 1007, '2022-04-29', 'I', 'deduction for no reason', 10000.00, 1004),
+(7020, 1001, '2022-05-03', 'P', 'beer', 1000.00, 1004),
+(7021, 1003, '2022-05-03', 'I', 'adskfa', 10000.00, 1004),
+(7022, 1005, '2022-05-03', 'P', 'sadsnfwef', 3000.00, 1004),
+(7023, 1006, '2022-05-04', 'O', 'To much salary', 400000.00, 1004);
 
 -- --------------------------------------------------------
 
@@ -212,12 +228,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`EmployeeID`, `fname`, `lname`, `Address`, `Email`, `Gender`, `DOB`, `AccountNo`, `BankRecive`, `EduLevel`, `Institution`, `Major`, `YearGrads`, `GPAX`, `RecruitDate`, `WorkStatus`, `Password`, `Image`) VALUES
-(1001, 'Chanon', 'Khanijoh', 'King Mongkut University of Technology Thonburi', 'chanon.kha@mail.kmutt.ac.th', 'M', '2002-06-05', '1234567890', 'KBANK', 'B', 'KMUTT', 'Computer Engineer', '2021', 1.27, '2021-04-19', 'E', 'Chanon123', NULL),
-(1002, 'Pechdanai', 'SaePong', 'King Mongkut University of Technology Thonburi', 'pechdanai.sp@mail.kmutt.ac.th', 'M', '2001-10-18', '9987654321', 'SCB', 'B', 'KMUTT', 'Computer Engineer', '2021', 3.50, '2021-08-19', 'E', 'Nine321', NULL),
-(1003, 'Fasai', 'Sae-Tae', 'King Mongkut University of Technology Thonburi', 'fasai.sae@mail.kmutt.ac.th', 'F', '2001-10-18', '1122334455', 'KBANK', 'B', 'KMUTT', 'Computer Engineer', '2021', 3.25, '2021-07-15', 'E', 'Atom112233', NULL),
-(1004, 'Napat', 'Vinitnantharat', 'King Mongkut University of Technology Thonburi', 'Napat.Vin@mail.kmutt.ac.th', 'M', '2001-04-19', '5566778899', 'BBL', 'B', 'KMUTT', 'Computer Engineer', '2021', 4.00, '2021-01-20', 'E', 'NapasNapas', NULL),
-(1005, 'Tunwa', 'Satianrapapong', 'King Mongkut University of Technology Thonburi', 'Tunwa.Sataian@mail.kmutt.ac.th', 'M', '2001-12-31', '1212312121', 'SCB', 'M', 'KMUTT', 'Computer Engineer', '2021', 3.56, '2021-12-25', 'E', 'TunwaPo300', NULL),
-(1006, 'Lalisa', 'Manobal', 'YG Entertainment, Seoul, South Korea, 121-886', 'lalisalovemela@gmail.com', 'F', '1997-03-27', '2468100186', 'BBL', 'P', 'CU', 'Business', '2020', 3.27, '2020-01-01', 'E', 'LalisaLala', NULL),
+(1001, 'Chanon', 'Khanijoh', 'King Mongkut University of Technology Thonburi', '1032', 'M', '2002-06-05', '1234567890', 'KBANK', 'B', 'KMUTT', 'Computer Engineer', '2021', 1.27, '2021-04-19', 'E', '$2b$05$7FezA8cwouADRWj1gGaB3.g2rJTWcTe5Yva.75AwOP0dRwPT8PYE.', '1651575186847-pug-2660486_960_720.jpg'),
+(1002, 'Pechdanai', 'SaePong', 'King Mongkut University of Technology Thonburi', 'pechdanai.sp@mail.kmutt.ac.th', 'M', '2001-10-18', '9987654321', 'SCB', 'B', 'KMUTT', 'Computer Engineer', '2021', 3.50, '2021-08-19', 'E', '$2b$05$YkdPXDlvcMVvku2sl20RWO/3r8JDhAKxFbF3fdgIlDluhhH9ly5HS', '1651655809577-132784983_1796268317204660_652480437406391312_n.jpeg'),
+(1003, 'Fasai', 'Sae-Tae', 'King Mongkut University of Technology Thonburi', 'fasai.sae@mail.kmutt.ac.th', 'F', '2001-10-18', '1122334455', 'KBANK', 'B', 'KMUTT', 'Computer Engineer', '2021', 3.25, '2021-07-15', 'E', '$2b$05$dqyxVEeWHG1S/qhEAn0IXe9We0Y0jEBxD/i6/9gRxhX9X0Dk6N3JS', '1651575217633-2017_230_1331.avif'),
+(1004, 'Napat', 'Vinitnantharat', 'King Mongkut University of Technology Thonburi', 'Napat.Vin@mail.kmutt.ac.th', 'M', '2001-04-19', '5566778899', 'BBL', 'B', 'KMUTT', 'Computer Engineer', '2021', 4.00, '2021-01-20', 'E', '$2b$05$Dz0yIV8cVqAilAlVV4gUXu.nb.Lf3A/x3GfhZ6TGQSxdViqqO0ZDa', '1651572671529-handsomeboy.jpg'),
+(1005, 'Tunwa', 'Satianrapapong', 'King Mongkut University of Technology Thonburi', 'Tunwa.Sataian@mail.kmutt.ac.th', 'M', '2001-12-31', '1212312121', 'SCB', 'M', 'KMUTT', 'Computer Engineer', '2021', 3.56, '2021-12-25', 'E', '$2b$05$5ynmml.u2COAHq.ZBFT49.WCewaQ13ypnqcAA8AIUuwTOvCG.WE0O', '1651572754831-testsnapcamera.jpg'),
+(1006, 'Lalisa', 'Manobal', 'YG Entertainment, Seoul, South Korea, 121-886', 'lalisalovemela@gmail.com', 'F', '1997-03-27', '2468100186', 'BBL', 'P', 'CU', 'Business', '2020', 3.27, '2020-01-01', 'E', '$2b$05$fnJzqmTtkcTOFuHWokMoQ.nshmCY.EhKQDoyKAIDTVLpRE683g39W', '1651655001572-SpyxFamily-01-750x422.jpg'),
 (1007, 'Michael', 'Jackson', 'California, United States', 'michaeljack@gmail.com', 'O', '1997-03-27', '1357911131', 'SCB', 'B', 'KMITL', 'Business', '2020', 2.78, '2019-12-31', 'E', 'MichaelJS12', NULL),
 (1008, 'Harry', 'Potter', '2 Picket Post Close, Bracknell, Berkshire', 'harrypotter@gmail.com', 'M', '1980-07-31', '2122242362', 'KBANK', 'B', 'KMUTNB', 'Business', '2019', 3.99, '2019-09-10', 'E', 'HarryPotterGryff', NULL),
 (1009, 'Jason', 'Bourne', '415 East 71st Street', 'Jason.Bourne@gmail.com', 'M', '1970-09-13', '3126334125', 'KBANK', 'P', 'BU', 'Business', '2015', 2.12, '2017-04-13', 'E', 'JasonB2', NULL),
@@ -235,10 +251,10 @@ INSERT INTO `employee` (`EmployeeID`, `fname`, `lname`, `Address`, `Email`, `Gen
 (1022, 'Elaina', 'Saepong', '18/295 PLENO suksawat', 'elaine@gmail.comm', 'F', '2002-10-17', '0919708158', 'KBANK', 'P', 'KMUTT', 'Computer Engineer', '2019', 4.00, '2022-04-20', 'E', 'Elaina', NULL),
 (1026, 'SENIOR', 'PETDANAY', 'SAENAY', 'naynay@gmail.com', 'M', '2022-04-26', '00000000', 'KABNK', 'B', 'KMUTT', 'Computer', '2020', 2.00, '2022-04-26', 'E', 'naynaynaynaynany', NULL),
 (1027, 'JUNIOR', 'CHANON', 'CPE GOD GOD', 'chanonjr@gmail.com', 'M', '2022-04-26', '012498745', 'SCB', 'B', 'KMUTT', 'CPE', '2023', 2.00, '2022-04-26', 'E', '', NULL),
-(1028, 'Napas', 'Vinitnantharat', 'samwa', 'Napas@gmail.com', 'M', '2022-04-26', '1234567', 'SCB', 'M', 'KMUTT', 'CPE', '2022', 4.00, '2022-04-26', 'E', '372614', NULL),
-(1029, 'Tester', 'Humburg', 'England Swedakong', 'testtest@hotmail.com', 'M', '1997-02-18', '1234741852', 'KBANK', 'B', 'CU', 'IT', '2022', 3.20, '2022-05-01', 'E', 'lol123456789', ''),
-(1030, 'Master', 'Chachachanon', 'Under the table, KMUTT', 'schanon@gmail.com', 'M', '2016-01-13', '174852963', 'SCB', 'B', 'KMUTT', 'AI', '2022', 3.00, '2022-05-01', 'E', 'chachanon123456', '1651387745285-group of slowpoke.jpg'),
-(1031, 'Meowmeow', 'Seansean', 'In the house, near garbage', 'chanonmeaw@gmail.com', 'O', '2022-01-19', '852741963', 'SCB', 'B', 'KMUTT', 'COMARCH', '2023', 2.00, '2022-05-01', 'E', '$2b$20$mwsS95lN7x04ZbIu8PCB.eflXXkL/214zA8Dc6UdI.7aOT09KV6oq', NULL),
+(1028, 'Napas', 'Vinitnantharat', 'samwa', 'Napas@gmail.com', 'M', '2022-04-26', '1234567', 'SCB', 'M', 'KMUTT', 'CPE', '2022', 4.00, '2022-04-26', 'E', '$2b$05$c.g4BflZamm5.6PL4rEmMutOHp3QPpmUEicNv0EkqcjWZpEyw36Te', '1651655195165-264326243_702997537299152_6502125166378522527_n.jpg'),
+(1029, 'Tester', 'Humburg', 'England Swedakong', 'testtest@hotmail.com', 'M', '1997-02-18', '1234741852', 'KBANK', 'B', 'CU', 'IT', '2022', 3.20, '2022-05-01', 'E', '$2b$05$H0S9oERwcAEU1DJ6JoBix.2ntRxc9vSCdDDBO8NRmDgYWUKuvRwUu', '1651576253691-RTmobilenet_v2_small.JPG'),
+(1030, 'Master', 'Chachachanon', 'Under the table, KMUTT', 'schanon@gmail.com', 'M', '2016-01-13', '174852963', 'SCB', 'B', 'KMUTT', 'AI', '2022', 3.00, '2022-05-01', 'E', '$2b$05$Mn6u/J/mPeEWRB9Ldq3LvOLNhnTZdsYHjybIK9Ewixti86yWkkli6', '1651576273277-group of slowpoke.jpg'),
+(1031, 'Meowmeow', 'Seansean', 'In the house, near garbage', 'chanonmeaw@gmail.com', 'O', '2022-01-19', '852741963', 'SCB', 'B', 'KMUTT', 'COMARCH', '2023', 2.00, '2022-05-01', 'E', '$2b$05$H7qQ9cbweUAI5aph9lzttul13dBAcg567CE7V6lY8/WttfmXsFg.G', '1651655512382-C380CD65-4AB7-435A-B739-5CAE86AE36CF.jpg'),
 (1032, 'Password', 'Maker', 'Live in the computer and spread the virus.', 'makerpass@gmail.com', 'F', '1992-06-05', '123852741', 'KBANK', 'M', 'KMUTT', 'IT Security', '2026', 3.00, '2022-05-01', 'E', '$2b$05$23KD/Ytwp/PiEOTC7mxwjOetQRge5N/.OPfxy1otgTYw0WA9E5DIq', NULL),
 (1033, 'Paradorn', 'Bhumirapi', 'Pathumthani', 'parabhu@gmail.com', 'M', '1992-10-02', '145236987', 'SCB', 'B', 'BU', 'Telecomunication and Informati', '2026', 3.52, '2022-05-02', 'E', '$2b$05$Bc/Kutw2GMhVEcUHwLVuVO/XqetnZXs.ZIbQWOmJNFT05bxVffwqO', '1651562901451-20210219_132355.jpg'),
 (1034, 'Picturesan', 'Picpicpic', 'Picture collector Thailand', 'picturepng@gmail.com', 'M', '2022-05-03', '789123456', 'SCB', 'B', 'MU', 'Photography', '2022', 3.00, '2022-05-03', 'E', '$2b$05$S15Z8WoFdIF7y5SDssEQQOPn0YPvYa9Qwl9dLxArEp906MhquYeGW', '1651562725800-download.png');
@@ -277,6 +293,7 @@ INSERT INTO `employeeontask` (`TaskID`, `EmployeeID`, `startdate`) VALUES
 (4005, 1012, '2021-12-22'),
 (4005, 1013, '2021-12-23'),
 (4005, 1014, '2021-12-24'),
+(4005, 1018, '2022-05-03'),
 (4006, 1004, '2022-04-28'),
 (4006, 1015, '2021-06-30'),
 (4006, 1016, '2021-07-01'),
@@ -292,7 +309,10 @@ INSERT INTO `employeeontask` (`TaskID`, `EmployeeID`, `startdate`) VALUES
 (4011, 1003, '2022-04-28'),
 (4011, 1004, '2022-04-28'),
 (4012, 1001, '2022-04-29'),
-(4012, 1004, '2022-04-29');
+(4012, 1002, '2022-05-04'),
+(4012, 1003, '2022-05-04'),
+(4012, 1004, '2022-04-29'),
+(4012, 1005, '2022-05-04');
 
 -- --------------------------------------------------------
 
@@ -333,7 +353,11 @@ INSERT INTO `ot` (`OT_ID`, `EmployeeID`, `SupervisorID`, `TaskID`, `start_time`,
 (8016, 1001, 1004, 4003, '17:19:00', '19:22:00', '2022-04-29'),
 (8017, 1002, 1007, 4005, '18:22:00', '20:24:00', '2022-04-29'),
 (8018, 1007, 1004, 4003, '17:20:00', '19:20:00', '2022-04-29'),
-(8019, 1027, 1004, 4003, '17:22:00', '19:22:00', '2022-04-29');
+(8019, 1027, 1004, 4003, '17:22:00', '19:22:00', '2022-04-29'),
+(8020, 1004, 1004, 4005, '19:17:00', '20:17:00', '2022-05-03'),
+(8021, 1007, 1004, 4005, '17:55:00', '20:55:00', '2022-05-03'),
+(8022, 1018, 1004, 4005, '20:56:00', '22:56:00', '2022-05-03'),
+(8023, 1001, 1003, 4010, '19:08:00', '21:08:00', '2022-05-04');
 
 -- --------------------------------------------------------
 
@@ -427,6 +451,7 @@ INSERT INTO `promotionhistory` (`EmployeeID`, `DprtID`, `RoleID`, `Datetime`, `A
 (1018, 2002, 3008, '2017-10-15', 1002, 0.00),
 (1019, 2001, 3002, '2016-05-09', 1001, 0.00),
 (1020, 2004, 3014, '2014-05-17', 1004, 0.00),
+(1022, 2002, 3004, '2022-05-04', 1001, 0.00),
 (1026, 2005, 3022, '2022-04-26', 1001, 0.00),
 (1027, 2005, 3022, '2022-04-26', 1001, 0.00),
 (1028, 2001, 3003, '2022-04-26', 1001, 0.00),
@@ -478,7 +503,8 @@ INSERT INTO `role` (`RoleID`, `RoleName`, `RoleDesc`, `BaseSalary`, `OTrate`) VA
 (3020, 'R&D Specialist', 'responsible for collects, sorts, and analyzes data and also develops, executes, and interprets research projects and performs laboratory experiments for product development', 23000.00, 0.25),
 (3021, 'Product Researcher', ' responsible for identify opportunities for product improvement, using internal and external data and define applicable customer/market trends', 25000.00, 0.60),
 (3022, 'Product Development', 'responsible for help create new products or improve existing ones, which helps the company effectively meet consumer needs', 25000.00, 0.40),
-(3023, 'Business Analyst', 'responsible for ssess how organisations are performing and help them improve their processes and systems. \nThey conduct research and analysis solutions to business problems', 55000.00, 0.25);
+(3023, 'Business Analyst', 'responsible for ssess how organisations are performing and help them improve their processes and systems. \nThey conduct research and analysis solutions to business problems', 55000.00, 0.25),
+(3024, 'React Developer', 'React.js Developer', 30000.00, 1.20);
 
 -- --------------------------------------------------------
 
@@ -602,19 +628,19 @@ ALTER TABLE `task`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1021;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1034;
 
 --
 -- AUTO_INCREMENT for table `bonus`
 --
 ALTER TABLE `bonus`
-  MODIFY `BonusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6016;
+  MODIFY `BonusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6018;
 
 --
 -- AUTO_INCREMENT for table `deduction`
 --
 ALTER TABLE `deduction`
-  MODIFY `DeductionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7020;
+  MODIFY `DeductionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7024;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -632,7 +658,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `ot`
 --
 ALTER TABLE `ot`
-  MODIFY `OT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8020;
+  MODIFY `OT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8024;
 
 --
 -- AUTO_INCREMENT for table `paymentstatus`
@@ -650,7 +676,7 @@ ALTER TABLE `promotionhistory`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3024;
+  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3025;
 
 --
 -- AUTO_INCREMENT for table `task`

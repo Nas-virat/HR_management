@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 
 import { Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import axios from 'axios';
 

@@ -11,7 +11,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import EmployeeRow from '../../../components/EmployeeRow';
-import Searchemployee from '../../../components/Searchemployee';
+import Search from '../../../components/Search';
 
 import axios from 'axios';
 import authHeader from "../../../auth-header";
@@ -71,7 +71,15 @@ const AllEmployee = () => {
               <h5>All Employee </h5>
               <Button variant="success" onClick ={() => navigate('/employee/add')}>Add</Button>{' '}
             </div>
-            <Searchemployee placeholder="Search Employee"/>
+            <Search placeholder="Search Employee"
+                options= {info.map(info => 
+                            ({
+                            label:info.EmployeeID + ' ' + info.fname + ' '+ info.lname,
+                            value: info.EmployeeID
+                            }))} 
+                link='/viewemployee/'
+              />
+
             <div className='allemployee-form'>
               <Header/>
               {

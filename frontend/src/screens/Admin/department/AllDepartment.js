@@ -12,6 +12,7 @@ import Sidebar from '../../../components/Sidebar';
 
 import axios from 'axios';
 import authHeader from "../../../auth-header";
+import Search from '../../../components/Search';
 
 const Header = () => {
     return(
@@ -31,9 +32,9 @@ const DepartmentRow = ({info}) => {
     let navigate = useNavigate();
     return(
       <div className = "allDepartment-department-content">
-        <div>{info.DprtID}</div>
-        <div>{info.DprtName}</div>
-        <div>{info.TotalMembers}</div>
+        <div className="departmentrow-ID">{info.DprtID}</div>
+        <div className="departmentrow-Name">{info.DprtName}</div>
+        <div className="departmentrow-Member">{info.TotalMembers}</div>
         <Button variant="success" onClick={() => navigate(`/viewdepartment/${info.DprtID}`)}>Go</Button>
       </div>
       )
@@ -62,7 +63,7 @@ const AllDepartment = () => {
     if(localStorage.getItem('token')){
       fetchData();
       }
-      else{
+    else{
         navigate('/login');
       }
   },[]);
@@ -76,6 +77,14 @@ const AllDepartment = () => {
                 <h5>All Department</h5>
                 <Button variant="success" onClick ={() => navigate('/department/add')}>Add</Button>{' '}
             </div>
+            <Search placeholder="Search Department"
+                options= {departmentinfo.map(info => 
+                            ({
+                            label:info.DprtID + ' ' + info.DprtName ,
+                            value: info.DprtID
+                            }))} 
+                link='/viewdepartment/'
+              />
             <div className="alldepartment-form">
               <Header/>
               {
