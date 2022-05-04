@@ -69,9 +69,9 @@ const AllEmployee = () => {
           <div className='allemployee-form-container'>
             <div className='allemployee-title'>
               <h5>All Employee </h5>
-              <Searchemployee placeholder="Search Employee"/>
               <Button variant="success" onClick ={() => navigate('/employee/add')}>Add</Button>{' '}
             </div>
+            <Searchemployee placeholder="Search Employee"/>
             <div className='allemployee-form'>
               <Header/>
               {

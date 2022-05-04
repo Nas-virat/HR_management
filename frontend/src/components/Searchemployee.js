@@ -15,9 +15,8 @@ const Searchemployee = ({placeholder}) => {
   const [selectedOption, setSelectedOption] = useState(null);
   return (
     <div className ="searchemployee-container">
-      <h1>Employee Search</h1>
-      <Select placeholder={placeholder} defaultValue={selectedOption} options={options} onChange={setSelectedOption}/>
-      <Button variant="primary" type="submit"/>
+      <Select className ="searchemployee-select" placeholder={placeholder} defaultValue={selectedOption} options={options} onChange={setSelectedOption}/>
+      <Button className ="searchemployee-button" variant="success" type="submit">Search</Button>
     </div>
   )
 }
