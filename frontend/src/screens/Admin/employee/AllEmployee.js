@@ -11,6 +11,7 @@ import { Button } from 'react-bootstrap';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import EmployeeRow from '../../../components/EmployeeRow';
+import Searchemployee from '../../../components/Searchemployee';
 
 import axios from 'axios';
 import authHeader from "../../../auth-header";
@@ -68,6 +69,7 @@ const AllEmployee = () => {
           <div className='allemployee-form-container'>
             <div className='allemployee-title'>
               <h5>All Employee </h5>
+              <Searchemployee placeholder="Search Employee"/>
               <Button variant="success" onClick ={() => navigate('/employee/add')}>Add</Button>{' '}
             </div>
             <div className='allemployee-form'>
