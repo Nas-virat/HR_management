@@ -2,6 +2,11 @@
 
 HRMS by SPFNA is HR management system 
 (CPE 231 KMUTT Database Design Project)
+
+## Example
+
+![](frontend/src/assets/img/example1.png)
+
 ## Dev tools
 
 1. Frontend - react,react-boostrap
