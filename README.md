@@ -7,6 +7,9 @@ HRMS by SPFNA is HR management system
 
 ![](frontend/src/assets/img/example1.png)
 
+
+![](frontend/src/assets/img/example2.png)
+
 ## Dev tools
 
 1. Frontend - react,react-boostrap
