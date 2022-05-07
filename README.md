@@ -45,6 +45,19 @@ HRMS by SPFNA is HR management system
 
 ## run the web
 
+create .env file
+```
+PORT= 
+DB_USER=""
+DB_HOST=""
+DB_PASSWORD=""
+DB_NAME=""
+
+ACCESS_TOKEN = 
+```
+
+
+install node modules
 ```
 $ npm i 
 ```
