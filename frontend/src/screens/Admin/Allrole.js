@@ -14,6 +14,8 @@ import authHeader from "../../auth-header";
 
 import './AllRoles.css';
 
+import configData from '../../config/config.json';
+
 const Header = () => {
     return(
      <>
@@ -49,7 +51,7 @@ const AllRole = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:8080/role', { headers: authHeader() })
+      const res = await axios.get(configData.SERVER_URL+'/role', { headers: authHeader() })
       .catch(err => {
       console.log(err);
       });

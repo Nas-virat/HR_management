@@ -16,6 +16,7 @@ import TaskRow from '../../../components/TaskRow';
 
 import Search from '../../../components/Search';
 
+import configData from '../../../config/config.json';
 
 
 const Header = () => {
@@ -41,7 +42,7 @@ const Alltask = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://localhost:8080/task', { headers: authHeader() })
+            const res = await axios.get(configData.SERVER_URL + '/task', { headers: authHeader() })
             .catch(err => {
             console.log(err);
             });

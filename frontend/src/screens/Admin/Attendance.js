@@ -9,6 +9,8 @@ import authHeader from '../../auth-header';
 
 import { Form, Button } from 'react-bootstrap'
 
+import configData from '../../config/config.json';
+
 const Attendance = () => {
 
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Attendance = () => {
       navigate('/login');
     }
     else {
-      axios.post(`http://localhost:8080/attendance`,
+      axios.post(configData.SERVER_URL+`/attendance`,
               {
                 'EmployeeID': employeeid,
                 'Status': Status

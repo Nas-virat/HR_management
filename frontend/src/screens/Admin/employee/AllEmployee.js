@@ -16,6 +16,8 @@ import Search from '../../../components/Search';
 import axios from 'axios';
 import authHeader from "../../../auth-header";
 
+import configData from "../../../config/config.json";
+
 
 
 const Header = () => {
@@ -42,7 +44,7 @@ const AllEmployee = () => {
  
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:8080/employee', { headers: authHeader() })
+      const res = await axios.get(configData.SERVER_URL + '/employee', { headers: authHeader() })
       .catch(err => {
       console.log(err);
       });

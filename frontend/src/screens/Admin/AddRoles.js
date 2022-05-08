@@ -15,6 +15,8 @@ import './Forms.css';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
+import configData from "../../config/config.json";
+
 const AddRoles = () => {
 
     const [rolename, setRoleName] = useState('');
@@ -25,7 +27,7 @@ const AddRoles = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:8080/insertRole',{
+        const res = await axios.post(configData.SERVER_URL+'/insertRole',{
             'RoleName':rolename,
             'OTRate':otrate,
             'RoleDesc':roledescription,

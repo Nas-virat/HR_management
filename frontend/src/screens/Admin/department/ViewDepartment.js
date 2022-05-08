@@ -14,6 +14,8 @@ import EmployeeRow from '../../../components/EmployeeRow';
 
 import axios from 'axios';
 
+import configData from "../../../config/config.json";
+
 
 const Header = () => {
    return(
@@ -45,15 +47,15 @@ const ViewDepartment = () => {
     const fetchData = async () => {
       try {
         if (id) { 
-        const res = await axios.get(`http://localhost:8080/department/${id}`)
+        const res = await axios.get( configData.SERVER_URL +`/department/${id}`)
         setDepartmentInfo(res.data[0]);
         console.log("Department Object",res.data[0]); 
         
-        const resMember = await axios.get(`http://localhost:8080/departmentmember/${id}`);
+        const resMember = await axios.get(configData.SERVER_URL +`/departmentmember/${id}`);
         setDepartmentMember(resMember.data);
         console.log("Department Member Object: ",resMember.data);
 
-        const resHead = await axios.get(`http://localhost:8080/departmenthead/${id}`);
+        const resHead = await axios.get(configData.SERVER_URL +`/departmenthead/${id}`);
         setDepartmentHead(resHead.data);
         console.log("Department Head Object: ",resHead.data);
         }

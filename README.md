@@ -29,7 +29,7 @@ HRMS by SPFNA is HR management system
 - [ ] ERROR ON ViewEmployee?
 - [x] Employeemore Page
 - [x] Dashboard
-- [ ] Add Payment Status (Add Query WTF)
+- [x] Add Payment Status
 - [x] All Roles
 - [x] Hash in EmployeeEdit
 - [x] Employee Work Status Apply (employee leave the company)

@@ -15,6 +15,8 @@ import '../Forms.css';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+import configData from "../../../config/config.json";
+
 const AddDepartment = () => {
 
     const [departmentname, setDepartmentName] = useState('');
@@ -25,7 +27,7 @@ const AddDepartment = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/adddepartment',
+        axios.post(configData.SERVER_URL+'/adddepartment',
             {
                 'DprtName':departmentname,
                 'DprtDesc':departmentdescription,

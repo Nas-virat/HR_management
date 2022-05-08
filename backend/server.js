@@ -45,7 +45,8 @@ const { insertPromotion } = require('./controller/promotion');
 const { insertDeduction } = require('./controller/deduction');
 
 const { getPaymentByID, 
-        getPaymentStatus } = require('./controller/payment');
+        getPaymentStatus,
+        approvePayment} = require('./controller/payment');
 
 const { companyInfo,
         mostLateEmployee,
@@ -54,6 +55,8 @@ const { companyInfo,
 const { insertBonus } = require('./controller/bonus');
 
 const { login } = require('./controller/loginsystem');
+
+
 
 const app = express();
 app.use(express.json());
@@ -142,6 +145,7 @@ app.post('/bonus', insertBonus)
 //payment 
 app.get('/payment/:id', getPaymentByID);
 app.get('/paymentstatus', getPaymentStatus);
+app.post('/approvepayment', approvePayment);
 
 //dashboard
 app.get('/companyinfo',auth,companyInfo);

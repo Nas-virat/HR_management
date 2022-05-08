@@ -10,7 +10,7 @@ import Logo from '../../assets/img/HRMS.png'
 
 import { Form, Button } from 'react-bootstrap'
 
-
+import configData from '../../config/config.json';
 
 const Login = () => {
     const [employeeid, setEmployeeid] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        axios.post(`http://localhost:8080/login`, {
+        axios.post(configData.SERVER_URL+`/login`, {
             'employeeID': employeeid,
             'password': password
         })

@@ -14,6 +14,8 @@ import '../Forms.css';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+import configData from "../../../config/config.json";
+
 const EmployeeEdit = () => {
 
     const [fname, setFname] = useState('');
@@ -35,7 +37,7 @@ const EmployeeEdit = () => {
         const fetchData = async () => {
             try {
                 if (id) {
-                    const res = await axios.get(`http://localhost:8080/employee/${id}`);
+                    const res = await axios.get(configData.SERVER_URL + `/employee/${id}`);
                     setFname(res.data[0].fname);
                     setLname(res.data[0].lname);
                     setAddress(res.data[0].Address);
@@ -60,14 +62,14 @@ const EmployeeEdit = () => {
         try {
             const response = await axios({
               method: "post",
-              url: "http://localhost:8080/upload",
+              url: configData.SERVER_URL +"/upload",
               data: formData,
               headers: { "Content-Type": "multipart/form-data" },
             });
             console.log(response);
             console.log("\nfile upload is ",response.data.filename);
             try{
-                const res = await axios.put(`http://localhost:8080/updateEmployee/${id}`, {
+                const res = await axios.put(configData.SERVER_URL +`/updateEmployee/${id}`, {
                     'fname':fname,
                     'lname':lname,
                     'Address':address,

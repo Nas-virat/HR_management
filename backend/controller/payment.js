@@ -81,4 +81,27 @@ const getPaymentStatus = (req, res) => {
 }
 
 
-module.exports =  { getPaymentByID, getPaymentStatus };
+const approvePayment = (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({'error':err});
+            return;
+        }
+        const {EmployeeID, ApproveBy} = req.body;
+        
+        connection.query(`INSERT INTO paymentstatus (EmployeeID, ApproveBy) VALUES (?,?)`,
+        [EmployeeID, ApproveBy],(err, result) => {
+            connection.release();
+            if (err) {
+                console.log(err);
+            }
+            res.send(result);
+        });
+        console.log(`Approve PAYMENT STATUS`);
+   });
+};
+
+
+module.exports =  { getPaymentByID, getPaymentStatus, approvePayment };

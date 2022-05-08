@@ -35,3 +35,11 @@
     position: relative;
     right: 40px;
 }
+
+.addpaymentstatus-container {
+    display: flex;
+}
+
+.addpaymentstatus-container > Form.Control {
+    flex: 1;
+}

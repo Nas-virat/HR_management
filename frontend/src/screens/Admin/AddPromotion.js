@@ -12,6 +12,8 @@ import './Forms.css';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
+import configData  from "../../config/config.json";
+
 const AddPromotion = () => {
 
     const [employeeid, setEmployeeId] = useState('');
@@ -23,7 +25,7 @@ const AddPromotion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/promotion',
+        axios.post(configData.SERVER_URL+'/promotion',
             {
                 'EmployeeID' : employeeid,
                 'RoleID' : roleid,

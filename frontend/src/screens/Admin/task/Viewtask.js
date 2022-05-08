@@ -16,6 +16,8 @@ import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 import EmployeeRow from '../../../components/EmployeeRow';
 
+import configData from '../../../config/config.json';
+
 
 const Header = () => {
    return(
@@ -59,7 +61,7 @@ const Viewtask = () => {
       taskInfo.status = 'A';
     }
     console.log("updateStatus");
-      axios.put('http://localhost:8080/updateTaskStatus', {
+      axios.put(configData.SERVER_URL+'/updateTaskStatus', {
           "TaskID" : taskInfo.TaskID,
           "status" : taskInfo.status })
         .then((res) => console.log("UPDATE Status: ", res))
@@ -69,7 +71,7 @@ const Viewtask = () => {
   const cancelStatus = () => {
     setStatus('C');
     taskInfo.status = 'C';
-     axios.put('http://localhost:8080/updateTaskStatus', {
+     axios.put(configData.SERVER_URL+'/updateTaskStatus', {
       "TaskID" : taskInfo.TaskID,
       "status" : 'C'})
     .then((res) => console.log("CANCEL Status: ", res))
@@ -77,7 +79,7 @@ const Viewtask = () => {
   }
 
   const addMember = () => {
-    axios.post(`http://localhost:8080/addemployeetotask`, {
+    axios.post(configData.SERVER_URL+`/addemployeetotask`, {
       "TaskID" : taskInfo.TaskID,
       "EmployeeID" : addemployee})
     .then((res) => console.log("ADD Member: ", res))
@@ -92,17 +94,17 @@ const Viewtask = () => {
     const fetchData = async () => {
       try {
         if (id) { 
-        const res = await axios.get(`http://localhost:8080/task/${id}`)
+        const res = await axios.get(configData.SERVER_URL+`/task/${id}`)
         setTaskInfo(res.data[0]);
         console.log("Task Object",res.data[0]); 
         setStatus(res.data[0].status);
         console.log("status init",status);
         
-        const resMember = await axios.get(`http://localhost:8080/taskmember/${id}`);
+        const resMember = await axios.get(configData.SERVER_URL+`/taskmember/${id}`);
         setTaskMember(resMember.data);
         console.log("Task Member Object: ",resMember.data);
 
-        const resSupervisor = await axios.get(`http://localhost:8080/tasksupervisor/${id}`);
+        const resSupervisor = await axios.get(configData.SERVER_URL+`/tasksupervisor/${id}`);
         setTaskSupervisor(resSupervisor.data);
         console.log("Task Supervisor Object: ",resSupervisor.data);
         }

@@ -14,6 +14,8 @@ import axios from 'axios';
 import authHeader from "../../../auth-header";
 import Search from '../../../components/Search';
 
+import configData from "../../../config/config.json";
+
 const Header = () => {
     return(
      <>
@@ -48,7 +50,7 @@ const AllDepartment = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:8080/department', { headers: authHeader() })
+      const res = await axios.get(configData.SERVER_URL + '/department', { headers: authHeader() })
       .catch(err => {
       console.log(err);
       });

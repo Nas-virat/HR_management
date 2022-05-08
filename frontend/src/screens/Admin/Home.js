@@ -15,6 +15,8 @@ import Logo from '../../assets/img/employee1.jpg';
 import axios from 'axios';
 import authHeader from "../../auth-header";
 
+import configData from '../../config/config.json';
+
 const HomeEmployeeRow = ({data}) =>{
     let navigate = useNavigate();
     return (
@@ -51,19 +53,19 @@ const Home = () => {
     useEffect(() => {
 
         const fetchData = () => {
-            axios.get('http://localhost:8080/companyinfo', { headers: authHeader() })
+            axios.get(configData.SERVER_URL+'/companyinfo', { headers: authHeader() })
             .catch(err => console.log("err",err))
             .then(res => {
                 console.log("HeadInformation",res) 
                 setHeadInformation(res.data[0])
             })
-            axios.get('http://localhost:8080/mostlateemployee', { headers: authHeader() })
+            axios.get(configData.SERVER_URL+'/mostlateemployee', { headers: authHeader() })
             .catch(err => console.log("err",err))
             .then(res => { 
                 console.log("Employeelate",res.data)
                 setEmployeeLate(res.data)
             })
-            axios.get('http://localhost:8080/mostabsentemployee', { headers: authHeader() })
+            axios.get(configData.SERVER_URL+'/mostabsentemployee', { headers: authHeader() })
             .catch(err => console.log("err",err))
             .then(res => {
                 console.log("EmployeeAbsent",res.data)

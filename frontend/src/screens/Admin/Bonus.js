@@ -11,6 +11,8 @@ import './Forms.css';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
+import configData from '../../config/config.json';
+
 const Bonus = () => {
 
 
@@ -23,7 +25,7 @@ const Bonus = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post(`http://localhost:8080/bonus`, {
+        axios.post(configData.SERVER_URL+`/bonus`, {
             'EmployeeID': employeeid,
             'Amount': bonus,
             'AdminID': adminid

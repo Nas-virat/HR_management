@@ -13,6 +13,8 @@ import './EmployeeMore.css';
 
 import Logo from '../../../assets/img/employee1.jpg';
 
+import configData from "../../../config/config.json";
+
 const Header = () => {
     return(
      <>
@@ -47,11 +49,11 @@ const EmployeeMore = () => {
     const fetchData = async () => {
       try {
         if (id) {
-          const res = await axios.get(`http://localhost:8080/employee/${id}`)
+          const res = await axios.get(configData.SERVER_URL +`/employee/${id}`)
           setEmployeeInfo(res.data[0]);
           console.log("Employee Object",res.data[0]);
 
-          const resPromotion = await axios.get(`http://localhost:8080/employeepromotion/${id}`);
+          const resPromotion = await axios.get(configData.SERVER_URL +`/employeepromotion/${id}`);
           setEmployeePromotion(resPromotion.data);
           console.log("Promotion Object: ",resPromotion.data);
 
@@ -71,7 +73,7 @@ const EmployeeMore = () => {
       <div className = "EmployeeMore-all-container">
         <div className ="EmployeeMore-top">
                 <div className = "EmployeeMore-img">
-                  <img src = {EmployeeInfo.Image === null ? Logo :`http://localhost:8080/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
+                  <img src = {EmployeeInfo.Image === null ? Logo :configData.SERVER_URL +`/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
                   <p>{EmployeeInfo.EmployeeID}</p>
                 </div>
                 <div className ="EmployeeMore-top-content">

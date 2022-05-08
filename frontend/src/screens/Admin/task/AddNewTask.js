@@ -14,6 +14,8 @@ import Sidebar from '../../../components/Sidebar';
 
 import axios from 'axios';
 
+import configData from '../../../config/config.json';
+
 const AddNewTask = () => {
 
     let defaultDate = new Date();
@@ -32,7 +34,7 @@ const AddNewTask = () => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        axios.post('http://localhost:8080/taskadd', 
+        axios.post(configData.SERVER_URL+'/taskadd', 
             {
                 'EmployeeID': employeeid,
                 'taskdesc': taskdescription,

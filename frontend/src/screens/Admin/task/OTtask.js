@@ -14,6 +14,8 @@ import Sidebar from '../../../components/Sidebar';
 
 import axios from 'axios';
 
+import configData from '../../../config/config.json';
+
 const OTtask = () => {
 
 
@@ -34,7 +36,7 @@ const OTtask = () => {
             'EmployeeID':employeeId,
             'SupervisorID':supervisorId
         });
-        axios.post(`http://localhost:8080/ottask`,{
+        axios.post(configData.SERVER_URL + `/ottask`,{
             'TaskID':taskId,
             'StartTime':sTime,
             'EndTime':eTime,

@@ -15,6 +15,8 @@ import Logo from '../../../assets/img/employee1.jpg';
 
 import axios from 'axios';
 
+import configData from "../../../config/config.json";
+
 const Header = () => {
     return(
      <>
@@ -80,23 +82,23 @@ const ViewEmployee = () => {
     const fetchData = async () => {
       try {
         if (id) {
-          const res = await axios.get(`http://localhost:8080/employee/${id}`)
+          const res = await axios.get(configData.SERVER_URL +`/employee/${id}`)
           setEmployeeInfo(res.data[0]);
           console.log("Employee Object",res.data[0]);
 
-          const resTask = await axios.get(`http://localhost:8080/employeetask/${id}`);
+          const resTask = await axios.get(configData.SERVER_URL +`/employeetask/${id}`);
           setEmployeeTask(resTask.data);
           console.log("Employee Task Object: ",resTask.data);
 
-          const resAttendance = await axios.get(`http://localhost:8080/employeeattendance/${id}`);
+          const resAttendance = await axios.get(configData.SERVER_URL +`/employeeattendance/${id}`);
           setEmployeeAttendance(resAttendance.data[0]);
           console.log("Employee Attendance Object: ",resAttendance.data[0]);
 
-          const resPayment = await axios.get(`http://localhost:8080/payment/${id}`);
+          const resPayment = await axios.get(configData.SERVER_URL +`/payment/${id}`);
           setEmployeePayment(resPayment.data[0]);
           console.log("Employee Payment Object: ",resPayment.data[0]);
 
-          const reslastattendance = await axios.get(`http://localhost:8080/lastattendance/${id}`);
+          const reslastattendance = await axios.get(configData.SERVER_URL +`/lastattendance/${id}`);
           setLastAttendance(reslastattendance.data);
           console.log("Employee Last Attendance Object: ",reslastattendance.data);
         }
@@ -115,7 +117,7 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
           <div className ="Viewemployee-top-left">
             <div className = "viewemployee-img">
-              <img src = {EmployeeInfo.Image === null ? Logo :`http://localhost:8080/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
+              <img src = {EmployeeInfo.Image === null ? Logo :configData.SERVER_URL +`/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
               <p>{EmployeeInfo.EmployeeID}</p>
             </div>
             <div className ="Viewemployee-top-left-content">

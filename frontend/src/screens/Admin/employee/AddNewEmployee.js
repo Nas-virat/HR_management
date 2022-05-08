@@ -16,6 +16,8 @@ import '../Forms.css';
 import Navbar from '../../../components/Navbar';
 import Sidebar from '../../../components/Sidebar';
 
+import configData from "../../../config/config.json";
+
 const AddNewEmployee = () => {
 
     let defaultDate = new Date();
@@ -56,14 +58,14 @@ const AddNewEmployee = () => {
         try {
             const response = await axios({
               method: "post",
-              url: "http://localhost:8080/upload",
+              url: configData.SERVER_URL + "/upload",
               data: formData,
               headers: { "Content-Type": "multipart/form-data" },
             });
             console.log(response.data.filename);
             
             try{
-                const res = await axios.post('http://localhost:8080/insertEmployee', {
+                const res = await axios.post(configData.SERVER_URL +'/insertEmployee', {
                     'fname':fname,
                     'lname':lname,
                     'Address':address,

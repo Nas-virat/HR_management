@@ -11,6 +11,8 @@ import './Forms.css';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
+import configData from '../../config/config.json';
+
 const Deduction = () => {
 
     const navigate = useNavigate();
@@ -23,7 +25,7 @@ const Deduction = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:8080/deduction`, 
+        axios.post(configData.SERVER_URL+`/deduction`, 
             {
                 'EmployeeID': employeeid,
                 'Description': deductiondescription,

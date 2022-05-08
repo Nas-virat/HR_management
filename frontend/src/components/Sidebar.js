@@ -4,7 +4,7 @@ import './Sidebar.css';
 import {NavLink} from 'react-router-dom';
 
 import {IoIosHome} from 'react-icons/io';
-import { BiBuildings, BiMoney, BiTask, BiTimeFive, BiLogOutCircle} from "react-icons/bi";
+import { BiBuildings, BiMoney, BiTimeFive, BiLogOutCircle} from "react-icons/bi";
 import {BsFillPeopleFill} from 'react-icons/bs';
 import { MdOutlineAssessment, MdWork} from "react-icons/md";
 import {GiUpgrade} from 'react-icons/gi';
