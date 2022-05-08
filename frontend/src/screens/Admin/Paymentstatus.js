@@ -79,9 +79,11 @@ const Paymentstatus = () => {
     <div>
       <Navbar />
       <Sidebar />
-      <div className="form-container">
-        <h5>Payment Status</h5>
-        <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
+      <div className="ps-form-container">
+        <div className="ps-form-title">
+          <h5>Payment Status</h5>
+          <Button variant="success" onClick ={() => setAdd(!add)}>Add</Button>{' '}
+          </div>
         <div className='form'>
           <Header/>
           {add && 
