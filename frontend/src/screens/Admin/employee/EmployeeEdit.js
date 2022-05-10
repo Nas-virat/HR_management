@@ -67,7 +67,7 @@ const EmployeeEdit = () => {
               headers: { "Content-Type": "multipart/form-data" },
             });
             console.log(response);
-            console.log("\nfile upload is ",response.data.filename);
+            console.log("\nfile upload is ",response.data.secure_url);
             try{
                 const res = await axios.put(configData.SERVER_URL +`/updateEmployee/${id}`, {
                     'fname':fname,
@@ -78,7 +78,7 @@ const EmployeeEdit = () => {
                     'AccountNo' : accountno,
                     'Password' : password,
                     'WorkStatus' : status,
-                    'Image' : response.data.filename
+                    'Image' : image ? response.data.secure_url : null
                 });
                 console.log("Update New Employee",res.data);
                 alert("Update Employee Success");

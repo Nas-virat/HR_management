@@ -82,7 +82,7 @@ const AddNewEmployee = () => {
                     'Password' : password,
                     'DprtID' : department,
                     'RoleID' : role,  
-                    'Image' : response.data.filename
+                    'Image' : response.data.secure_url
                 });
                 console.log("Add New Employee",res);
             }

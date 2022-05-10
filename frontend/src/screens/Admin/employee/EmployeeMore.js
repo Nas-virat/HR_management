@@ -73,7 +73,7 @@ const EmployeeMore = () => {
       <div className = "EmployeeMore-all-container">
         <div className ="EmployeeMore-top">
                 <div className = "EmployeeMore-img">
-                  <img src = {EmployeeInfo.Image === null ? Logo :configData.SERVER_URL +`/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
+                <img src = {EmployeeInfo.Image === null ? Logo :`${EmployeeInfo.Image}` } alt = "Employee-img"/>
                   <p>{EmployeeInfo.EmployeeID}</p>
                 </div>
                 <div className ="EmployeeMore-top-content">

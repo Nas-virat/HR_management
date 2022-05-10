@@ -7,6 +7,8 @@ const multer = require('multer');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
+const cloudinary = require('./config/cloudinary');
+
 const auth = require('./middleware/auth');
 
 const { getAllDepartment,
@@ -69,6 +71,17 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  console.log("hello");
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
+
 // parse requests of content-type - application/x-www-form-urlencoded
 //app.use(express.urlencoded({ extended: true }));
 
@@ -84,7 +97,7 @@ const storage = multer.diskStorage({
   }
   });
 
-  const upload = multer({storage});
+  const upload = multer({storage:multer.diskStorage({})});
 
 
 
@@ -154,13 +167,22 @@ app.get('/mostabsentemployee',auth, mostAbsentEmployee);
 
 
 //upload image
-app.post('/upload', upload.single('image'), (req, res) => {
-  console.log("file Uploaded sucessfully");
-  res.send(req.file);
+app.post('/upload', upload.single('image'), async (req, res) => {
+
+  try{
+    const result = await cloudinary.uploader.upload(req.file.path);
+    res.json(result);
+    console.log("file Uploaded sucessfully");
+    console.log(result);
+  } catch(err){
+    console.log(err);
+    res.json(err);
+  }
 });
 
 
 app.post('/login', login);
+
 
 
 const PORT = process.env.PORT || 8080;

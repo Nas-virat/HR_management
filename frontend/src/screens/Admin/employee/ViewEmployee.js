@@ -117,7 +117,7 @@ const ViewEmployee = () => {
         <div className ="Viewemployee-top">
           <div className ="Viewemployee-top-left">
             <div className = "viewemployee-img">
-              <img src = {EmployeeInfo.Image === null ? Logo :configData.SERVER_URL +`/image/${EmployeeInfo.Image}` } alt = "Employee-img"/>
+              <img src = {EmployeeInfo.Image === null ? Logo :`${EmployeeInfo.Image}` } alt = "Employee-img"/>
               <p>{EmployeeInfo.EmployeeID}</p>
             </div>
             <div className ="Viewemployee-top-left-content">

@@ -34,7 +34,7 @@ const PaymentRow = ({info}) =>{
   let navigate = useNavigate();
   return(
     <div className = "employee-content">
-        <div className = "employeerow-image"><img src = {info.Image === null ? Logo :configData.SERVER_URL+`/image/${info.Image}` } alt = "Employee-img"/>{info.EmployeeID}</div>
+        <div className = "employeerow-image"><img src = {info.Image === null ? Logo :`${info.Image}` } alt = "Employee-img"/>{info.EmployeeID}</div>
         <div className = "employeerow-name">{info.fname} {info.lname}</div>
         <div className = "employeerow-name">{info.TotalPayment}</div>
         <div className = "employeerow-role">{info.AccountNo}</div>
