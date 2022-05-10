@@ -34,7 +34,7 @@ const HomeEmployeeRow = ({data}) =>{
     let navigate = useNavigate();
     return (
       <div className = "home-employee-content">
-        <div className = "home-employee-image"><img src = {data.Image === null ? Logo :`http://localhost:8080/image/${data.Image}` } alt = "Employee-img"/></div>
+        <div className = "home-employee-image"><img src = {data.Image === null ? Logo :`${data.Image}` } alt = "Employee-img"/></div>
         <div className = "home-employee-id">{data.EmployeeID}</div>
         <div className = "home-employee-name">{data.fname} {data.lname}</div>
         <div className = "home-employee-department">Total Absent : {data.TotalAbsent}</div> 
