@@ -37,7 +37,13 @@ DB_NAME=""
 
 ACCESS_TOKEN = 
 ```
-
+in frontend/src/config/config.json set SERVER_URL as http://localhost:8080 
+```
+{
+    "SERVER_URL" : "",
+    "SERVER_PORT": ""
+}
+```
 
 install node modules
 ```
