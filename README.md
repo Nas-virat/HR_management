@@ -25,7 +25,7 @@ HRMS by SPFNA is HR management system
 - Check employee Attendance
 - Assign bonus to each employee
 
-## run the web
+## Run the web
 
 create .env file
 ```
@@ -45,23 +45,27 @@ in frontend/src/config/config.json set SERVER_URL as http://localhost:8080
 }
 ```
 
-install node modules
+Install node modules
 ```
 $ npm i 
 ```
 
-go to frontend folder and run npm i 
+Go to frontend folder and run npm i 
 
 ```
 $ cd frontend
 $ npm i 
 ```
-to run backend 
+To run backend 
 ```
 npm start
 ```
 
-to run backend and frontend dev mode
+To run backend and frontend dev mode
 ```
 npm run dev
 ```
+
+## Demo website
+
+https://hrms-spfna.herokuapp.com/
