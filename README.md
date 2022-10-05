@@ -18,12 +18,12 @@ HRMS by SPFNA is HR management system
 
 ## Feature 
 
-- Add new employee to database
-- Assign task to employee 
-- Promote employee
+- Add new employees to database
+- Assign task to employees
+- Promote employees
 - Create overtime (OT) task
-- Check employee Attendance
-- Assign bonus to each employee
+- Check employees Attendance
+- Assign bonus to each employees
 
 ## Run the web
 
