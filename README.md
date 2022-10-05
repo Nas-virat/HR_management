@@ -22,7 +22,7 @@ HRMS by SPFNA is HR management system
 - Assign task to employee 
 - Promote employee
 - Create overtime (OT) task
-- Check employee Attendance
+- Check employee Attendances
 - Assign bonus to each employee
 
 ## Run the web
