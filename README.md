@@ -1,6 +1,6 @@
 # HRMS by SPFNA | Human Resource Management System
 
-HRMS by SPFNA is HR management system 
+HRMS by SPFNA is HR management systems
 (CPE 231 KMUTT Database Design Project)
 
 ## Example
